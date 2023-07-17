@@ -5,6 +5,7 @@
     
                         <div class="bg-light rounded h-100 p-4">
                             <h6 class="mb-4">Assessment Sheet Preview</h6>
+                             <button @click="exportToExcel">Export to Excel</button>
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -47,12 +48,20 @@
 </template>
 
 <script>
+import {XLSX} from 'xlsx'
+
+
 import {mapActions,mapGetters,mapMutations} from 'vuex'
 export default {
-name:'All Students',
+name:'All CA',
 data(){
     return{
-        loading:false
+        loading:false,
+         products: [
+        { id: 1, name: 'Product 1', price: 10 },
+        { id: 2, name: 'Product 2', price: 20 },
+        { id: 3, name: 'Product 3', price: 30 },
+      ],
     }
 },
 computed:{
@@ -60,6 +69,13 @@ computed:{
 },
 methods:{
 ...mapActions(['CA_ROLLCALL','CLASS_DETAIL','SUBJECT_DETAIL']),
+
+ exportToExcel() {
+      const worksheet = XLSX.utils.json_to_sheet(this.products);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Products');
+      XLSX.writeFile(workbook, 'products.xlsx');
+    },
 
 },
 
