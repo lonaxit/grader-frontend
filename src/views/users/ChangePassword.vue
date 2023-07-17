@@ -96,7 +96,8 @@ export default {
             // data
                const payload ={
             username:this.username,
-            password:this.password
+            password:this.password,
+            re_password:this.password
                 }
 
                 this.UPDATE_PASSWORD(payload).then((res)=>{

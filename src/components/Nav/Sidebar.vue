@@ -32,7 +32,7 @@
                         <div class="dropdown-menu bg-transparent border-0">
                             <router-link to='/new-user/' class="dropdown-item">New</router-link>
                             <router-link to='/all-students/' class="dropdown-item">All</router-link>
-                            <router-link to='' class="dropdown-item">Classroom</router-link>
+                           
                         </div>
                     </div>
 
@@ -40,10 +40,10 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users me-2"></i>Staff</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <router-link to='' class="dropdown-item">New</router-link>
-                            <router-link to='' class="dropdown-item">All</router-link>
-                            <router-link to='' class="dropdown-item">Form Master</router-link>
-                            <router-link to='' class="dropdown-item">Subject Master</router-link>
+                            <router-link to='/new-staff/' class="dropdown-item">New</router-link>
+                            <router-link to='/all-staff/' class="dropdown-item">All</router-link>
+                            <router-link to='/all/class-teacher/' class="dropdown-item">Form Master</router-link>
+                            <router-link to='/all/subject-teacher/' class="dropdown-item">Subject Master</router-link>
                         </div>
                     </div>
 
@@ -98,6 +98,53 @@
                         </div>
                     </div>
 
+                      <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-cog me-2"></i>Skills</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <router-link to='/add-psycho/' class="dropdown-item">Add Psycho</router-link>
+                            <router-link to='/all-psycho/' class="dropdown-item">All Psycho</router-link>
+                            <router-link to='/add-affective/' class="dropdown-item">Add Affective</router-link>
+
+                             <router-link to='/all-affective/' class="dropdown-item">All Affective</router-link>
+
+                        </div>
+                    </div>
+
+                     <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users me-2"></i>Enrollment</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <router-link to='/new-enrollment/' class="dropdown-item">New</router-link>
+                            <router-link to='/find-enrollment/' class="dropdown-item">Roll Call</router-link>
+                           
+                        </div>
+                    </div>
+
+
+                      <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users me-2"></i>Grading</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                          
+                            <router-link to='/export-sheet/' class="dropdown-item">Export Sheet</router-link>
+
+                            <router-link to='/filter-score/' class="dropdown-item">FilterScores</router-link>
+                            <router-link to='/create-result/' class="dropdown-item">Process Result</router-link>
+                            <router-link to='/filter-result/' class="dropdown-item">View Result</router-link>
+                           
+                        </div>
+                    </div>
+
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users me-2"></i>Traiting</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                          
+                            <router-link to='/affective-traits/' class="dropdown-item">Affective Traits</router-link>
+                            <router-link to='/psycho-traits/' class="dropdown-item">Psycho Traits</router-link>
+                              <router-link to='/add-comments/' class="dropdown-item">Auto Comments</router-link>
+                        </div>
+                    </div>
+
+                        
                      <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
                         <div class="dropdown-menu bg-transparent border-0">

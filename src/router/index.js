@@ -172,6 +172,155 @@ const routes = [
         component:() =>import('../views/users/EditStudentProfile.vue')
       },
 
+      {
+        path: '/new-staff/',
+        name:'new-staff',
+        component:() =>import('../views/users/NewStaff.vue')
+      },
+      {
+        path: '/all-staff/',
+        name:'all-staff',
+        component:() =>import('../views/users/AllStaff.vue')
+      },
+      {
+        path: '/staff-profile/:id',
+        name:'staff-profile',
+        component:() =>import('../views/users/StaffProfile.vue')
+      },
+      {
+        path: '/add/subject-teacher/:id',
+        name:'add-subject-teacher',
+        component:() =>import('../views/teacher/AddSubjectTeacher.vue')
+      },
+      {
+        path: '/all/subject-teacher/',
+        name:'all-subject-teacher',
+        component:() =>import('../views/teacher/AllSubjectTeachers.vue')
+      },
+      {
+        path: '/subject-teacher/:id',
+        name:'edit-subject-teacher',
+        component:() =>import('../views/teacher/EditSubjTeacher.vue')
+      },
+      {
+        path: '/add/class-teacher/:id',
+        name:'add-class-teacher',
+        component:() =>import('../views/teacher/AddClassTeacher.vue')
+      },
+      {
+        path: '/all/class-teacher/',
+        name:'all-class-teacher',
+        component:() =>import('../views/teacher/AllClassTeachers.vue')
+      },
+      {
+        path: '/clas-teacher/:id',
+        name:'edit-class-teacher',
+        component:() =>import('../views/teacher/EditClassTeacher.vue')
+      },
+      {
+        path: '/new-enrollment/',
+        name:'new-enrollment',
+        component:() =>import('../views/enrollment/AddEnrollment.vue')
+      },
+      {
+        path: '/find-enrollment/',
+        name:'find-enrollment',
+        component:() =>import('../views/enrollment/FindEnrollment.vue')
+      },
+      {
+        path: '/roll-call/',
+        name:'roll-call',
+        component:() =>import('../views/enrollment/RollCall.vue')
+      },
+    
+      {
+        path: '/new-score/:id',
+        name:'new-score',
+        component:() =>import('../views/grading/AddScores.vue')
+      },
+      {
+        path: '/filter-score/',
+        name:'filter-score',
+        component:() =>import('../views/grading/FilterScores.vue')
+      },
+      {
+        path: '/scores-list/',
+        name:'scores-list',
+        component:() =>import('../views/grading/ScoresList.vue')
+      },
+
+      {
+        path: '/create-result/',
+        name:'create-result',
+        component:() =>import('../views/grading/CreateResult.vue')
+      },
+
+      {
+        path: '/filter-result/',
+        name:'filter-result',
+        component:() =>import('../views/grading/FilterResult.vue')
+      },
+      {
+        path: '/result-list/',
+        name:'result-list',
+        component:() =>import('../views/grading/ResultList.vue')
+      },
+
+      {
+        path: '/add-psycho/',
+        name:'add-psycho',
+        component:() =>import('../views/skills/AddPsycho.vue')
+      },
+      {
+        path: '/all-psycho/',
+        name:'all-psycho',
+        component:() =>import('../views/skills/PsychoList.vue')
+      },
+      {
+        path: '/edit-psycho/:id',
+        name:'edit-psycho',
+        component:() =>import('../views/skills/EditPsycho.vue')
+      },
+      
+      {
+        path: '/add-affective/',
+        name:'add-affective',
+        component:() =>import('../views/skills/AddAffective.vue')
+      },
+      {
+        path: '/all-affective/',
+        name:'all-affective',
+        component:() =>import('../views/skills/ListAffective.vue')
+      },
+      {
+        path: '/edit-affective/:id',
+        name:'edit-affective',
+        component:() =>import('../views/skills/EditAffective.vue')
+      },
+
+      {
+        path: '/affective-traits/',
+        name:'affective-traits',
+        component:() =>import('../views/traiting/AddAffectivetraits.vue')
+      },
+      {
+        path: '/psycho-traits/',
+        name:'psycho-traits',
+        component:() =>import('../views/traiting/AddPsychotraits.vue')
+      },
+
+      {
+        path: '/add-comments/',
+        name:'add-comments',
+        component:() =>import('../views/comments/AddComments.vue')
+      },
+      
+      {
+        path: '/export-sheet/',
+        name:'export-sheet',
+        component:() =>import('../views/grading/ExportSheet.vue')
+      },
+
     ]
   },
 
