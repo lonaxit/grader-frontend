@@ -3,7 +3,8 @@ import axios from 'axios'
 export const enrollment = {
     state: {
         enrollment:'',
-        allEnrollment: []
+        allEnrollment: [],
+        caRoll:[]
     },
 
     mutations: {
@@ -13,6 +14,9 @@ export const enrollment = {
         },
         SET_ENROLLMENTS(state, payload) {
             state.allEnrollment = payload
+        },
+        SET_CA_ROLL(state, payload) {
+            state.caRoll = payload
         },
     },
 
@@ -27,7 +31,12 @@ export const enrollment = {
               })
             commit('SET_ENROLLMENTS',res.data)
         },
-       
+        async CA_ROLLCALL({commit},payload) {
+            const res = await axios.get('api/v1/ca-roll-call/', {
+                params: payload,  // Send payload as query parameters
+              })
+            commit('SET_CA_ROLL',res.data)
+        },
         async ENROLLMENT_DETAIL({commit},id) {
             const res = await axios.get('api/v1/rollcall-detail/' + id +'/')
               commit('SET_ENROLLMENT', res.data) 
@@ -49,6 +58,10 @@ export const enrollment = {
          return state.allEnrollment
        
         },
+        GET_CA_ROLL(state) {
+            return state.caRoll
+          
+           },
     
     }
 }

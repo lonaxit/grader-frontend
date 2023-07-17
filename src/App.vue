@@ -7,8 +7,8 @@
    <router-view/>
 </template>
 <script>
-import './assets/js/main'
-import './assets/js/table2excel'
+// import './assets/js/main'
+// import './assets/js/table2excel'
 import { mapMutations} from 'vuex'
 import axios from 'axios'
 // import Sidebar from './components/Nav/Sidebar.vue'

@@ -23,7 +23,7 @@ export const scores = {
         async GET_CASHEET({commit},payload) {
             const res = await axios.get('api/v1/export-sheet/', {
                 params: payload,
-            })   
+            },{resonseType:'blob'})   
         },
 
         async FILTER_SCORES({commit},payload) {

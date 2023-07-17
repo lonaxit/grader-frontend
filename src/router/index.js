@@ -316,8 +316,8 @@ const routes = [
       },
       
       {
-        path: '/export-sheet/',
-        name:'export-sheet',
+        path: '/ca-sheet/:classid/:subjectid/',
+        name:'ca-sheet',
         component:() =>import('../views/grading/ExportSheet.vue')
       },
 

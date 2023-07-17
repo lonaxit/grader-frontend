@@ -26,6 +26,9 @@
                                         <td>
                                             <router-link  :to="{name:'edit-subject-teacher', params:{id:teacher.id}}">Edit</router-link>
                                         </td>
+                                        <td>
+                                            <router-link  :to="{name:'ca-sheet', params:{classid:teacher.classroom,subjectid:teacher.subject}}">Download Sheet</router-link>
+                                        </td>
                                  
                                  
                                     </tr>
