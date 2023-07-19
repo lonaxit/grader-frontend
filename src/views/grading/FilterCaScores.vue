@@ -1,27 +1,27 @@
 <template>
 <div class="col-sm-12 col-xl-8">
-  <h4>Select enrollment</h4>
+  <h4>Select Assessment Sheet</h4>
       <div class="bg-light rounded h-100 p-4">
 
                             <form @submit.prevent="handleSubmit">
 
                              <div class="form-floating mb-3">
-                                <select v-model="selectedTerm" class="form-select" id="floatingSelect"
+                                <select v-model="selectedSubject" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     
-                                    <option v-for="term in terms" :key="term.id" :value="term.id">{{term.name}}</option>
+                                    <option v-for="subj in allsubjs" :key="subj.id" :value="subj.id">{{subj.name}}</option>
                                 </select>
-                                <label for="floatingSelect">Term</label>
+                                <label for="floatingSelect">Subjects</label>
                             </div>
 
-                                 <div class="form-floating mb-3">
+                                 <!-- <div class="form-floating mb-3">
                                 <select v-model="selectedSession" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     
                                     <option v-for="session in activesess" :key="session.id" :value="session.id">{{session.name}}</option>
                                 </select>
                                 <label for="floatingSelect">Session</label>
-                            </div>
+                            </div> -->
                                  <div class="form-floating mb-3">
                                 <select v-model="selectedClass" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
@@ -38,7 +38,7 @@
                                 </button>
                             </form>
                         </div>
-                    
+                     
   </div>
 </template>
 
@@ -52,17 +52,17 @@ export default {
             submitting: false,
          
             selectedClass:'',
-            selectedSession:'',
-            selectedTerm:''
+            // selectedSession:'',
+            selectedSubject:''
         }
     },
 
     computed:{
-        ...mapGetters({sessions:'GET_SESSIONS',classes:'GET_CLASSES',terms:'GET_TERMS',activesess:'GET_ACTIVE_SESSION'})
+        ...mapGetters({classes:'GET_CLASSES',subjdetail:'GET_SUBJECT',allsubjs:'GET_SUBJECTS',classdetail:'GET_CLASS'})
     },
    
     methods:{
-        ...mapActions(['ALL_SESSIONS','ALL_CLASSES','ALL_TERMS','FETCH_ENROLLMENT']),
+        ...mapActions(['ALL_CLASSES','SUBJECT_DETAIL','ALL_SUBJECTS','CLASS_DETAIL','GET_CASHEET']),
         handleSubmit(){
             this.submitting = true;
 
@@ -77,7 +77,7 @@ export default {
                     })
         
             }
-              if(this.selectedSession === ''){
+              if(this.selectedSubject === ''){
                this.submitting = false;
                  this.$notify({
                         title:'Error',
@@ -89,26 +89,19 @@ export default {
         
             }
 
-            if(this.selectedTerm === ''){
-               this.submitting = false;
-                 this.$notify({
-                        title:'Error',
-                        text:'Select a term',
-                        duration:5000,
-                        type: 'error',
-                        width:'100%',
-                    })
-        
-            }
-            const payload={
-                classroom:this.selectedClass,
-                term:this.selectedTerm,
-                session:this.selectedSession
+            this.CLASS_DETAIL(this.selectedClass).then(()=>{
+                this.SUBJECT_DETAIL(this.selectedSubject).then(()=>{
+
+                const payload={
+
+                classname: this.classdetail.class_name,
+                subjname: this.subjdetail.subject_code,
+                subjectid:this.subjdetail.id,
+                classid:this.classdetail.id
             }
 
-
-            this.FETCH_ENROLLMENT(payload).then((res)=>{
-                     this.$router.push('/roll-call/')
+            this.GET_CASHEET(payload).then((res)=>{
+                    this.submitting = false;
             }).catch(err=>{
                     
                    this.submitting = false;
@@ -120,6 +113,17 @@ export default {
                         width:'100%',
                     })
                 })
+
+
+
+
+                })
+            })
+           
+          
+
+
+            
            
 
             // this.$router.push({ name: 'roll-call', params: {term:this.selectedTerm,classroom: this.selectedClass, session:this.selectedSession } })  
@@ -127,9 +131,10 @@ export default {
 
     },
     mounted(){
-        this.ALL_TERMS()
+        // this.ALL_TERMS()
         this.ALL_CLASSES()
-        this.ALL_SESSIONS()
+        // this.ALL_SESSIONS()
+        this.ALL_SUBJECTS()
     },
 
 }

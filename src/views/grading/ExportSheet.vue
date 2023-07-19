@@ -59,7 +59,7 @@ computed:{
 ...mapGetters({caroll:'GET_CA_ROLL',class_detail:'GET_CLASS',subject:'GET_SUBJECT'})
 },
 methods:{
-...mapActions(['CA_ROLLCALL','CLASS_DETAIL','SUBJECT_DETAIL']),
+...mapActions(['CA_ROLLCALL','CLASS_DETAIL','SUBJECT_DETAIL','GET_CASHEET']),
 
 },
 
@@ -70,6 +70,7 @@ mounted(){
     this.CA_ROLLCALL(payload).then(()=>{
         this.CLASS_DETAIL(this.$route.params.classid).then(()=>{
             this.SUBJECT_DETAIL(this.$route.params.subjectid).then(()=>{
+                this.GET_CASHEET()
                  this.loading=true
             })
         })

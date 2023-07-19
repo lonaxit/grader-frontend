@@ -43,6 +43,10 @@ export const session = {
         },
         GET_SESSION(state) {
             return state.session
+        },
+        GET_ACTIVE_SESSION(state) {
+            return state.allSession.filter(item => item.status ==true)
         }
+
     }
 }
