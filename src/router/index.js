@@ -314,19 +314,7 @@ const routes = [
         name:'add-comments',
         component:() =>import('../views/comments/AddComments.vue')
       },
-      {
-        path: '/export-ca-sheet/',
-        name:'export-ca-sheet',
-        component:() =>import('../views/grading/FilterCaScores.vue')
-      },
-
-      {
-        path: '/import-ca-sheet/',
-        name:'import-ca-sheet',
-        component:() =>import('../views/grading/ImportAssSheet.vue')
-      },
-
-      // not in use for now check to refactor it
+      
       {
         path: '/ca-sheet/:classid/:subjectid/',
         name:'ca-sheet',

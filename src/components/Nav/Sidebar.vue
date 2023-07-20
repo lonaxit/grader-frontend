@@ -124,13 +124,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users me-2"></i>Grading</a>
                         <div class="dropdown-menu bg-transparent border-0">
                           
-                            <!-- <router-link to='/export-sheet/' class="dropdown-item">Export Sheet</router-link> -->
-
-                             <router-link to='/import-ca-sheet/' class="dropdown-item">Upload CA Sheet</router-link>
-
-                             <router-link to='/export-ca-sheet/' class="dropdown-item">Download CA Sheet</router-link>
-
-                            
+                            <router-link to='/export-sheet/' class="dropdown-item">Export Sheet</router-link>
 
                             <router-link to='/filter-score/' class="dropdown-item">FilterScores</router-link>
                             <router-link to='/create-result/' class="dropdown-item">Process Result</router-link>

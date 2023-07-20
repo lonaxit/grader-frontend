@@ -62,10 +62,8 @@ methods:{
 },
 
 mounted(){
-    this.FETCH_SUBJ_TEACHERS().then(()=>{
-        this.loading=true
-    })
-    
+    this.FETCH_SUBJ_TEACHERS()
+    this.loading=true
 }
 }
 </script>

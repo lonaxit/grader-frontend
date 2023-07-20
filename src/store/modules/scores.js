@@ -17,35 +17,14 @@ export const scores = {
     },
 
     actions: {
-
         async ADD_SCORES({commit},payload) {
             const res = await axios.post('api/v1/new-score/' + payload.id +'/',payload)   
         },
-
-
         async GET_CASHEET({commit},payload) {
-            const res = await axios.get('api/v1/export-sheet/',
-                {
-                params: payload,  
-                responseType: 'blob', // Ensure response is treated as a binary blob
-                }) 
-             
-                const blob = new Blob([res.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }); // Assuming it's an Excel file (xlsx)
-                const url = URL.createObjectURL(blob);
-            
-            // Initiate file download
-                const link = document.createElement('a');
-                link.href = url;
-                link.setAttribute('download', `${payload.classname}/${payload.subjname}.xlsx`);
-                document.body.appendChild(link);
-                link.click();
-            
+            const res = await axios.get('api/v1/export-sheet/', {
+                params: payload,
+            },{resonseType:'blob'})   
         },
-
-        async UPLOAD_EXCEL_SCORES({commit},payload) {
-            const res = await axios.post('api/v1/import-sheet/',payload)   
-        },
-        
 
         async FILTER_SCORES({commit},payload) {
             const res = await axios.get('api/v1/filter-scores/', {

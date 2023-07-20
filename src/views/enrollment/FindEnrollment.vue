@@ -18,7 +18,7 @@
                                 <select v-model="selectedSession" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     
-                                    <option v-for="session in activesess" :key="session.id" :value="session.id">{{session.name}}</option>
+                                    <option v-for="session in sessions" :key="session.id" :value="session.id">{{session.name}}</option>
                                 </select>
                                 <label for="floatingSelect">Session</label>
                             </div>
@@ -38,7 +38,9 @@
                                 </button>
                             </form>
                         </div>
-                    
+                        {{selectedClass}}
+                         {{selectedSession}}
+                          {{selectedTerm}}
   </div>
 </template>
 
@@ -58,7 +60,7 @@ export default {
     },
 
     computed:{
-        ...mapGetters({sessions:'GET_SESSIONS',classes:'GET_CLASSES',terms:'GET_TERMS',activesess:'GET_ACTIVE_SESSION'})
+        ...mapGetters({sessions:'GET_SESSIONS',classes:'GET_CLASSES',terms:'GET_TERMS'})
     },
    
     methods:{
