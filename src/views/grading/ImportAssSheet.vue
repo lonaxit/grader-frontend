@@ -51,6 +51,7 @@ export default {
 
             this.UPLOAD_EXCEL_SCORES(payload).then(()=>{
                 this.submitting = false
+                this.file=''
                     this.$notify({
                         title:'SUCCESS',
                         text:'Your scores uploaded successfully',

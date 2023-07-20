@@ -68,6 +68,9 @@ export const auth = {
     getters: {
         GET_USERNAME(state) {
             return state.username
+        },
+        GET_AUTHENTICATED(state) {
+            return state.is_Authenticated
         }
     }
 }
