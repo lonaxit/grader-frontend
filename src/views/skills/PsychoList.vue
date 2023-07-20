@@ -64,8 +64,10 @@ this.$router.push('/all-psycho/')
 },
 
 mounted(){ 
-    this.FETCH_PSYCHO()
-    this.loading=true
+    this.FETCH_PSYCHO().then(()=>{
+          this.loading=true
+    })
+  
 }
 }
 </script>

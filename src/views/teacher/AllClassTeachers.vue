@@ -59,8 +59,10 @@ methods:{
 },
 
 mounted(){
-    this.FETCH_CLASS_TEACHERS()
-    this.loading=true
+    this.FETCH_CLASS_TEACHERS().then(()=>{
+        this.loading=true
+    })
+    
 }
 }
 </script>

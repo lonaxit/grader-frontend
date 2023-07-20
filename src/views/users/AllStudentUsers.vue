@@ -59,8 +59,10 @@ methods:{
 },
 
 mounted(){
-    this.FETCH_USERS()
-    this.loading=true
+    this.FETCH_USERS().then(()=>{
+        this.loading=true
+    })
+    
 }
 }
 </script>
