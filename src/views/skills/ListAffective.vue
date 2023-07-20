@@ -73,8 +73,10 @@ this.$router.push('/all-affective/')
 },
 
 mounted(){ 
-    this.FETCH_AFFECTIVE()
-    this.loading=true
+    this.FETCH_AFFECTIVE().then(()=>{
+         this.loading=true
+    })
+   
 }
 }
 </script>

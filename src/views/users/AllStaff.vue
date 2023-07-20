@@ -63,8 +63,10 @@ methods:{
 },
 
 mounted(){
-    this.FETCH_ALL_STAFF()
-    this.loading=true
+    this.FETCH_ALL_STAFF().then(()=>{
+        this.loading=true
+    })
+    
 }
 }
 </script>
