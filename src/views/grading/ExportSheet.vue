@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import {XLSX} from 'xlsx'
+
 
 
 import {mapActions,mapGetters,mapMutations} from 'vuex'
