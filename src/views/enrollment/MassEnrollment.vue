@@ -1,0 +1,219 @@
+<template>
+<div class="col-sm-12 col-xl-8">
+  <h4>Mass Enrollment</h4>
+      <div class="bg-light rounded h-100 p-4">
+
+                            <form @submit.prevent="handleSubmit">
+
+                             <div class="form-floating mb-3">
+                                <select v-model="fromTerm" class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example">
+                                    
+                                    <option v-for="term in terms" :key="term.id" :value="term.id">{{term.name}}</option>
+                                </select>
+                                <label for="floatingSelect"> From Term</label>
+                            </div>
+
+                                 <div class="form-floating mb-3">
+                                <select v-model="fromSession" class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example">
+                                    
+                                    <option v-for="session in sessions" :key="session.id" :value="session.id">{{session.name}}</option>
+                                </select>
+                                <label for="floatingSelect"> From Session</label>
+                            </div>
+                                 <div class="form-floating mb-3">
+                                <select v-model="fromClass" class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example">
+                                    
+                                    <option v-for="room in classes" :key="room.id" :value="room.id">{{room.class_name}}</option>
+                                </select>
+                                <label for="floatingSelect"> From Class</label>
+                            </div>
+
+
+                                <div class="form-floating mb-3">
+                                <select v-model="toTerm" class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example">
+                                    
+                                    <option v-for="term in terms" :key="term.id" :value="term.id">{{term.name}}</option>
+                                </select>
+                                <label for="floatingSelect"> To Term</label>
+                            </div>
+
+                                 <div class="form-floating mb-3">
+                                <select v-model="toSession" class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example">
+                                    
+                                    <option v-for="session in activesess" :key="session.id" :value="session.id">{{session.name}}</option>
+                                </select>
+                                <label for="floatingSelect"> To Session</label>
+                            </div>
+                                 <div class="form-floating mb-3">
+                                <select v-model="toClass" class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example">
+                                    
+                                    <option v-for="room in classes" :key="room.id" :value="room.id">{{room.class_name}}</option>
+                                </select>
+                                <label for="floatingSelect"> To Class</label>
+                            </div>
+
+                            
+
+                                 <button type="submit"  :disabled="submitting" class="btn btn-primary py-3 w-100 mb-4">
+                            {{ submitting ? 'Submitting...' : 'Submit' }}
+                                </button>
+                            </form>
+                        </div>
+
+                        {{toClass}}
+                        {{toSession}}
+                        {{toTerm}}
+                    
+  </div>
+</template>
+
+<script>
+
+import {mapActions,mapMutations,mapGetters} from 'vuex'
+export default {
+      
+    data(){
+        return{
+            submitting: false,
+         
+            fromClass:'',
+            fromSession:'',
+            fromTerm:'',
+            toClass:'',
+            toSession:'',
+            toTerm:''
+        }
+    },
+
+    computed:{
+        ...mapGetters({sessions:'GET_SESSIONS',classes:'GET_CLASSES',terms:'GET_TERMS',activesess:'GET_ACTIVE_SESSION'})
+    },
+   
+    methods:{
+        ...mapActions(['ALL_SESSIONS','ALL_CLASSES','ALL_TERMS','FETCH_ENROLLMENT','MASS_ENROLLMENT']),
+        handleSubmit(){
+            this.submitting = true;
+
+                if(this.fromClass === ''){
+               this.submitting = false;
+                 this.$notify({
+                        title:'Error',
+                        text:'Select a class',
+                        duration:5000,
+                        type: 'error',
+                        width:'100%',
+                    })
+        
+            }
+              if(this.fromSession === ''){
+               this.submitting = false;
+                 this.$notify({
+                        title:'Error',
+                        text:'Select a session',
+                        duration:5000,
+                        type: 'error',
+                        width:'100%',
+                    })
+        
+            }
+
+            if(this.fromTerm === ''){
+               this.submitting = false;
+                 this.$notify({
+                        title:'Error',
+                        text:'Select a term',
+                        duration:5000,
+                        type: 'error',
+                        width:'100%',
+                    })
+        
+            }
+
+            if(this.toClass === ''){
+               this.submitting = false;
+                 this.$notify({
+                        title:'Error',
+                        text:'Select a class',
+                        duration:5000,
+                        type: 'error',
+                        width:'100%',
+                    })
+        
+            }
+              if(this.toSession === ''){
+               this.submitting = false;
+                 this.$notify({
+                        title:'Error',
+                        text:'Select a session',
+                        duration:5000,
+                        type: 'error',
+                        width:'100%',
+                    })
+        
+            }
+
+            if(this.toTerm === ''){
+               this.submitting = false;
+                 this.$notify({
+                        title:'Error',
+                        text:'Select a term',
+                        duration:5000,
+                        type: 'error',
+                        width:'100%',
+                    })
+        
+            }
+
+            const payload={
+                fromclassroom:this.fromClass,
+                fromterm:this.fromTerm,
+                fromsession:this.fromSession,
+                toclassroom:this.toClass,
+                toterm:this.toTerm,
+                tosession:this.toSession,
+            }
+
+            this.MASS_ENROLLMENT(payload).then((res)=>{
+                     this.submitting = false;
+                         this.$notify({
+                        title:'SUCCESS',
+                        text:'Enrollment',
+                        duration:5000,
+                        type: 'success',
+                        width:'100%',
+                    })
+            }).catch(err=>{
+                    
+                   this.submitting = false;
+                   this.$notify({
+                        title:'ERROR',
+                        text:'An error has occured or no records',
+                        duration:5000,
+                        type: 'error',
+                        width:'100%',
+                    })
+                })
+           
+
+            // this.$router.push({ name: 'roll-call', params: {term:this.selectedTerm,classroom: this.selectedClass, session:this.selectedSession } })  
+        }
+
+    },
+    mounted(){
+        this.ALL_TERMS()
+        this.ALL_CLASSES()
+        this.ALL_SESSIONS()
+    },
+
+}
+</script>
+
+<style>
+
+</style>

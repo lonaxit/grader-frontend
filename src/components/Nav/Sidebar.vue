@@ -32,6 +32,8 @@
                         <div class="dropdown-menu bg-transparent border-0">
                             <router-link to='/new-user/' class="dropdown-item">New</router-link>
                             <router-link to='/all-students/' class="dropdown-item">All</router-link>
+
+                            <router-link to='/add-admission-number/' class="dropdown-item">Admission Number</router-link>
                            
                         </div>
                     </div>
@@ -114,8 +116,9 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users me-2"></i>Enrollment</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <router-link to='/new-enrollment/' class="dropdown-item">New</router-link>
+                            <router-link to='/mass-enrollment/' class="dropdown-item">Mass Enroll</router-link>
                             <router-link to='/find-enrollment/' class="dropdown-item">Roll Call</router-link>
-                           
+                          
                         </div>
                     </div>
 

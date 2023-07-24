@@ -157,6 +157,11 @@ const routes = [
         component:() =>import('../views/users/AllStudentUsers.vue')
       },
       {
+        path: '/add-admission-number/',
+        name:'add-admission-number',
+        component:() =>import('../views/users/AddAdmissionNumber.vue')
+      },
+      {
         path: '/student-profile/:id',
         name:'student-profile',
         component:() =>import('../views/users/StudentProfile.vue')
@@ -213,7 +218,7 @@ const routes = [
         component:() =>import('../views/teacher/AllClassTeachers.vue')
       },
       {
-        path: '/clas-teacher/:id',
+        path: '/class-teacher/:id',
         name:'edit-class-teacher',
         component:() =>import('../views/teacher/EditClassTeacher.vue')
       },
@@ -221,6 +226,11 @@ const routes = [
         path: '/new-enrollment/',
         name:'new-enrollment',
         component:() =>import('../views/enrollment/AddEnrollment.vue')
+      },
+      {
+        path: '/mass-enrollment/',
+        name:'mass-enrollment',
+        component:() =>import('../views/enrollment/MassEnrollment.vue')
       },
       {
         path: '/find-enrollment/',

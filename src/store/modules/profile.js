@@ -5,7 +5,8 @@ export const profile = {
         studentprofile: '',
         studentprofiles: [],
         staffprofile:'',
-        staffprofiles:[]
+        staffprofiles:[],
+        noAdmissionNumber:[]
     },
 
     mutations: {
@@ -17,6 +18,10 @@ export const profile = {
             state.studentprofiles = payload
         },
 
+        SET_STUDENT_NOADMISSION_NUMBER(state, payload) {
+            state.noAdmissionNumber = payload
+        },
+
     },
 
     actions: {
@@ -24,10 +29,14 @@ export const profile = {
             const res = await axios.post('api/v1/student-profile/'+ payload.id + '/',payload)   
         },
 
-        // async FETCH_USERS({commit}) {
-        //     const res = await axios.get('auth/v1/all/users/')
-        //     commit('SET_STUDENTUSERS',res.data.user)
-        // },
+        async FETCH_NOADMISSION_NUMBER({commit}) {
+            const res = await axios.get('api/v1/student-profile-nonumber/')
+            commit('SET_STUDENT_NOADMISSION_NUMBER',res.data)
+        },
+
+         async ASSIGN_NUMBER({commit},id) {
+            const res = await axios.put('api/v1/assign_number/' + id +'/') 
+        },
        
         async STUDENT_PROFILE_DETAIL({commit},id) {
             const res = await axios.get('api/v1/studentprofile-detail/' + id +'/')
@@ -45,6 +54,11 @@ export const profile = {
         GET_STUDENT_PROFILES(state) {
          return state.studentprofiles
        
-        }
+        },
+
+        GET_NO_ADMISSION_NUM(state) {
+            return state.noAdmissionNumber
+          
+           }
     }
 }
