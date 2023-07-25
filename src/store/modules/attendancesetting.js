@@ -31,8 +31,31 @@ export const attendancesetting = {
         },
         async UPDATE_ATT({commit},payload) {
             const res = await axios.put('api/v1/attendancesetting-detail/' + payload.id +'/',payload)
-        }
-       
+        },
+
+    //    download template for terminal attendance
+    async GET_GENERAL_ATTENDANCE_SHEET({commit},payload) {
+        const res = await axios.get('api/v1/export-attendance-sheet/',
+            {
+            params: payload,  
+            responseType: 'blob', // Ensure response is treated as a binary blob
+            }) 
+         
+            const blob = new Blob([res.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }); // Assuming it's an Excel file (xlsx)
+            const url = URL.createObjectURL(blob);
+        
+        // Initiate file download
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `${payload.classname}/${payload.termname}/${payload.sessname}.xlsx`);
+            document.body.appendChild(link);
+            link.click();
+        },
+    
+    async UPLOAD_ATTENDANCE({commit},payload) {
+        const res = await axios.post('api/v1/upload-attendance/',payload)   
+    },
+
     },
     getters: {
         GET_ATTS(state) {

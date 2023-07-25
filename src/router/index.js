@@ -232,6 +232,7 @@ const routes = [
         name:'mass-enrollment',
         component:() =>import('../views/enrollment/MassEnrollment.vue')
       },
+   
       {
         path: '/find-enrollment/',
         name:'find-enrollment',
@@ -329,6 +330,17 @@ const routes = [
         name:'export-ca-sheet',
         component:() =>import('../views/grading/FilterCaScores.vue')
       },
+
+      {
+        path: '/export-attendance-sheet/',
+        name:'export-attendance-sheet',
+        component:() =>import('../views/grading/MassAttendance.vue')
+      },
+      {
+      path: '/import-attendance/',
+      name:'import-attendance',
+      component:() =>import('../views/grading/UploadAttendance.vue')
+    },
 
       {
         path: '/import-ca-sheet/',

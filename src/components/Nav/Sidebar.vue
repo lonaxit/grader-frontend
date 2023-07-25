@@ -133,6 +133,10 @@
 
                              <router-link to='/export-ca-sheet/' class="dropdown-item">Download CA Sheet</router-link>
 
+                             <router-link to='/export-attendance-sheet/' class="dropdown-item">Export Att Sheet</router-link>
+
+                             <router-link to='/import-attendance/' class="dropdown-item">Upload Att Sheet</router-link>
+
                             
 
                             <router-link to='/filter-score/' class="dropdown-item">FilterScores</router-link>

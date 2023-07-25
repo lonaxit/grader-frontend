@@ -65,11 +65,6 @@
                                 </button>
                             </form>
                         </div>
-
-                        {{toClass}}
-                        {{toSession}}
-                        {{toTerm}}
-                    
   </div>
 </template>
 
