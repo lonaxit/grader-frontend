@@ -33,11 +33,7 @@
                                         <td>{{item.termaverage}}</td>
                                         <td>{{item.termposition}}</td>
                                      
-                                         <!-- <td>
-                                            <button @click="remove(item.id)">
-                                                Remove
-                                            </button>
-                                        </td> -->
+                                 
                                         <td>
                                             <router-link  :to="{name:'my-detail-result', params:{id:item.id}}">Detail</router-link>
                                         </td>
@@ -74,12 +70,6 @@ computed:{
 },
 methods:{
 ...mapActions(['DELETE_RESULT','FETCH_ME','FETCH_MY_RESULTS']),
-
-remove(id){
-    // confirm("Are you sure?")
-this.DELETE_RESULT(id)
-this.$router.push('/filter-result/')
-}
 },
 
 mounted(){ 

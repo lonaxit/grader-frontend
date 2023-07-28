@@ -150,7 +150,7 @@ export default {
         }
     },
     computed:{
-        ...mapGetters({result:'GET_RESULT',myscores:'GET_MY_SCORES',affectivetraits:'GET_TRAITS',psychotraits:'GET_PSYCHOTRAITS',resumedates:'GET_RESUMPTIONS',rollcall:'GET_ENROLLMENTS'}),
+        ...mapGetters({result:'GET_RESULT',myscores:'GET_MY_SCORES',affectivetraits:'GET_TRAITS',psychotraits:'GET_PSYCHOTRAITS',resumedates:'GET_RESUMPTIONS',rollcall:'GET_ENROLLMENTS',}),
 
         resumption_date(){
             return this.resumedates = this.resumedates.filter(item=>item.current_term===this.result.term && item.session===this.result.session)
