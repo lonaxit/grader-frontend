@@ -18,6 +18,10 @@ export const enrollment = {
         SET_CA_ROLL(state, payload) {
             state.caRoll = payload
         },
+
+        DELETE_ROLLCALL_MUTATION(state, id) {
+            state.allEnrollment = state.allEnrollment.filter(record => record.id !==id)
+        },
     },
 
     actions: {
@@ -47,7 +51,7 @@ export const enrollment = {
         },
         async DELETE_ENROLLMENT({commit},id) {
             const res = await axios.delete('api/v1/rollcall-detail/' + id +'/')
-            //   commit('SET_ENROLLMENT', res.data) 
+            commit('DELETE_ROLLCALL_MUTATION', id) 
         },
     
         async UPDATE_CLASS_TEACHER({commit},payload) {

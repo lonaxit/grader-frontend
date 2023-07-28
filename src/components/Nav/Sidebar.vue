@@ -19,14 +19,17 @@
 
                     <a href="" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
 
-                     <div class="nav-item dropdown">
+                    <div v-if="status===true"> 
+
+                         <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users me-2"></i>Accounts</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <router-link to='/change-password/' class="dropdown-item">Change Password</router-link>
                           
                         </div>
                     </div>
-
+                    
+                    
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users me-2"></i>Students</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -37,8 +40,7 @@
                            
                         </div>
                     </div>
-
-
+                    
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users me-2"></i>Staff</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -49,6 +51,7 @@
                         </div>
                     </div>
 
+                
                      <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-cog me-2"></i>Term</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -57,7 +60,8 @@
                         </div>
                     </div>
 
-                     <div class="nav-item dropdown">
+
+                        <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-cog me-2"></i>Session</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <router-link to='/add-session' class="dropdown-item">New</router-link>
@@ -66,16 +70,16 @@
                     </div>
 
 
-
-                     <div class="nav-item dropdown">
+                        <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-cog me-2"></i>Class</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <router-link to='/new-class' class="dropdown-item">New</router-link>
                             <router-link to='/all-classes' class="dropdown-item">All</router-link>
                         </div>
-                    </div>
+                        </div>
 
-                    <div class="nav-item dropdown">
+
+                      <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-cog me-2"></i>Subject</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <router-link to='/new-suBject' class="dropdown-item">New</router-link>
@@ -84,6 +88,9 @@
                             <router-link to='/list-class-subjects/' class="dropdown-item">List Class Subjects</router-link>
                         </div>
                     </div>
+
+
+                        
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-cog me-2"></i>Attendance</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -92,6 +99,8 @@
                         </div>
                     </div>
 
+
+                    
                      <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-cog me-2"></i>Resumption</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -112,6 +121,8 @@
                         </div>
                     </div>
 
+
+
                      <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users me-2"></i>Enrollment</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -122,8 +133,7 @@
                         </div>
                     </div>
 
-
-                      <div class="nav-item dropdown">
+                            <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users me-2"></i>Grading</a>
                         <div class="dropdown-menu bg-transparent border-0">
                           
@@ -137,17 +147,17 @@
 
                              <router-link to='/import-attendance/' class="dropdown-item">Upload Att Sheet</router-link>
 
-                            
 
                             <router-link to='/filter-score/' class="dropdown-item">FilterScores</router-link>
                             <router-link to='/create-result/' class="dropdown-item">Process Result</router-link>
                             <router-link to='/filter-result/' class="dropdown-item">View Result</router-link>
+
+                            <router-link to='/print-result/' class="dropdown-item">Print Result</router-link>
                            
                         </div>
                     </div>
 
-
-                    <div class="nav-item dropdown">
+                       <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users me-2"></i>Traiting</a>
                         <div class="dropdown-menu bg-transparent border-0">
                           
@@ -155,7 +165,24 @@
                             <router-link to='/psycho-traits/' class="dropdown-item">Psycho Traits</router-link>
                               <router-link to='/add-comments/' class="dropdown-item">Auto Comments</router-link>
                         </div>
+                      
                     </div>
+
+
+                    </div>
+                    <div v-else>
+                          <!-- student routes -->
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users me-2"></i>Me</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                          
+                            <router-link to='/my-result/' class="dropdown-item">My Result</router-link>
+                         
+                        </div>
+                    </div>
+
+                    </div>
+
                 </div>
             </nav>
         </div>
@@ -164,7 +191,31 @@
 
 <script>
 
+import { mapGetters, mapActions, mapMutations } from "vuex"
+
 export default {
-  name: 'Sidebar'
+  name: 'Sidebar',
+  data(){
+    return{
+        loading:true,
+        staff:true
+    }
+  },
+
+  computed:{
+    ...mapGetters({myself:'GET_ME',status:'GET_STAFF_STATUS'})
+  },
+  method:{
+    ...mapActions(['FETCH_ME'])
+  },
+
+  mounted(){
+    // if(this.status){
+    //     this.staff = this.myself.is_staff
+    // }
+        
+        // this.loading=false
+
+  }
 }
 </script>

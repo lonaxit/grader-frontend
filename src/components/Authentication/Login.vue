@@ -6,9 +6,9 @@
                     <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
                         <div class="mb-3">
                             <div>
-                            <a href="index.html" class="">
-                                <h3>SKY GIFTED ACADEMY</h3>
-                            </a>
+                                
+                            
+                                <h3>SKY GIFTED ACADEMY MKAR</h3>
                             </div>
                             <h3>Sign In</h3>
                         </div>
@@ -21,17 +21,23 @@
                             <input type="password" class="form-control" id="floatingPassword" placeholder="Password" v-model="password">
                             <label for="floatingPassword">Password</label>
                         </div>
-                        <div class="d-flex align-items-center justify-content-between mb-4">
+                        <!-- <div class="d-flex align-items-center justify-content-between mb-4">
                             
                             <a href="">Forgot Password</a>
-                        </div>
+                        </div> -->
                         <button type="submit"  :disabled="submitting" class="btn btn-primary py-3 w-100 mb-4">
                             {{ submitting ? 'Submitting...' : 'Submit' }}
                         </button>
 
                         </form>
                       
-                      
+                       <div>
+                        <h6>Instructions</h6>
+                        <p>To login, use your user name given by the school while your password is your admission number</p>
+
+                        <hr>
+                        For further enquiries call 08165735253,07036190112, 08038292630
+                       </div>
                     </div>
                 </div>
             </div>
@@ -45,6 +51,7 @@ export default {
     name:'Login',
     data() {
         return {
+         
             username: '',
             password: '',
             errors: [],
@@ -56,8 +63,9 @@ export default {
     },
 
     methods: {
+        ...mapActions(['FETCH_ME','FETCH_USERSTATUS']),
         ...mapMutations(['SET_USERNAME','SET_TOKEN']),
-        handleLogin(){
+       async  handleLogin(){
         this.submitting = true;
         //   reset token
             axios.defaults.headers.common['Authorization'] = ""
@@ -89,7 +97,7 @@ export default {
                 }
 
                 // send data through using axios using promises
-                axios
+              await  axios
                 .post('/api/v1/token/login/',FormData)
                 .then(response => {
                     this.submitting = false;
@@ -101,6 +109,9 @@ export default {
                     
                     axios.defaults.headers.common['Authorization'] = "Token " + token
 
+                  
+                    this.FETCH_USERSTATUS()
+
                     // store in the local storage 
                     localStorage.setItem('token',token)
                     localStorage.setItem('username',this.username)
@@ -111,7 +122,14 @@ export default {
                 })
                 .catch(error =>{
                     this.submitting = false;
-                     this.errors.push(error)
+                    //  this.errors.push(error)
+                       this.$notify({
+                        title:'Error',
+                        text:'Please check your credentions or something is wrong',
+                        duration:5000,
+                        type: 'error',
+                        width:'100%',
+                    })
                     })
 
          } 
@@ -119,3 +137,6 @@ export default {
     }
 }
 </script>
+<style scoped>
+
+</style>

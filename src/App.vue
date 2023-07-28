@@ -8,7 +8,7 @@
 </template>
 <script>
 
-import { mapMutations} from 'vuex'
+import { mapActions, mapMutations,mapGetters} from 'vuex'
 import axios from 'axios'
 // import Sidebar from './components/Nav/Sidebar.vue'
 // import Topbar from './components/Nav/Topbar.vue'
@@ -23,28 +23,35 @@ export default {
     // Sidebar,
     // Topbar,
     // Login
+    loggedin:''
+  },
+  computed:{
+    ...mapGetters({mytoken:'GET_TOKEN'})
   },
   methods:{
-    ...mapMutations(['INIT_USERNAME','INIT_STORE'])
+    ...mapMutations(['INIT_USERNAME','INIT_STORE','INIT_STATUS']),
+    ...mapActions(['FETCH_ME','FETCH_USERSTATUS'])
   },
   
   created(){
     this.INIT_USERNAME()
+    this.INIT_STATUS()
   },
    beforeCreate(){
 
     this.$store.commit('INIT_STORE')
     const token = this.$store.state.auth.token
 
+    // initialize the user status, create a commit from the auth module
+
     if(token){
+
     axios.defaults.headers.common['Authorization'] = "Token " + token
     }else{
      axios.defaults.headers.common['Authorization'] = ""
     }
 },
-mounted(){
 
-}
 }
 
 </script>

@@ -16,6 +16,8 @@
                                         <th scope="col">Avg</th>
                                         <th scope="col">Pos</th>
                                         <th scope="col">Remove</th>
+                                        <th scope="col">View</th>
+                                        <th scope="col">Print</th>
                                  
                                     </tr>
                                 </thead>
@@ -36,9 +38,13 @@
                                                 Remove
                                             </button>
                                         </td>
-                                  <!-- <td>
-                                            <router-link  :to="{name:'new-score', params:{id:item.student}}">Add Score</router-link>
-                                        </td> -->
+                                     <td>
+                                            <router-link  :to="{name:'my-detail-result', params:{id:item.id}}">Detail</router-link>
+                                        </td>
+
+                                         <td>
+                                            <router-link target= "_blank"  :to="{name:'print-result', params:{id:item.id}}">Print</router-link>
+                                        </td>
                                  
                                     </tr>
                                 </tbody>

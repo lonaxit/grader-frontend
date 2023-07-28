@@ -4,12 +4,10 @@
 
        <div class="content">
         <Topbar/>
-         <div class="container-fluid pt-4 px-4">
+        <div class="container-fluid pt-4 px-4">
            <router-view/>
         </div>
-        </div>
-       
- 
+  </div>
   </div>
   <!-- <router-view/> -->
 </template>

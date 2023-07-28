@@ -5,7 +5,9 @@ export const user = {
         user: '',
         staff:'',
         studentusers: [],
-        allStaff:[]
+        allStaff:[],
+        me: '',
+        userdata:''
     },
 
     mutations: {
@@ -22,6 +24,10 @@ export const user = {
         SET_ALL_STAFF(state, payload) {
             state.allStaff = payload
         },
+        SET_ME(state, payload) {
+            state.me = payload
+        },
+    
 
     },
 
@@ -34,6 +40,13 @@ export const user = {
             const res = await axios.get('auth/v1/all/users/')
             commit('SET_STUDENT_USERS',res.data.user)
         },
+
+        async FETCH_ME({commit}) {
+            const res = await axios.get('auth/v1/me/')
+            commit('SET_ME',res.data.user)
+        },
+
+       
        
         async USER_DETAIL({commit},id) {
             const res = await axios.get('auth/v1/user-detail/' + id +'/')
@@ -62,6 +75,10 @@ export const user = {
         GET_USER(state) {
             return state.user
         },
+        GET_ME(state) {
+            return state.me
+        },
+    
         GET_USERS(state) {
          return state.studentusers.filter(user => user.is_student==true)
        

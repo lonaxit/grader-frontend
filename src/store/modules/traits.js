@@ -43,7 +43,7 @@ export const traits = {
         },
 
         async FETCH_PSYCHOTRAITS({commit},payload) {
-            const res = await axios.get('api/v1/student/affectivetraits/' + payload.userid + '/'+payload.session+'/'+payload.classroom+'/'+payload.term+'/' )
+            const res = await axios.get('api/v1/student/psychotraits/' + payload.userid + '/'+payload.session+'/'+payload.classroom+'/'+payload.term+'/' )
             commit('SET_ALL_PSYCHOTRAITS', res.data)
             
         },

@@ -1,15 +1,11 @@
 <template>
-  <div>
-    <div v-if="staffstatus===true">...loading your preferences, please wait</div>
-    <div v-else>
-    <div v-if="loading">...loading user data</div>
-    <div v-else >
-     <h5> Welcome {{me.sur_name}} </h5>
 
-      <div class="col-sm-12 col-xl-12">
-   
-                        <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">RESULT LIST</h6>
+  <div class="col-sm-12 col-xl-12">
+    <div v-if="loading">  Loading ... </div>
+
+    <div v-else>
+         <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">MY RESULT LIST</h6>
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -20,7 +16,7 @@
                                         <th scope="col">Tot</th>
                                         <th scope="col">Avg</th>
                                         <th scope="col">Pos</th>
-                                        <th scope="col">View</th>
+                                        <th scope="col">Detail</th>
                                         <th scope="col">Print</th>
                                  
                                     </tr>
@@ -36,7 +32,13 @@
                                         <td>{{item.termtotal}}</td>
                                         <td>{{item.termaverage}}</td>
                                         <td>{{item.termposition}}</td>
-                                     <td>
+                                     
+                                         <!-- <td>
+                                            <button @click="remove(item.id)">
+                                                Remove
+                                            </button>
+                                        </td> -->
+                                        <td>
                                             <router-link  :to="{name:'my-detail-result', params:{id:item.id}}">Detail</router-link>
                                         </td>
 
@@ -48,44 +50,50 @@
                                 </tbody>
                             </table>
                         </div>
-</div>
-{{me}}
+
     </div>
     
-    </div>
-  
-  </div>
+                       
+
+
+</div>
+
 </template>
 
 <script>
-import {mapGetters,mapActions,mapMutations} from 'vuex'
+import {mapActions,mapGetters,mapMutations} from 'vuex'
 export default {
-name:'Home',
+name:'Result List',
 data(){
-    return {
-      loading:true
+    return{
+        loading:true
     }
 },
 computed:{
-...mapGetters({me:'GET_ME',staffstatus:'GET_STAFF_STATUS',myresults:'GET_MY_RESULT'})
+...mapGetters({results:"GET_RESULTS",me:'GET_ME',myresults:'GET_MY_RESULT'})
+},
+methods:{
+...mapActions(['DELETE_RESULT','FETCH_ME','FETCH_MY_RESULTS']),
+
+remove(id){
+    // confirm("Are you sure?")
+this.DELETE_RESULT(id)
+this.$router.push('/filter-result/')
+}
 },
 
-  methods:{
-      ...mapActions(['FETCH_ME','FETCH_MY_RESULTS'])
-    },
-
-    mounted(){
-      this.FETCH_ME().then(()=>{
-        if(this.me.is_staff===false){
-          this.FETCH_MY_RESULTS(this.me.id).then(()=>{
-            this.loading =false
-          })
-        }
-      })
-    }
-
-
-
+mounted(){ 
+    this.FETCH_ME()
+    .then(()=>{
+        this.FETCH_MY_RESULTS(this.me.id).then(()=>{
+            this.loading=false
+        })
+    })
+    
+}
 }
 </script>
 
+<style>
+
+</style>

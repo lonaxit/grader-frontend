@@ -18,6 +18,9 @@ export const auth = {
             state.token = ''
             state.is_Authenticated = false
         },
+        REMOVE_STATUS(state) {
+            state.is_Staff = false
+        },
       
         SET_STAFF(state, payload) {
                 state.is_Staff = payload
@@ -26,6 +29,13 @@ export const auth = {
         SET_USERNAME(state, payload) {
             state.username = payload
           },
+
+          INIT_STATUS(state) {
+
+            if (localStorage.getItem('status')) {
+              state.is_Staff = localStorage.getItem('status')
+              }
+        },
         
         INIT_STORE(state) {
 
@@ -39,13 +49,16 @@ export const auth = {
         },
         
         INIT_USERNAME(state) {
-            console.log('lu')
             if (localStorage.getItem('username'))
             {
             state.username = localStorage.getItem('username')
             }
         },
             REMOVE_USERNAME(state) {
+            state.username = ''
+        }, 
+        
+        REMOVE_USERNAME(state) {
             state.username = ''
             }, 
     },
@@ -54,20 +67,31 @@ export const auth = {
         LOGOUT({commit}) {
             axios.defaults.headers.common['Authorization'] = ""
 			localStorage.removeItem('token')
-			localStorage.removeItem('username')
+            localStorage.removeItem('username')
+            localStorage.removeItem('status')
 			commit('REMOVE_TOKEN')
-			commit('REMOVE_USERNAME')
+            commit('REMOVE_USERNAME')
+            commit('REMOVE_STATUS')
         },
-        // async userLoans(context,userid) {
-        //     const res = await axios.get('api/v1/' + userid + '/loans/')
-        //     context.commit('USER_LOANS', res.data)     
-        // },
+
+        async FETCH_USERSTATUS({commit}) {
+            const res = await axios.get('auth/v1/me/')
+            localStorage.setItem('status',res.data.user.is_staff)
+            commit('SET_STAFF', res.data.user.is_staff)
+        },
+     
        
         
     },
     getters: {
         GET_USERNAME(state) {
             return state.username
+        },
+        GET_TOKEN(state) {
+            return state.token
+        },
+        GET_STAFF_STATUS(state) {
+            return state.is_Staff
         }
     }
 }

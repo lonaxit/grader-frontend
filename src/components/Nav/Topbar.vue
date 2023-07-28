@@ -7,9 +7,13 @@
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
+                <div v-if="staffstatus===true">
                 <form class="d-none d-md-flex ms-4">
                     <input class="form-control border-0" type="search" placeholder="Search">
                 </form>
+                </div>
+                <div v-else></div>
+                
 
                 <div class="navbar-nav align-items-center ms-auto">
                    
@@ -20,8 +24,8 @@
                             <span class="d-none d-lg-inline-flex">{{username}}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">My Profile</a>
-                            <a href="#" class="dropdown-item">Settings</a>
+                            <!-- <a href="#" class="dropdown-item">My Profile</a>
+                            <a href="#" class="dropdown-item">Settings</a> -->
                             <a href="javascript:void(0)" class="dropdown-item" @click="signOut">Log Out</a>
                         </div>
                     </div>
@@ -39,10 +43,10 @@ export default {
         }
     },
     computed:{
-...mapGetters(['GET_USERNAME']),
-        username(){
-        return  this.GET_USERNAME
-        }
+...mapGetters({username:'GET_USERNAME',staffstatus:'GET_STAFF_STATUS'}),
+        // username(){
+        // return  this.GET_USERNAME
+        // }
     },
 
     methods: {

@@ -1,7 +1,7 @@
 <template>
 
   <div class="col-sm-12 col-xl-12">
-    <div v-if="loading">
+    <div v-if="roll">
     
                         <div class="bg-light rounded h-100 p-4">
                             <h6 class="mb-4">Roll Call</h6>
@@ -42,7 +42,7 @@
                         </div>
   </div>
   <div v-else>
-    <p>Loading ...</p>
+    <p>No data yet</p>
   </div>
 </div>
 
@@ -63,9 +63,41 @@ computed:{
 methods:{
 ...mapActions(['DELETE_ENROLLMENT']),
 
+
 remove(id){
-this.DELETE_ENROLLMENT(id)
-this.$router.push('/find-enrollment/')
+const confirmDelete = confirm("Are you sure you want to delete?")
+
+if(confirmDelete){
+    this.DELETE_ENROLLMENT(id).then(()=>{
+    this.$notify({
+           title:'SUCCESS',
+             text:'Student removed successfully',
+             duration:5000,
+             type: 'success',
+             width:'100%',
+    })
+}).then(err =>{
+    this.$notify({
+           title:'ERROR',
+             text:err,
+             duration:5000,
+             type: 'error',
+             width:'100%',
+    })
+})
+
+} else {
+        this.$notify({
+           title:'OPERATION',
+             text:'Operation cancelled',
+             duration:5000,
+             type: 'error',
+             width:'100%',
+    })
+
+}
+
+
 }
 },
 

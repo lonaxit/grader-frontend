@@ -15,6 +15,10 @@ export const classroom = {
         SET_CLASSES(state, payload) {
             state.allClassroom = payload
         },
+
+        DELETE_CLASS(state, id) {
+            state.allClassroom = state.allClassroom.filter((record) => record.id !== id);
+        },
     },
 
     actions: {
@@ -33,6 +37,11 @@ export const classroom = {
         async UPDATE_CLASS({commit},payload) {
             const res = await axios.put('api/v1/schoolclass-detail/' + payload.id +'/',payload)
             //   commit('SET_TERM', res.data) 
+        },
+
+        async DELETE_CLASS({commit},id) {
+            const res = await axios.delete('api/v1/schoolclass-detail/' + id +'/')
+            commit('DELETE_CLASS', id) 
         }
        
         

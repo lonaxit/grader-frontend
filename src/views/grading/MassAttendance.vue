@@ -14,14 +14,14 @@
                                 <label for="floatingSelect"> Term</label>
                             </div>
 
-                                 <div class="form-floating mb-3">
+                        <div class="form-floating mb-3">
                                 <select v-model="sessionSelected" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     
                                     <option v-for="session in activesess" :key="session.id" :value="session.id">{{session.name}}</option>
                                 </select>
                                 <label for="floatingSelect">Session</label>
-                            </div>
+                        </div>
 
                                  <div class="form-floating mb-3">
                                 <select v-model="classroom" class="form-select" id="floatingSelect"
@@ -63,7 +63,7 @@ export default {
     },
    
     methods:{
-        ...mapActions(['ALL_CLASSES','SESSION_DETAIL',,'CLASS_DETAIL','ALL_SESSIONS','ALL_CLASSES','ALL_TERMS','FETCH_ENROLLMENT','TERM_DETAIL']),
+        ...mapActions(['ALL_CLASSES','SESSION_DETAIL',,'CLASS_DETAIL','ALL_SESSIONS','ALL_CLASSES','ALL_TERMS','GET_GENERAL_ATTENDANCE_SHEET','TERM_DETAIL']),
 
 
         handleSubmit(){
@@ -107,7 +107,7 @@ export default {
                 }
 
                 
-                this.GET_CASHEET(payload).then((res)=>{
+                this.GET_GENERAL_ATTENDANCE_SHEET(payload).then((res)=>{
                     this.submitting = false;
                      this.$notify({
                         title:'SUCCESS',
@@ -130,22 +130,7 @@ export default {
                     })
                 })
             })
-
-
-            // 
-
-            this.CLASS_DETAIL(this.classroom).then(()=>{
-                this.SESSION_DETAIL(this.sessionSelected).then(()=>{
-                    this.TERM_DETAIL(this.termSelected).then(()=>{
-
-               
-
-                })
-
-                })
-            })
-           
-            // this.$router.push({ name: 'roll-call', params: {term:this.selectedTerm,classroom: this.selectedClass, session:this.selectedSession } })  
+      
         }
 
     },

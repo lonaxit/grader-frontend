@@ -3,7 +3,8 @@ import axios from 'axios'
 export const scores = {
     state: {
         score:'',
-        scores: []
+        scores: [],
+        userscores:[]
     },
 
     mutations: {
@@ -13,6 +14,9 @@ export const scores = {
         },
         SET_SCORES(state, payload) {
             state.scores = payload
+        },
+        SET_USER_SCORES(state, payload) {
+            state.userscores = payload
         },
     },
 
@@ -61,8 +65,14 @@ export const scores = {
             const res = await axios.get('api/v1/scores-detail/' + id +'/')
               commit('SET_SCORE', res.data) 
         },
+
+        async USER_SCORES_LIST({commit},payload) {
+            const res = await axios.get('api/v1/user-scores/' + payload.userid +'/'+payload.term+'/'+payload.session+'/'+payload.class+'/')
+              commit('SET_USER_SCORES', res.data) 
+        },
     
        
+        
 
        
     },
@@ -72,8 +82,10 @@ export const scores = {
            },
         GET_SCORES(state) {
          return state.scores
-       
         },
+        GET_MY_SCORES(state) {
+            return state.userscores
+        }
     
     }
 }

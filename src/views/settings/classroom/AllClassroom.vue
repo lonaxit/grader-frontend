@@ -22,8 +22,14 @@
                                     {{ classroom.status === true ? 'Deactivate' : 'Activate' }}
                                         </button>
                                         </td>
+
                                         <td>
                                             <router-link  :to="{name:'edit-classroom', params:{id:classroom.id}}">Edit</router-link>
+                                        </td>
+
+                                          <td><button @click="deleteClass(classroom.id)">
+                                            Delete
+                                        </button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -49,13 +55,36 @@ computed:{
 ...mapGetters({classes:"GET_CLASSES"},)
 },
 methods:{
-...mapActions(['ALL_CLASSES']),
+...mapActions(['ALL_CLASSES','DELETE_CLASS']),
+
+
+deleteClass(id){
+    this.DELETE_CLASS(id).then(()=>{
+          this.$notify({
+                        title:'SUCCESS',
+                        text:'Record removed successfully',
+                        duration:5000,
+                        type: 'success',
+                        width:'100%',
+                    })
+    }).catch(err=>{
+        this.$notify({
+             title:'ERROR',
+             text:'An error has occured',
+             duration:5000,
+             type: 'error',
+             width:'100%',
+        })
+    })
+}
 
 },
 
 mounted(){
-    this.ALL_CLASSES()
-    this.loading=true
+    this.ALL_CLASSES().then(()=>{
+        this.loading=true
+    })
+    
 }
 }
 </script>

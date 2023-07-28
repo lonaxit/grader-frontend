@@ -4,6 +4,7 @@ export const resumptionsetting = {
     state: {
         resumption: '',
         allResumption: [],
+        resumptiondate:''
     },
 
     mutations: {
@@ -15,6 +16,9 @@ export const resumptionsetting = {
         SET_ALL_RESUMPTION(state, payload) {
             state.allResumption = payload
         },
+        // SET_RESUMPTION_DATE(state, payload) {
+        //     state.resumptiondate = payload
+        // },
     },
 
     actions: {
@@ -31,7 +35,12 @@ export const resumptionsetting = {
         },
         async UPDATE_RESUMPTION({commit},payload) {
             const res = await axios.put('api/v1/resumptionsetting-detail/' + payload.id +'/',payload)
-        }
+        },
+        // not working refacotr use payload as a query params
+        // async RESUMPTION_DATE({commit},payload) {
+        //     const res = await axios.get('api/v1/get-resumption-date/' + payload.term +'/'+ payload.session +'/')
+        //       commit('SET_RESUMPTION_DATE', res.data) 
+        // },
        
     },
     getters: {
@@ -40,6 +49,9 @@ export const resumptionsetting = {
         },
         GET_RESUMPTION(state) {
             return state.resumption
-        }
+        },
+        // GET_RESUMPTION_DATE(state) {
+        //     return state.resumptiondate
+        // }
     }
 }

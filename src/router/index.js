@@ -3,6 +3,26 @@ import HomeView from '../views/HomeView.vue'
 import AuthLayout from '../layouts/AuthLayout.vue'
 
 const routes = [
+
+  {
+    path: '/Print',
+    name: 'Print',
+    component: () => import('../layouts/PrintLayout.vue'),
+    
+
+    children: [
+      {
+        path: '/print-result/:id',
+        name:'print-result',
+        component:() =>import('../views/Result/print.vue')
+      },
+      // {
+      //   path: '/print-result',
+      //   name:'print-result',
+      //   component:() =>import('../components/Authentication/Login.vue')
+      // }
+    ]
+  },
   {
     path: '/Auth',
     name: 'Auth',
@@ -14,7 +34,13 @@ const routes = [
         path: '/Signin',
         name:'Signin',
         component:() =>import('../components/Authentication/Login.vue')
+      },
+      {
+        path: '/',
+        name:'Home',
+        component:() =>import('../components/Authentication/Login.vue')
       }
+
     ]
   },
 
@@ -243,7 +269,7 @@ const routes = [
         name:'roll-call',
         component:() =>import('../views/enrollment/RollCall.vue')
       },
-    
+  
       {
         path: '/new-score/:id',
         name:'new-score',
@@ -348,12 +374,25 @@ const routes = [
         component:() =>import('../views/grading/ImportAssSheet.vue')
       },
 
-      // not in use for now check to refactor it
+      // student pages
       {
-        path: '/ca-sheet/:classid/:subjectid/',
-        name:'ca-sheet',
-        component:() =>import('../views/grading/ExportSheet.vue')
+        path: '/my-result/',
+        name:'my-result',
+        component:() =>import('../views/Student/MyResultList.vue')
       },
+
+      {
+        path: '/my-detail-result/:id',
+        name:'my-detail-result',
+        component:() =>import('../views/Student/DetailResult.vue')
+      },
+
+      // not in use for now check to refactor it
+      // {
+      //   path: '/ca-sheet/:classid/:subjectid/',
+      //   name:'ca-sheet',
+      //   component:() =>import('../views/grading/ExportSheet.vue')
+      // },
 
     ]
   },
