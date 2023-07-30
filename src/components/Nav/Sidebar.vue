@@ -138,18 +138,17 @@
                         <div class="dropdown-menu bg-transparent border-0">
                           
                             <!-- <router-link to='/export-sheet/' class="dropdown-item">Export Sheet</router-link> -->
+                            <router-link to='/export-ca-sheet/' class="dropdown-item">Download CA Sheet</router-link>
 
                              <router-link to='/import-ca-sheet/' class="dropdown-item">Upload CA Sheet</router-link>
 
-                             <router-link to='/export-ca-sheet/' class="dropdown-item">Download CA Sheet</router-link>
-
-                             <router-link to='/export-attendance-sheet/' class="dropdown-item">Export Att Sheet</router-link>
+                             <router-link to='/export-attendance-sheet/' class="dropdown-item">Downlaod Att Sheet</router-link>
 
                              <router-link to='/import-attendance/' class="dropdown-item">Upload Att Sheet</router-link>
 
-
                             <router-link to='/filter-score/' class="dropdown-item">FilterScores</router-link>
                             <router-link to='/create-result/' class="dropdown-item">Process Result</router-link>
+                            
                             <router-link to='/filter-result/' class="dropdown-item">View Result</router-link>
 
                             <router-link to='/print-result/' class="dropdown-item">Print Result</router-link>

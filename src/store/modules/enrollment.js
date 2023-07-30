@@ -20,7 +20,7 @@ export const enrollment = {
         },
 
         DELETE_ROLLCALL_MUTATION(state, id) {
-            state.allEnrollment = state.allEnrollment.filter(record => record.id !==id)
+        state.allEnrollment = state.allEnrollment.filter(record => record.id !==id)
         },
     },
 
