@@ -18,6 +18,9 @@ export const scores = {
         SET_USER_SCORES(state, payload) {
             state.userscores = payload
         },
+        DELETE_SCORES_MUTATION(state, id) {
+            state.userscores = state.userscores.filter(score => score.id !==id)
+        },
     },
 
     actions: {
@@ -59,7 +62,7 @@ export const scores = {
         },
         async DELETE_SCORES({commit},id) {
             const res = await axios.delete('api/v1/scores-detail/' + id +'/')
-            //   commit('SET_ENROLLMENT', res.data) 
+            commit('DELETE_SCORES_MUTATION', id) 
         },
         async SCORE_DETAIL({commit},id) {
             const res = await axios.get('api/v1/scores-detail/' + id +'/')
