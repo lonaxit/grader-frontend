@@ -75,9 +75,9 @@ computed:{
 methods:{
 ...mapActions(['DELETE_SCORES']),
 
-remove(id){
+async remove(id){
 this.DELETE_SCORES(id)
-this.$router.push('/filter-score/')
+// this.$router.push('/filter-score/')
 }
 },
 
