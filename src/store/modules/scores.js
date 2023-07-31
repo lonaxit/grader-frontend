@@ -19,7 +19,7 @@ export const scores = {
             state.userscores = payload
         },
         DELETE_SCORES_MUTATION(state, id) {
-            state.userscores = state.userscores.filter(score => score.id !==id)
+            state.scores = state.scores.filter(score => score.id !==id)
         },
     },
 
