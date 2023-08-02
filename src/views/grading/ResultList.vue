@@ -15,6 +15,7 @@
                                         <th scope="col">Tot</th>
                                         <th scope="col">Avg</th>
                                         <th scope="col">Pos</th>
+                                         <th scope="col">Att</th>
                                         <th scope="col">Remove</th>
                                         <th scope="col">View</th>
                                         <th scope="col">Print</th>
@@ -32,6 +33,7 @@
                                         <td>{{item.termtotal}}</td>
                                         <td>{{item.termaverage}}</td>
                                         <td>{{item.termposition}}</td>
+                                        <td>{{item.attendance}}</td>
                                      
                                          <td>
                                             <button @click="remove(item.id)">
