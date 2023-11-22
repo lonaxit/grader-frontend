@@ -7,7 +7,8 @@ export const user = {
         studentusers: [],
         allStaff:[],
         me: '',
-        userdata:''
+        userdata: '',
+        
     },
 
     mutations: {
@@ -81,8 +82,12 @@ export const user = {
     
         GET_USERS(state) {
          return state.studentusers.filter(user => user.is_student==true)
-       
         },
+
+        GET_NOPROFILE_STUDENTS(state) {
+            return state.studentusers.filter(user => user.studentprofile===null)
+           },
+
         GET_STAFF_USERS(state) {
             return state.allStaff.filter(user => user.is_staff==true)
           
