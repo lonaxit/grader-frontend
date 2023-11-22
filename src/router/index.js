@@ -183,6 +183,11 @@ const routes = [
         component:() =>import('../views/users/AllStudentUsers.vue')
       },
       {
+        path: '/no-profile-students/',
+        name:'no-profile-students',
+        component:() =>import('../views/users/allNewStudents.vue')
+      },
+      {
         path: '/add-admission-number/',
         name:'add-admission-number',
         component:() =>import('../views/users/AddAdmissionNumber.vue')
