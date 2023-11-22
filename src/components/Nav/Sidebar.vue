@@ -3,6 +3,7 @@
             <nav class="navbar bg-light navbar-light">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
                     <h6>SKY GIFTED ACADEMY</h6>
+                    {{status}}
                 </a>
                 <!-- <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -17,10 +18,11 @@
 
                 <div class="navbar-nav w-100">
 
+                   
+
                     <a href="" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
 
-                    <div v-if="status===true"> 
-
+              
                          <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users me-2"></i>Accounts</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -35,6 +37,8 @@
                         <div class="dropdown-menu bg-transparent border-0">
                             <router-link to='/new-user/' class="dropdown-item">New</router-link>
                             <router-link to='/all-students/' class="dropdown-item">All</router-link>
+
+                             <router-link to='/no-profile-students/' class="dropdown-item">No Profile</router-link>
 
                             <router-link to='/add-admission-number/' class="dropdown-item">Admission Number</router-link>
                            
@@ -168,19 +172,19 @@
                     </div>
 
 
-                    </div>
-                    <div v-else>
+            
+               
                           <!-- student routes -->
-                    <div class="nav-item dropdown">
+                    <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users me-2"></i>Me</a>
                         <div class="dropdown-menu bg-transparent border-0">
                           
                             <router-link to='/my-result/' class="dropdown-item">My Result</router-link>
                          
                         </div>
-                    </div>
+                    </div> -->
 
-                    </div>
+                 
 
                 </div>
             </nav>
@@ -197,24 +201,24 @@ export default {
   data(){
     return{
         loading:true,
-        staff:true
+        staff:''
     }
   },
 
   computed:{
     ...mapGetters({myself:'GET_ME',status:'GET_STAFF_STATUS'})
+    
   },
   method:{
     ...mapActions(['FETCH_ME'])
   },
 
   mounted(){
-    // if(this.status){
-    //     this.staff = this.myself.is_staff
-    // }
-        
-        // this.loading=false
-
+    if(this.status==true){
+        this.staff=true
+    }
   }
+
+
 }
 </script>
