@@ -85,7 +85,7 @@ export const user = {
         },
 
         GET_NOPROFILE_STUDENTS(state) {
-            return state.studentusers.filter(user => user.studentprofile===null)
+            return state.studentusers.filter(user =>  user.is_student==true && user.studentprofile===null)
            },
 
         GET_STAFF_USERS(state) {
