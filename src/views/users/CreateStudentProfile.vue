@@ -89,11 +89,11 @@ export default {
     },
 
     computed:{
-        ...mapGetters({user:'GET_USER',terms:'GET_TERMS',sessions:'GET_SESSIONS',classes:'GET_CLASSES'})
+        ...mapGetters({user:'GET_USER',terms:'GET_TERMS',sessions:'GET_SESSIONS',classes:'GET_CLASSES',admissionnumber:'GET_ADM_NO'})
     },
    
     methods:{
-        ...mapActions(['ADD_STUDENT_PROFILE','USER_DETAIL','ALL_SESSIONS','ALL_TERMS','ALL_CLASSES']),
+        ...mapActions(['ADD_STUDENT_PROFILE','USER_DETAIL','ALL_SESSIONS','ALL_TERMS','ALL_CLASSES','FETCH_ADMISSION_NUMBER']),
         handleSubmit(){
             this.submitting = true;
 
@@ -131,39 +131,6 @@ export default {
                     })
             }
 
-            //  if(this.username === ''){
-            //    this.submitting = false;
-            //      this.$notify({
-            //             title:'Error',
-            //             text:'Enter a username',
-            //             duration:5000,
-            //             type: 'error',
-            //             width:'100%',
-            //         })
-        
-            // }
-            // if(this.password === ''){
-            //    this.submitting = false;
-            //       this.$notify({
-            //             title:'ERROR',
-            //             text:'Enter a password',
-            //             duration:5000,
-            //             type: 'error',
-            //             width:'100%',
-            //         })
-        
-            // }
-            // if(this.password == !this.re_password){
-            //    this.submitting = false;
-            //       this.$notify({
-            //             title:'ERROR',
-            //             text:'Password do not match',
-            //             duration:5000,
-            //             type: 'error',
-            //             width:'100%',
-            //         })
-        
-            // }
             // data
                const payload ={
 
@@ -179,6 +146,7 @@ export default {
                 }
 
                 this.ADD_STUDENT_PROFILE(payload).then((res)=>{
+                    //reset values
                     this.guardian='',
                     this.local_govt='',
                     this.admission_number='',
@@ -207,10 +175,20 @@ export default {
 
     },
     mounted(){
-         this.USER_DETAIL(this.$route.params.id)
-         this.ALL_SESSIONS()
-        this.ALL_TERMS()
-        this.ALL_CLASSES()
+         this.USER_DETAIL(this.$route.params.id).then(()=>{
+            this.ALL_SESSIONS().then(()=>{
+                this.ALL_TERMS().then(()=>{
+                    this.ALL_CLASSES().then(()=>{
+                        this.FETCH_ADMISSION_NUMBER().then(()=>{
+                        this.admission_number = this.admissionnumber.serial_no
+                        })
+                        })
+                })
+            })
+         })
+         
+        
+        
     },
 
 }
