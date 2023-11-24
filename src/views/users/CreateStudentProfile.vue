@@ -97,16 +97,16 @@ export default {
         handleSubmit(){
             this.submitting = true;
 
-                if(this.guardian === ''){
-               this.submitting = false;
-                 this.$notify({
-                        title:'Error',
-                        text:'Enter guardian',
-                        duration:5000,
-                        type: 'error',
-                        width:'100%',
-                    })
-            }
+            //     if(this.guardian === ''){
+            //    this.submitting = false;
+            //      this.$notify({
+            //             title:'Error',
+            //             text:'Enter guardian',
+            //             duration:5000,
+            //             type: 'error',
+            //             width:'100%',
+            //         })
+            // }
 
               if(this.address === ''){
                this.submitting = false;
