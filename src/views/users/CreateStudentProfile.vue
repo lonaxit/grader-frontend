@@ -137,6 +137,7 @@ export default {
             guardian:this.guardian,
             local_govt: this.local_govt,
             admission_number:this.admission_number,
+            admission_numberstring:'SKY/STD/23/24/'+ this.admission_number.toString(),
             address:this.address,
             session_admitted:this.selectedSession,
             term_admitted:this.selectedTerm,
