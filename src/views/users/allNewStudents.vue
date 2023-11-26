@@ -22,7 +22,7 @@
                                         <td>{{student.other_name}}</td>
                                         <td>{{student.username}}</td>
                                         <td>
-                                            <router-link  :to="{name:'new-student-profile', params:{id:student.id}}">Add Profile</router-link>
+                                            <router-link  :to="{name:'new-student-profile', params:{id:student.id}}" target="_blank">Add Profile</router-link>
                                         </td>
                                     </tr>
                                 </tbody>
