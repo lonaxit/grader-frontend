@@ -1,6 +1,6 @@
 <template>
 <div class="col-sm-12 col-xl-8">
-  <h4>New Mass Enrollment</h4>
+  <h4>Mass Class Enrollment</h4>
       <div class="bg-light rounded h-100 p-4">
 
                             <form @submit.prevent="handleSubmit">
@@ -64,11 +64,7 @@
                                 </button>
                             </form>
                         </div>
-                        <div>
-                            <p>oldclass:{{selectedClass}}</p>
-                            <p>oldsess:{{selectedSession}}</p>
-                            <p>oldterm:{{selectedTerm}}</p>
-                        </div>
+                    
   </div>
 </template>
 
