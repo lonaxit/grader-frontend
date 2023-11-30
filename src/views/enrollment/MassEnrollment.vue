@@ -30,12 +30,34 @@
                                 </select>
                                 <label for="floatingSelect">Old Class</label>
                             </div>
-<!-- 
-                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" id="floatingPassword"
-                                    placeholder="Code" v-model="admission_number">
-                                <label for="floatingPassword">Admission Number</label>
-                            </div> -->
+
+
+                            <div class="form-floating mb-3">
+                                <select v-model="newTerm" class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example">
+                                    
+                                    <option v-for="term in terms" :key="term.id" :value="term.id">{{term.name}}</option>
+                                </select>
+                                <label for="floatingSelect">New Term</label>
+                            </div>
+
+                                 <div class="form-floating mb-3">
+                                <select v-model="newSession" class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example">
+                                    
+                                    <option v-for="session in ctivesess" :key="session.id" :value="session.id">{{session.name}}</option>
+                                </select>
+                                <label for="floatingSelect">New Session</label>
+                            </div>
+                                 <div class="form-floating mb-3">
+                                <select v-model="newClass" class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example">
+                                    
+                                    <option v-for="room in classes" :key="room.id" :value="room.id">{{room.class_name}}</option>
+                                </select>
+                                <label for="floatingSelect">New Class</label>
+                            </div>
+
 
                                  <button type="submit"  :disabled="submitting" class="btn btn-primary py-3 w-100 mb-4">
                             {{ submitting ? 'Submitting...' : 'Submit' }}
