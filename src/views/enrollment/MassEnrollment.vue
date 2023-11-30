@@ -11,7 +11,7 @@
                                     
                                     <option v-for="term in terms" :key="term.id" :value="term.id">{{term.name}}</option>
                                 </select>
-                                <label for="floatingSelect">Term</label>
+                                <label for="floatingSelect">Old Term</label>
                             </div>
 
                                  <div class="form-floating mb-3">
@@ -20,7 +20,7 @@
                                     
                                     <option v-for="session in sessions" :key="session.id" :value="session.id">{{session.name}}</option>
                                 </select>
-                                <label for="floatingSelect">Session</label>
+                                <label for="floatingSelect">Old Session</label>
                             </div>
                                  <div class="form-floating mb-3">
                                 <select v-model="selectedClass" class="form-select" id="floatingSelect"
@@ -28,14 +28,14 @@
                                     
                                     <option v-for="room in classes" :key="room.id" :value="room.id">{{room.class_name}}</option>
                                 </select>
-                                <label for="floatingSelect">Class</label>
+                                <label for="floatingSelect">Old Class</label>
                             </div>
-
+<!-- 
                              <div class="form-floating mb-3">
                                 <input type="number" class="form-control" id="floatingPassword"
                                     placeholder="Code" v-model="admission_number">
                                 <label for="floatingPassword">Admission Number</label>
-                            </div>
+                            </div> -->
 
                                  <button type="submit"  :disabled="submitting" class="btn btn-primary py-3 w-100 mb-4">
                             {{ submitting ? 'Submitting...' : 'Submit' }}
@@ -57,18 +57,18 @@ export default {
             selectedClass:'',
             selectedSession:'',
             selectedTerm:'',
-            admission_number:'',
-
-       
+            newClass:'',
+            newTerm:'',
+            newSession:''
         }
     },
 
     computed:{
-        ...mapGetters({sessions:'GET_SESSIONS',classes:'GET_CLASSES',terms:'GET_TERMS'})
+        ...mapGetters({sessions:'GET_SESSIONS',classes:'GET_CLASSES',terms:'GET_TERMS', toclasses:'GET_CLASSES',toterms:'GET_TERMS',activesess:'GET_ACTIVE_SESSION'})
     },
    
     methods:{
-        ...mapActions(['ALL_SESSIONS','ALL_CLASSES','ALL_TERMS','ADD_ENROLLMENT']),
+        ...mapActions(['ALL_SESSIONS','ALL_CLASSES','ALL_TERMS','MASS_ENROLLMENT']),
         handleSubmit(){
             this.submitting = true;
 
@@ -106,27 +106,20 @@ export default {
                     })
         
             }
-             if(this.admission_number === ''){
-               this.submitting = false;
-                 this.$notify({
-                        title:'Error',
-                        text:'Enter Admission Number',
-                        duration:5000,
-                        type: 'error',
-                        width:'100%',
-                    })
-        
-            }
+         
 
             // data
                const payload ={
-                term:this.selectedTerm,
-                session:this.selectedSession,
-                class_room:this.selectedClass,
-                student:this.admission_number,
+                oldterm:this.selectedTerm,
+                oldsession:this.selectedSession,
+                oldclass_room:this.selectedClass,
+                nextterm:this.newTerm,
+                nextsession:this.newSession,
+                nextclassroom:this.newClass,
+               
                 }
 
-                this.ADD_ENROLLMENT(payload).then((res)=>{
+                this.MASS_ENROLLMENT(payload).then((res)=>{
                 
                     this.submitting = false
                       this.$notify({
