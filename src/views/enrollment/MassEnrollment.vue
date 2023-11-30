@@ -36,7 +36,7 @@
                                 <select v-model="t_Term" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     
-                                    <option v-for="term in terms" :key="term.id" :value="term.id">{{term.name}}</option>
+                                    <option v-for="myterm in toterms" :key="myterm.id" :value="myterm.id">{{myterm.name}}</option>
                                 </select>
                                 <label for="floatingSelect"> To Term</label>
                             </div>
@@ -53,7 +53,7 @@
                                 <select v-model="t_Class" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     
-                                    <option v-for="room in classes" :key="room.id" :value="room.id">{{room.class_name}}</option>
+                                    <option v-for="myclass in toclasses" :key="myclass.id" :value="myclass.id">{{myclass.class_name}}</option>
                                 </select>
                                 <label for="floatingSelect"> To Class</label>
                             </div>
@@ -87,84 +87,84 @@ export default {
     },
 
     computed:{
-        ...mapGetters({sessions:'GET_SESSIONS',classes:'GET_CLASSES',terms:'GET_TERMS',activesess:'GET_ACTIVE_SESSION'})
+        ...mapGetters({sessions:'GET_SESSIONS',classes:'GET_CLASSES',toclasses:'GET_CLASSES',terms:'GET_TERMS',toterms:'GET_TERMS',activesess:'GET_ACTIVE_SESSION'})
     },
    
     methods:{
         ...mapActions(['ALL_SESSIONS','ALL_CLASSES','ALL_TERMS','FETCH_ENROLLMENT','MASS_ENROLLMENT']),
-
+        
         handleSubmit(){
             this.submitting = true;
 
-            //     if(this.f_Class === ''){
-            //    this.submitting = false;
-            //      this.$notify({
-            //             title:'Error',
-            //             text:'Select a class',
-            //             duration:5000,
-            //             type: 'error',
-            //             width:'100%',
-            //         })
+                if(this.f_Class === ''){
+               this.submitting = false;
+                 this.$notify({
+                        title:'Error',
+                        text:'Select a class',
+                        duration:5000,
+                        type: 'error',
+                        width:'100%',
+                    })
         
-            // }
-            //   if(this.f_Session === ''){
-            //    this.submitting = false;
-            //      this.$notify({
-            //             title:'Error',
-            //             text:'Select a session',
-            //             duration:5000,
-            //             type: 'error',
-            //             width:'100%',
-            //         })
+            }
+              if(this.f_Session === ''){
+               this.submitting = false;
+                 this.$notify({
+                        title:'Error',
+                        text:'Select a session',
+                        duration:5000,
+                        type: 'error',
+                        width:'100%',
+                    })
         
-            // }
+            }
 
-            // if(this.f_Term === ''){
-            //    this.submitting = false;
-            //      this.$notify({
-            //             title:'Error',
-            //             text:'Select a term',
-            //             duration:5000,
-            //             type: 'error',
-            //             width:'100%',
-            //         })
+            if(this.f_Term === ''){
+               this.submitting = false;
+                 this.$notify({
+                        title:'Error',
+                        text:'Select a term',
+                        duration:5000,
+                        type: 'error',
+                        width:'100%',
+                    })
         
-            // }
+            }
 
-            // if(this.t_Class === ''){
-            //    this.submitting = false;
-            //      this.$notify({
-            //             title:'Error',
-            //             text:'Select a class',
-            //             duration:5000,
-            //             type: 'error',
-            //             width:'100%',
-            //         })
+            if(this.t_Class === ''){
+               this.submitting = false;
+                 this.$notify({
+                        title:'Error',
+                        text:'Select a class',
+                        duration:5000,
+                        type: 'error',
+                        width:'100%',
+                    })
         
-            // }
-            //   if(this.t_Session === ''){
-            //    this.submitting = false;
-            //      this.$notify({
-            //             title:'Error',
-            //             text:'Select a session',
-            //             duration:5000,
-            //             type: 'error',
-            //             width:'100%',
-            //         })
+            }
+              if(this.t_Session === ''){
+               this.submitting = false;
+                 this.$notify({
+                        title:'Error',
+                        text:'Select a session',
+                        duration:5000,
+                        type: 'error',
+                        width:'100%',
+                    })
         
-            // }
+            }
 
-            // if(this.t_Term === ''){
-            //    this.submitting = false;
-            //      this.$notify({
-            //             title:'Error',
-            //             text:'Select a term',
-            //             duration:5000,
-            //             type: 'error',
-            //             width:'100%',
-            //         })
+            if(this.t_Term === ''){
+               this.submitting = false;
+                 this.$notify({
+                        title:'Error',
+                        text:'Select a term',
+                        duration:5000,
+                        type: 'error',
+                        width:'100%',
+                    })
         
-            // }
+            }
 
             const payload={
                 fromclassroom:this.f_Class,
