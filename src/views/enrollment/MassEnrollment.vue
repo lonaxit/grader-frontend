@@ -112,10 +112,10 @@ export default {
                const payload ={
                 oldterm:this.selectedTerm,
                 oldsession:this.selectedSession,
-                oldclass_room:this.selectedClass,
-                nextterm:this.newTerm,
-                nextsession:this.newSession,
-                nextclassroom:this.newClass,
+                oldclass_room:this.selectedClass
+                // nextterm:this.newTerm,
+                // nextsession:this.newSession,
+                // nextclassroom:this.newClass,
                
                 }
 
