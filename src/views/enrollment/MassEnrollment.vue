@@ -66,6 +66,14 @@
                                 </button>
                             </form>
                         </div>
+                        <div>
+                            <p> from class:{{f_Class}}</p>
+                            <p> from sess:{{f_Session}}</p>
+                            <p> from term:{{f_Term}}</p>
+                            <p> to class:{{t_Class}}</p>
+                            <p> to sess:{{t_Session}}</p>
+                            <p> to term:{{t_Term}}</p>
+                        </div>
   </div>
 </template>
 
@@ -97,75 +105,75 @@ export default {
         handleSubmit(){
             this.submitting = true;
 
-                if(this.f_Class === ''){
-               this.submitting = false;
-                 this.$notify({
-                        title:'Error',
-                        text:'Select a class',
-                        duration:5000,
-                        type: 'error',
-                        width:'100%',
-                    })
+            //     if(this.f_Class === ''){
+            //    this.submitting = false;
+            //      this.$notify({
+            //             title:'Error',
+            //             text:'Select a class',
+            //             duration:5000,
+            //             type: 'error',
+            //             width:'100%',
+            //         })
         
-            }
-              if(this.f_Session === ''){
-               this.submitting = false;
-                 this.$notify({
-                        title:'Error',
-                        text:'Select a session',
-                        duration:5000,
-                        type: 'error',
-                        width:'100%',
-                    })
+            // }
+            //   if(this.f_Session === ''){
+            //    this.submitting = false;
+            //      this.$notify({
+            //             title:'Error',
+            //             text:'Select a session',
+            //             duration:5000,
+            //             type: 'error',
+            //             width:'100%',
+            //         })
         
-            }
+            // }
 
-            if(this.f_Term === ''){
-               this.submitting = false;
-                 this.$notify({
-                        title:'Error',
-                        text:'Select a term',
-                        duration:5000,
-                        type: 'error',
-                        width:'100%',
-                    })
+            // if(this.f_Term === ''){
+            //    this.submitting = false;
+            //      this.$notify({
+            //             title:'Error',
+            //             text:'Select a term',
+            //             duration:5000,
+            //             type: 'error',
+            //             width:'100%',
+            //         })
         
-            }
+            // }
 
-            if(this.t_Class === ''){
-               this.submitting = false;
-                 this.$notify({
-                        title:'Error',
-                        text:'Select a class',
-                        duration:5000,
-                        type: 'error',
-                        width:'100%',
-                    })
+            // if(this.t_Class === ''){
+            //    this.submitting = false;
+            //      this.$notify({
+            //             title:'Error',
+            //             text:'Select a class',
+            //             duration:5000,
+            //             type: 'error',
+            //             width:'100%',
+            //         })
         
-            }
-              if(this.t_Session === ''){
-               this.submitting = false;
-                 this.$notify({
-                        title:'Error',
-                        text:'Select a session',
-                        duration:5000,
-                        type: 'error',
-                        width:'100%',
-                    })
+            // }
+            //   if(this.t_Session === ''){
+            //    this.submitting = false;
+            //      this.$notify({
+            //             title:'Error',
+            //             text:'Select a session',
+            //             duration:5000,
+            //             type: 'error',
+            //             width:'100%',
+            //         })
         
-            }
+            // }
 
-            if(this.t_Term === ''){
-               this.submitting = false;
-                 this.$notify({
-                        title:'Error',
-                        text:'Select a term',
-                        duration:5000,
-                        type: 'error',
-                        width:'100%',
-                    })
+            // if(this.t_Term === ''){
+            //    this.submitting = false;
+            //      this.$notify({
+            //             title:'Error',
+            //             text:'Select a term',
+            //             duration:5000,
+            //             type: 'error',
+            //             width:'100%',
+            //         })
         
-            }
+            // }
 
             const payload={
                 fromclassroom:this.f_Class,
@@ -188,6 +196,7 @@ export default {
             }).catch(err=>{
                     
                    this.submitting = false;
+                   console.log(err)
                    this.$notify({
                         title:'ERROR',
                         text:err,
