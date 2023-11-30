@@ -6,7 +6,7 @@
                             <form @submit.prevent="handleSubmit">
 
                              <div class="form-floating mb-3">
-                                <select v-model="fromTerm" class="form-select" id="floatingSelect"
+                                <select v-model="f_Term" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     
                                     <option v-for="term in terms" :key="term.id" :value="term.id">{{term.name}}</option>
@@ -15,7 +15,7 @@
                             </div>
 
                                  <div class="form-floating mb-3">
-                                <select v-model="fromSession" class="form-select" id="floatingSelect"
+                                <select v-model="f_Session" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     
                                     <option v-for="session in sessions" :key="session.id" :value="session.id">{{session.name}}</option>
@@ -23,7 +23,7 @@
                                 <label for="floatingSelect"> From Session</label>
                             </div>
                                  <div class="form-floating mb-3">
-                                <select v-model="fromClass" class="form-select" id="floatingSelect"
+                                <select v-model="f_Class" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     
                                     <option v-for="room in classes" :key="room.id" :value="room.id">{{room.class_name}}</option>
@@ -33,7 +33,7 @@
 
 
                                 <div class="form-floating mb-3">
-                                <select v-model="toTerm" class="form-select" id="floatingSelect"
+                                <select v-model="t_Term" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     
                                     <option v-for="term in terms" :key="term.id" :value="term.id">{{term.name}}</option>
@@ -42,7 +42,7 @@
                             </div>
 
                                  <div class="form-floating mb-3">
-                                <select v-model="toSession" class="form-select" id="floatingSelect"
+                                <select v-model="t_Session" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     
                                     <option v-for="session in activesess" :key="session.id" :value="session.id">{{session.name}}</option>
@@ -50,7 +50,7 @@
                                 <label for="floatingSelect"> To Session</label>
                             </div>
                                  <div class="form-floating mb-3">
-                                <select v-model="toClass" class="form-select" id="floatingSelect"
+                                <select v-model="t_Class" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     
                                     <option v-for="room in classes" :key="room.id" :value="room.id">{{room.class_name}}</option>
@@ -77,12 +77,12 @@ export default {
         return{
             submitting: false,
          
-            fromClass:'',
-            fromSession:'',
-            fromTerm:'',
-            toClass:'',
-            toSession:'',
-            toTerm:''
+            f_Class:'',
+            f_Session:'',
+            f_Term:'',
+            t_Class:'',
+            t_Session:'',
+            t_Term:''
         }
     },
 
@@ -166,12 +166,12 @@ export default {
             }
 
             const payload={
-                fromclassroom:this.fromClass,
-                fromterm:this.fromTerm,
-                fromsession:this.fromSession,
-                toclassroom:this.toClass,
-                toterm:this.toTerm,
-                tosession:this.toSession,
+                fromclassroom:this.f_Class,
+                fromterm:this.f_Term,
+                fromsession:this.f_Session,
+                toclassroom:this.t_Class,
+                toterm:this.t_Term,
+                tosession:this.t_Session,
             }
 
             this.MASS_ENROLLMENT(payload).then((res)=>{
