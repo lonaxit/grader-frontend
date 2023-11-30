@@ -64,6 +64,11 @@
                                 </button>
                             </form>
                         </div>
+                        <div>
+                            <p>oldclass:{{selectedClass}}</p>
+                            <p>oldsess:{{selectedSession}}</p>
+                            <p>oldterm:{{selectedTerm}}</p>
+                        </div>
   </div>
 </template>
 
