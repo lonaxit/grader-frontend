@@ -45,7 +45,7 @@
                                 <select v-model="newSession" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     
-                                    <option v-for="session in ctivesess" :key="session.id" :value="session.id">{{session.name}}</option>
+                                    <option v-for="session in activesess" :key="session.id" :value="session.id">{{session.name}}</option>
                                 </select>
                                 <label for="floatingSelect">New Session</label>
                             </div>
@@ -134,10 +134,10 @@ export default {
                const payload ={
                 oldterm:this.selectedTerm,
                 oldsession:this.selectedSession,
-                oldclass_room:this.selectedClass
-                // nextterm:this.newTerm,
-                // nextsession:this.newSession,
-                // nextclassroom:this.newClass,
+                oldclass_room:this.selectedClass,
+                nextterm:this.newTerm,
+                nextsession:this.newSession,
+                nextclassroom:this.newClass,
                
                 }
 
