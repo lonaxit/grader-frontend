@@ -181,7 +181,7 @@ export default {
                 fromsession:this.f_Session,
                 toclassroom:this.t_Class,
                 toterm:this.t_Term,
-                tosession:this.t_Session,
+                tosession:this.t_Session
             }
 
             this.MASS_ENROLLMENT(payload).then((res)=>{
