@@ -14,50 +14,50 @@
                                 <label for="floatingSelect"> From Term</label>
                             </div>
 
-                                 <!-- <div class="form-floating mb-3">
+                                 <div class="form-floating mb-3">
                                 <select v-model="f_Session" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     
                                     <option v-for="session in sessions" :key="session.id" :value="session.id">{{session.name}}</option>
                                 </select>
                                 <label for="floatingSelect"> From Session</label>
-                            </div> -->
+                            </div>
 
-                                 <!-- <div class="form-floating mb-3">
+                                 <div class="form-floating mb-3">
                                 <select v-model="f_Class" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     
                                     <option v-for="room in classes" :key="room.id" :value="room.id">{{room.class_name}}</option>
                                 </select>
                                 <label for="floatingSelect"> From Class</label>
-                            </div> -->
+                            </div>
 
 
-                                <!-- <div class="form-floating mb-3">
+                                <div class="form-floating mb-3">
                                 <select v-model="t_Term" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     
                                     <option v-for="myterm in toterms" :key="myterm.id" :value="myterm.id">{{myterm.name}}</option>
                                 </select>
                                 <label for="floatingSelect"> To Term</label>
-                            </div> -->
+                            </div>
 
-                                 <!-- <div class="form-floating mb-3">
+                                 <div class="form-floating mb-3">
                                 <select v-model="t_Session" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     
                                     <option v-for="session in activesess" :key="session.id" :value="session.id">{{session.name}}</option>
                                 </select>
                                 <label for="floatingSelect"> To Session</label>
-                            </div> -->
-                                 <!-- <div class="form-floating mb-3">
+                            </div> 
+                                 <div class="form-floating mb-3">
                                 <select v-model="t_Class" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     
                                     <option v-for="myclass in toclasses" :key="myclass.id" :value="myclass.id">{{myclass.class_name}}</option>
                                 </select>
                                 <label for="floatingSelect"> To Class</label>
-                            </div> -->
+                            </div>
 
                             
 
