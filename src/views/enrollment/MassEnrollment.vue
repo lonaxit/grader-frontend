@@ -95,7 +95,7 @@ export default {
         handleSubmit(){
             this.submitting = true;
 
-                if(this.fromClass === ''){
+                if(this.f_Class === ''){
                this.submitting = false;
                  this.$notify({
                         title:'Error',
@@ -106,7 +106,7 @@ export default {
                     })
         
             }
-              if(this.fromSession === ''){
+              if(this.f_Session === ''){
                this.submitting = false;
                  this.$notify({
                         title:'Error',
@@ -118,7 +118,7 @@ export default {
         
             }
 
-            if(this.fromTerm === ''){
+            if(this.f_Term === ''){
                this.submitting = false;
                  this.$notify({
                         title:'Error',
@@ -130,7 +130,7 @@ export default {
         
             }
 
-            if(this.toClass === ''){
+            if(this.t_Class === ''){
                this.submitting = false;
                  this.$notify({
                         title:'Error',
@@ -141,7 +141,7 @@ export default {
                     })
         
             }
-              if(this.toSession === ''){
+              if(this.t_Session === ''){
                this.submitting = false;
                  this.$notify({
                         title:'Error',
@@ -153,7 +153,7 @@ export default {
         
             }
 
-            if(this.toTerm === ''){
+            if(this.t_Term === ''){
                this.submitting = false;
                  this.$notify({
                         title:'Error',
