@@ -188,7 +188,7 @@ export default {
                    this.submitting = false;
                    this.$notify({
                         title:'ERROR',
-                        text:'An error has occured or no records',
+                        text:err,
                         duration:5000,
                         type: 'error',
                         width:'100%',
