@@ -33,6 +33,10 @@ export const enrollment = {
             const res = await axios.post('api/v1/mass-enrollment/',payload)   
         },
 
+        async NEW_ADMISSION_MASS_ENROLLMENT({commit},payload) {
+            const res = await axios.post('api/v1/new-admission-enrollment/',payload)   
+        },
+
         async FETCH_ENROLLMENT({commit},payload) {
             const res = await axios.get('api/v1/roll-call/', {
                 params: payload,  // Send payload as query parameters
