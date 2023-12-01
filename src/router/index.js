@@ -263,6 +263,11 @@ const routes = [
         name:'mass-enrollment',
         component:() =>import('../views/enrollment/MassEnrollment.vue')
       },
+      {
+        path: '/new-admission-enrollment/',
+        name:'new-admission-enrollment',
+        component:() =>import('../views/enrollment/NewAdmissionMassEnrollment.vue')
+      },
    
       {
         path: '/find-enrollment/',
