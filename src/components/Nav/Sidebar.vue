@@ -132,7 +132,7 @@
                         <div class="dropdown-menu bg-transparent border-0">
                             <router-link to='/new-enrollment/' class="dropdown-item">New</router-link>
                             <router-link to='/mass-enrollment/' class="dropdown-item">Mass Enroll</router-link>
-                              <router-link to='/new-admission-enrollment/' class="dropdown-item">New Admission Enroll</router-link>
+                              <router-link to='/new-admission-enrollment/' class="dropdown-item">Fresh Admission Enroll</router-link>
                             <router-link to='/find-enrollment/' class="dropdown-item">Roll Call</router-link>
                           
                         </div>
