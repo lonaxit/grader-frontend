@@ -3,10 +3,10 @@ import axios from 'axios'
 export const profile = {
     state: {
         studentprofile: '',
-        studentprofiles: [],
+        studentprofiles:[],
         staffprofile:'',
         staffprofiles:[],
-        noAdmissionNumber: [],
+        noAdmissionNumber:[],
         adm_no:''
     },
 
