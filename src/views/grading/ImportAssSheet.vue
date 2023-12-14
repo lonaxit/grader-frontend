@@ -63,7 +63,7 @@ export default {
                   this.submitting = false
                     this.$notify({
                         title:'OOPS!',
-                        text:'An error has occured while uploading',
+                        text:err,
                         duration:5000,
                         type: 'error',
                         width:'100%',
