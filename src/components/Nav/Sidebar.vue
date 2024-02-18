@@ -152,6 +152,7 @@
                              <router-link to='/import-attendance/' class="dropdown-item">Upload Att Sheet</router-link>
 
                             <router-link to='/filter-score/' class="dropdown-item">FilterScores</router-link>
+                              <router-link to='/filter-terminal-result-summary/' class="dropdown-item">Terminal Summary</router-link>
                             <router-link to='/create-result/' class="dropdown-item">Process Result</router-link>
 
                             <router-link to='/filter-result/' class="dropdown-item">View Result</router-link>
