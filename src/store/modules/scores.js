@@ -4,7 +4,8 @@ export const scores = {
     state: {
         score:'',
         scores: [],
-        userscores:[]
+        userscores:[],
+        allTerminalScores:[]
     },
 
     mutations: {
@@ -21,6 +22,9 @@ export const scores = {
         DELETE_SCORES_MUTATION(state, id) {
             state.scores = state.scores.filter(score => score.id !==id)
         },
+        SET_ALL_TERMINAL_SCORES(state, payload) {
+            state.allTerminalScores = payload
+        }
     },
 
     actions: {
@@ -59,6 +63,12 @@ export const scores = {
                 params: payload,  // Send payload as query parameters
               })
             commit('SET_SCORES',res.data)
+        },
+        async GET_TERMINAL_SCORES({commit},payload) {
+            const res = await axios.get('api/v1/filter-scores/', {
+                params: payload,  // Send payload as query parameters
+              })
+            commit('SET_ALL_TERMINAL_SCORES',res.data)
         },
         async DELETE_SCORES({commit},id) {
             const res = await axios.delete('api/v1/scores-detail/' + id +'/')
