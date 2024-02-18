@@ -64,8 +64,9 @@ export const scores = {
               })
             commit('SET_SCORES',res.data)
         },
+
         async GET_TERMINAL_SCORES({commit},payload) {
-            const res = await axios.get('api/v1/filter-scores/', {
+            const res = await axios.get('api/v1/filter-terminal-scores/', {
                 params: payload,  // Send payload as query parameters
               })
             commit('SET_ALL_TERMINAL_SCORES',res.data)
