@@ -291,6 +291,11 @@ const routes = [
         component:() =>import('../views/grading/FilterScores.vue')
       },
       {
+        path: '/filter-terminal-result-summary/',
+        name:'filter-terminal-result-summary',
+        component:() =>import('../views/grading/FilterTerminalResultSummary.vue')
+      },
+      {
         path: '/scores-list/',
         name:'scores-list',
         component:() =>import('../views/grading/ScoresList.vue')
