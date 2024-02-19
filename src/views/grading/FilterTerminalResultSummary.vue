@@ -105,7 +105,7 @@ export default {
                const payload ={
                 term:this.selectedTerm,
                 session:this.selectedSession,
-                studentclass:this.selectedClass,
+                classroom:this.selectedClass,
                 }
 
                 this.GET_TERMINAL_SCORES(payload).then(()=>{
