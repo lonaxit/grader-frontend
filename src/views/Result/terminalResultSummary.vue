@@ -59,8 +59,9 @@
                     <table class='examtable-print'>
                     <tr>
                         <th>Name</th>
-                        <th colspan="3">Maths</th>
-                        <th colspan="3">Eng</th>
+                        <th v-for="subject in subjects" :key="subject" :colspan="columnSpan">{{ subject_code }}
+                        </th>
+                       
                         <!-- <th>3rd CA</th>
                         <th>CA Total</th>
                         <th>Exam</th>
@@ -125,7 +126,7 @@
 
                 <!-- </div> -->
 
-                <div>{{subjects.length}}</div>
+                <div>{{subjects}}</div>
 </template>
 
 <script>
@@ -136,7 +137,8 @@ export default {
             badge: require('@/assets/img/skybadge.jpg') ,
             profile_pix: require('@/assets/img/user_Icon.png'),
             isLoading: true,
-            resume_date:''
+            resume_date:'',
+            columnSpan: 3
         }
     },
     computed:{
