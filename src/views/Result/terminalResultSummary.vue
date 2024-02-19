@@ -138,7 +138,7 @@
                 </div>
 
                 <!-- </div> -->
-                <div>{{subjects}}</div>
+                <div>{{terminalscores}}</div>
 </template>
 
 <script>
@@ -260,7 +260,6 @@ body {
     font-size: 15px;
     color:black;
     font-weight: bolder;
-
 }
 
 h5 {
