@@ -68,9 +68,7 @@
                         <th>SN</th>
                         <th>Name</th>
                         <th v-for="subject in subjects" :key="subject" :colspan="columnSpan">
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
+                          
                         </th>
                         <th>TOTAL</th>
                         <th>AVG</th>
@@ -131,7 +129,7 @@
 
                 <!-- </div> -->
 
-                <div>{{subjects}}</div>
+                <div>{{result}}</div>
 </template>
 
 <script>
