@@ -163,7 +163,7 @@ export default {
     methods:{
         // ...mapActions(['DETAIL_RESULT','USER_SCORES_LIST','FETCH_TRAITS','FETCH_PSYCHOTRAITS','ALL_RESUMPTION','FETCH_ENROLLMENT']),
     //  printOnPageLoad() {
-    // window.print(); // This will open the print dialog on page load
+        //window.print(); // This will open the print dialog on page load
     // },
 
     },
