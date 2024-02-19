@@ -104,7 +104,10 @@ export const scores = {
         GET_TERMINAL_SCORES(state) {
             return state.allTerminalScores
         },
+
+
         GET_UNIQUE_SUBJECTS(state) {
+
             function filterUniqueObjects(array, property) {
                 return array.filter((obj, index, self) => 
                   index === self.findIndex((t) => (
@@ -112,8 +115,9 @@ export const scores = {
                   ))
                 );
               }
-              let uniqueObjects = filterUniqueObjects(state.allTerminalScores, 'subject')
-            return state.uniqueSubject=uniqueObjects
+              
+            return state.uniqueSubject = filterUniqueObjects(state.allTerminalScores, 'subject')
+
         }
     
     }
