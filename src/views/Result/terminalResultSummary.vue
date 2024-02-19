@@ -58,6 +58,7 @@
                     <h5>Student Score Card</h5>
                     <table class='examtable-print'>
                     <tr>
+                        {{ console.log('me') }}
                         <th colspan="2"></th>
                         <th v-for="subject in subjects" :key="subject" :colspan="columnSpan">{{ subject.subject_code }}
                         </th>
