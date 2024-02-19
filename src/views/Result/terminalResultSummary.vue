@@ -138,8 +138,8 @@
                 </div>
 
                 <!-- </div> -->
-                
-                <div>{{subjects}}</div>
+
+                <div>{{subjects.length}}</div>
 </template>
 
 <script>
