@@ -58,22 +58,27 @@
                     <h5>Student Score Card</h5>
                     <table class='examtable-print'>
                     <tr>
-                        <th>Name</th>
+                        <th colspan="2"></th>
                         <th v-for="subject in subjects" :key="subject" :colspan="columnSpan">{{ subject.subject_code }}
                         </th>
+                        <th colspan="4">SUMMARY</th>
                        
-                        <!-- <th>3rd CA</th>
-                        <th>CA Total</th>
-                        <th>Exam</th>
-                        <th>Total</th>
-                        <th>Av</th>
-                        <th>High</th>
-                        <th>Lowest</th>
-                        <th>Position</th>
-                        <th>Grade</th>
-                        <th>Comment</th>
-                        <th>Sign</th> -->
                     </tr>
+                    <tr>
+                        <th>SN</th>
+                        <th>Name</th>
+                        <th v-for="subject in subjects" :key="subject" :colspan="columnSpan">
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                        </th>
+                        <th>TOTAL</th>
+                        <th>AVG</th>
+                        <th>POS</th>
+                        <th>RMKS</th>
+                    </tr>
+
+
                     <tr>
                         <!-- <td>{{score.subject_name}}</td>
                         <td>{{score.firstscore}}</td>
