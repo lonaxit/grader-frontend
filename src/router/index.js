@@ -19,7 +19,7 @@ const routes = [
       {
         path: '/print-terminalresult-summary',
         name:'print-terminalresult-summary',
-        component:() =>import('../views/Result/printResultSummary.vue')
+        component:() =>import('../views/Result/terminalResultSummary.vue')
       }
     ]
   },
