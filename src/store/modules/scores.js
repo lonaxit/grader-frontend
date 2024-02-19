@@ -6,7 +6,7 @@ export const scores = {
         scores: [],
         userscores:[],
         allTerminalScores:[],
-        uniqueSubjects:[]
+        uniqueSubject:[]
     },
 
     mutations: {
@@ -113,7 +113,7 @@ export const scores = {
                 );
               }
               let uniqueObjects = filterUniqueObjects(state.allTerminalScores, 'subject')
-            return state.uniqueSubjects=uniqueObjects
+            return state.uniqueSubject=uniqueObjects
         }
     
     }
