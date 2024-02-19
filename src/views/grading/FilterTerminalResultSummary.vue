@@ -30,24 +30,6 @@
                                 <label for="floatingSelect">Class</label>
                             </div>
 
-                              <div class="form-floating mb-3">
-                                <select v-model="selectedSubject" class="form-select" id="floatingSelect"
-                                    aria-label="Floating label select example">
-                                    
-                                    <option v-for="subject in subjects" :key="subject.id" :value="subject.id">{{subject.name}}</option>
-                                </select>
-                                <label for="floatingSelect">Subject</label>
-                            </div>
-
-                           
-
-                          
-
-                          
-
-                          
-
-                          
 
                                  <button type="submit"  :disabled="submitting" class="btn btn-primary py-3 w-100 mb-4">
                             {{ submitting ? 'Submitting...' : 'Submit' }}
@@ -69,17 +51,17 @@ export default {
             selectedClass:'',
             selectedSession:'',
             selectedTerm:'',
-            selectedSubject:'',
+     
          
         }
     },
 
     computed:{
-        ...mapGetters({subjects:'GET_SUBJECTS',sessions:'GET_SESSIONS',classes:'GET_CLASSES',terms:'GET_TERMS'})
+        ...mapGetters({sessions:'GET_SESSIONS',classes:'GET_CLASSES',terms:'GET_TERMS'})
     },
    
     methods:{
-        ...mapActions(['ALL_SUBJECTS','ALL_SESSIONS','ALL_CLASSES','ALL_TERMS','FILTER_SCORES']),
+        ...mapActions(['ALL_SESSIONS','ALL_CLASSES','ALL_TERMS','GET_TERMINAL_SCORES','FILTER_RESULT']),
         handleSubmit(){
             this.submitting = true;
 
@@ -119,19 +101,19 @@ export default {
         
             }
 
-        
-      
             // data
                const payload ={
                 term:this.selectedTerm,
                 session:this.selectedSession,
                 studentclass:this.selectedClass,
-                subject:this.selectedSubject,
                 }
 
-                this.FILTER_SCORES(payload).then((res)=>{
-                 this.$router.push('/scores-list/')
+                this.GET_TERMINAL_SCORES(payload).then(()=>{
+                    this.FILTER_RESULT(payload).then(()=>{
+                    this.$router.push('/print-terminalresult-summary/')
                     this.submitting = false
+                    })
+               
                 }).catch(err=>{
                    this.submitting = false;
                    this.$notify({
@@ -149,7 +131,7 @@ export default {
         this.ALL_TERMS()
         this.ALL_CLASSES()
         this.ALL_SESSIONS()
-        this.ALL_SUBJECTS()
+       
     },
 
 }
