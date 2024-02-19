@@ -17,7 +17,7 @@
                     <h3 class="sch-title">SKY GIFTED ACADEMY MKAR</h3>
                     <h6 class="sch-title">Terminal Result Sheet</h6>
 
-                    <div class="profile-container">
+                    <!-- <div class="profile-container">
                             <div class="summary">
                             <span class="name-plate">std anem</span>
                             <p>admno</p>
@@ -27,8 +27,8 @@
                             <div class="profile-picture">
                                 <img :src="profile_pix" alt="Profile Picture">
                             </div>
-                    </div>
-                    <div>
+                    </div> -->
+                    <!-- <div>
                         <table class='examtable-print'>
                             <tr>
                         <th>Class</th>
@@ -45,23 +45,23 @@
                             <td>noof students</td>
                             <td>total</td>
                             <td>av</td>
-                            <!-- <td>{{result.termposition}}</td> -->
+                            
                             <td>pos</td>
                             <td>attendance</td>
                             <td>resm</td>
                             <td>begins</td>
                         </tr>
                         </table>
-                    </div>
+                    </div> -->
 
                     
                     <h5>Student Score Card</h5>
                     <table class='examtable-print'>
                     <tr>
-                        <th>Subject</th>
-                        <th>1st CA</th>
-                        <th>2nd CA</th>
-                        <th>3rd CA</th>
+                        <th>Name</th>
+                        <th colspan="3">Maths</th>
+                        <th colspan="3">Eng</th>
+                        <!-- <th>3rd CA</th>
                         <th>CA Total</th>
                         <th>Exam</th>
                         <th>Total</th>
@@ -71,7 +71,7 @@
                         <th>Position</th>
                         <th>Grade</th>
                         <th>Comment</th>
-                        <th>Sign</th>
+                        <th>Sign</th> -->
                     </tr>
                     <tr>
                         <!-- <td>{{score.subject_name}}</td>
@@ -94,21 +94,7 @@
                     <!-- Add more subjects here -->
                     </table>
 
-                    <div class="traits-container">
-                        <div class="affective-traits">
-                            <h6 class="underline">AFFECTIVE</h6>
-
-                            <!-- <div class="pills" v-for="trait in affectivetraits" :key="trait.id">
-                                <span>{{trait.affective}} | {{trait.rating}}</span>
-                            </div> -->
-                        </div>
-                        <div class="psycho-traits">
-                            <h6 class="underline">PSYCHOMOTOR</h6>
-                            <!-- <div class="pills" v-for="pyscho in psychotraits" :key="pyscho.id">
-                                <span>{{pyscho.psychomotor}} | {{pyscho.rating}}</span>
-                            </div> -->
-                        </div>
-                    </div>
+                   
 
                         <table class='examtable-print'>
                             <tr>
