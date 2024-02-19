@@ -16,11 +16,11 @@ const routes = [
         name:'print-result',
         component:() =>import('../views/Result/print.vue')
       },
-      // {
-      //   path: '/print-result',
-      //   name:'print-result',
-      //   component:() =>import('../components/Authentication/Login.vue')
-      // }
+      {
+        path: '/print-terminalresult-summary',
+        name:'print-terminalresult-summary',
+        component:() =>import('../views/Result/printResultSummary.vue')
+      }
     ]
   },
   {
