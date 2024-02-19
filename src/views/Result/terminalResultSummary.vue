@@ -1,7 +1,7 @@
 <template>
 
-    <div v-if="isLoading">Loading...</div>
-    <div v-else>
+    <!-- <div v-if="isLoading">Loading...</div> -->
+    <!-- <div v-else> -->
    
                 <div class="score-card">
                         <div class="logo-container">
@@ -135,10 +135,9 @@
                     <p>Principal's Name: AKPAH, Yimam Tyonor</p>
                     <p>Principal's Comment: "Great performance! Keep up the good work."</p>
                     </div> -->
-                    
-                
                 </div>
-                </div>
+
+                <!-- </div> -->
                 <div>{{subjects}}</div>
 </template>
 
