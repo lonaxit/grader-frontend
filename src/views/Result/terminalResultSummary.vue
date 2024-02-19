@@ -59,7 +59,7 @@
                     <table class='examtable-print'>
                     <tr>
                         <th>Name</th>
-                        <th v-for="subject in subjects" :key="subject" :colspan="columnSpan">{{ subject_code }}
+                        <th v-for="subject in subjects" :key="subject" :colspan="columnSpan">{{ subject.subject_code }}
                         </th>
                        
                         <!-- <th>3rd CA</th>
@@ -97,7 +97,7 @@
 
                    
 
-                        <table class='examtable-print'>
+                        <!-- <table class='examtable-print'>
                             <tr>
                         <th>Principal's Name</th>
                         <th>Comment</th>
@@ -106,13 +106,13 @@
                         </tr>
                         <tr>
                             <td>AKPAH, Yimam Tyonor</td>
-                            <!-- <td>{{result.headteachercomment}}</td>
+                            <td>{{result.headteachercomment}}</td>
                             <td>{{result.classteacher_name}}</td>
-                            <td>{{result.classteachercomment}}</td> -->
+                            <td>{{result.classteachercomment}}</td>
                         
                         </tr>
                         </table>
-                        
+                         -->
 
                     <!-- <div class="summary">
                     
