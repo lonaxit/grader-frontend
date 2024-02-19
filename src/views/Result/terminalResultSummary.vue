@@ -66,9 +66,8 @@
                     </tr>
                     <tr>
                         <th>SN</th>
-                        <th>Name</th>
-                        <th v-for="subject in subjects" :key="subject" :colspan="columnSpan">
-                          
+                        <th colspan="3">Name</th>
+                        <th v-for="subject in subjects" :key="subject" :colspan="columnSpan"> 
                         </th>
                         <th>TOTAL</th>
                         <th>AVG</th>
