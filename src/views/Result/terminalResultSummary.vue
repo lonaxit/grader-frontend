@@ -138,7 +138,7 @@
                 </div>
 
                 <!-- </div> -->
-                <div>{{terminalscores}}</div>
+                <div>{{subjects}}</div>
 </template>
 
 <script>
