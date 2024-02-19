@@ -5,7 +5,8 @@ export const scores = {
         score:'',
         scores: [],
         userscores:[],
-        allTerminalScores:[]
+        allTerminalScores:[],
+        uniquesSubjects:[]
     },
 
     mutations: {
@@ -99,6 +100,20 @@ export const scores = {
         },
         GET_MY_SCORES(state) {
             return state.userscores
+        },
+        GET_TERMINAL_SCORES(state) {
+            return state.allTerminalScores
+        },
+        GET_UNIQUE_SUBJECTS(state) {
+            function filterUniqueObjects(array, property) {
+                return array.filter((obj, index, self) => 
+                  index === self.findIndex((t) => (
+                    t[property] === obj[property]
+                  ))
+                );
+              }
+              uniqueObjects = filterUniqueObjects(state.allTerminalScores, 'subject')
+            return state.uniquesSubjects=uniqueObjects
         }
     
     }
