@@ -78,7 +78,7 @@
                     <tr v-for="result in results" :key="result.id">
                         <td></td>
                         <td>{{result.student_name}}</td>
-                        <Scores/> 
+                        <Scores v-for="i in filteredScores(result.user_id)" :key="i.id"/> 
                           <!-- <Scores v-for="score in terminalscores.filter(i => i.userId === userId) " :key="score"/> -->
                      
                   
@@ -159,9 +159,9 @@ export default {
     //  printOnPageLoad() {
         //window.print(); // This will open the print dialog on page load
     // },
-    filteredScores(id) {
-      // Filter scores based on the current userId
-      return this.scores.filter(score => score.userId === this.userId);
+    filteredScores(userid) {
+      //Filter scores based on the current userId
+      return this.terminalscores.filter(score => score.user_id === userid);
     }
 
     },
