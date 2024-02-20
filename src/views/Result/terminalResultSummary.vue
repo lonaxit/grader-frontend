@@ -76,10 +76,10 @@
                     <tr v-for="result in results" :key="result.id">
                         <td></td>
                         <td>{{result.student_name}}</td>
-                        <Scores v-for="i in filteredScores(result.user_id)" :key="i.id" :total="i.subjecttotal" :pos="i.subjectposition" :grade="i.subjectgrade"/> 
+                        <Scores v-for="i in filteredScores(result.user_id)" :key="i.id" :total="i.subjecttotal" :pos="getOrdinal(i.subjectposition)" :grade="i.subjectgrade"/> 
                         <td>{{result.termtotal}}</td>
                         <td>{{result.termaverage}}</td> 
-                        <td>{{result.termposition}}</td> 
+                        <td>{{getOrdinal(result.termposition)}}</td> 
                     </tr>
                     </table>
 
@@ -148,14 +148,36 @@ export default {
     },
 
     methods:{
-        // ...mapActions(['DETAIL_RESULT','USER_SCORES_LIST','FETCH_TRAITS','FETCH_PSYCHOTRAITS','ALL_RESUMPTION','FETCH_ENROLLMENT']),
-    //  printOnPageLoad() {
+        //...mapActions(['DETAIL_RESULT','USER_SCORES_LIST','FETCH_TRAITS','FETCH_PSYCHOTRAITS','ALL_RESUMPTION','FETCH_ENROLLMENT']),
+    //printOnPageLoad() {
         //window.print(); // This will open the print dialog on page load
-    // },
+    //},
     filteredScores(userid) {
       //Filter scores based on the current userId
       return this.terminalscores.filter(score => score.user_id === userid);
+    },
+        
+    getOrdinal(position) {
+    if (position < 1) return position;
+
+    const lastDigit = position % 10;
+    const lastTwoDigits = position % 100;
+
+    if (lastTwoDigits >= 11 && lastTwoDigits <= 13) {
+        return position + "th";
     }
+
+    switch (lastDigit) {
+        case 1:
+            return position + "st";
+        case 2:
+            return position + "nd";
+        case 3:
+            return position + "rd";
+        default:
+            return position + "th";
+    }
+}
 
     },
     mounted(){
