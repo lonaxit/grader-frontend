@@ -1,14 +1,16 @@
 <template>
-  <td>4</td>
- <td>7</td>
- <td>0</td>
+  <td>{{total}}</td>
+ <td>{{pos}}</td>
+ <td>{{grade}}</td>
 </template>
 
 <script>
 export default {
 name:'Scores',
 props:[
-    
+    'total',
+    'pos',
+    'grade'
 ]
 }
 </script>
