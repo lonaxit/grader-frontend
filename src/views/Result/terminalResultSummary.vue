@@ -125,7 +125,7 @@
 
                 <!-- </div> -->
 
-                <div>{{resuls}}</div>
+                <div>{{results}}</div>
 </template>
 
 <script>
