@@ -65,11 +65,11 @@
                         <th colspan="4">SUMMARY</th>
                        
                     </tr>
-                    <tr>
+                    <tr  v-for="subject in subjects" :key="subject">
                         <th colspan="2">Name</th>
-                        <th v-for="subject in subjects" :key="subject">T1</th>
-                        <th v-for="subject in subjects" :key="subject">T2</th>
-                        <th v-for="subject in subjects" :key="subject">T3</th>
+                        <th>T1</th>
+                        <th>T2</th>
+                        <th>T3</th>
                      
                         <th>TOTAL</th>
                         <th>AVG</th>
