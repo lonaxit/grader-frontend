@@ -67,7 +67,7 @@
                     </tr>
                     <tr  >
                         <th colspan="2">Name</th>
-                        <Heading/>
+                        <Heading v-for="subject in subjects" :key="subject"/>
                      
                         <th>TOTAL</th>
                         <th>AVG</th>
