@@ -15,7 +15,7 @@
                     </div>
 
                     <h3 class="sch-title">SKY GIFTED ACADEMY MKAR</h3>
-                    <h6 class="sch-title">Terminal Result Sheet</h6>
+                    <h6 class="sch-title">TERMINAL RESULT SUMMARY</h6>
 
                     <!-- <div class="profile-container">
                             <div class="summary">
@@ -54,8 +54,6 @@
                         </table>
                     </div> -->
 
-                    
-                    <h5>TERMINAL RESULT SHEET</h5>
                     <table class='examtable-print'>
                     <tr>
                      
@@ -79,15 +77,10 @@
                         <td></td>
                         <td>{{result.student_name}}</td>
                         <Scores v-for="i in filteredScores(result.user_id)" :key="i.id" :total="i.subjecttotal" :pos="i.subjectposition" :grade="i.subjectgrade"/> 
-                          <!-- <Scores v-for="score in terminalscores.filter(i => i.userId === userId) " :key="score"/> -->
-                     
-                  
-                        <!-- <td>{{score.subjectrating}}</td>
-                         <td>{{score.subjectteacher}}</td>  -->
+                        <td>{{result.termtotal}}</td>
+                        <td>{{result.termaverage}}</td> 
+                        <td>{{result.termposition}}</td> 
                     </tr>
-         
-              
-                    <!-- Add more subjects here -->
                     </table>
 
                    
@@ -121,7 +114,7 @@
 
                 <!-- </div> -->
 
-                <div>{{results}}</div>
+                <!-- <div>{{results}}</div> -->
 </template>
 
 <script>
