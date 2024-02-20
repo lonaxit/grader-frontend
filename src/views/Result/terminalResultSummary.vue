@@ -77,6 +77,7 @@
 
                     <tr v-for="result in results" :key="result.id">
                         <td>{{result.student_name}}</td>
+                          <Scores/>
                      
                         <!-- <td>{{score.totalca}}</td>
                         <td>{{score.examscore}}</td>
@@ -130,11 +131,13 @@
 
 <script>
 import Heading from '../../components/Heading.vue'
+import Scores from '../../components/Scores.vue'
 import { mapActions,mapGetters} from 'vuex'
 export default {
     name:'terminalResultSummary',
     components:{
-        Heading
+        Heading,
+        Scores
     },
     data(){
         return{
