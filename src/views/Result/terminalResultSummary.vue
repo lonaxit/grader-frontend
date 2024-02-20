@@ -55,10 +55,10 @@
                     </div> -->
 
                     
-                    <h5>Student Score Card</h5>
+                    <h5>TERMINAL RESULT SHEET</h5>
                     <table class='examtable-print'>
                     <tr>
-                        {{ console.log('me') }}
+                     
                         <th colspan="2"></th>
                         <th v-for="subject in subjects" :key="subject" :colspan="columnSpan">{{ subject.subject_code }}
                         </th>
@@ -67,8 +67,10 @@
                     </tr>
                     <tr>
                         <th colspan="2">Name</th>
-                        <th v-for="subject in subjects" :key="subject" :colspan="columnSpan"> 
-                        </th>
+                        <th v-for="subject in subjects" :key="subject">T1</th>
+                        <th v-for="subject in subjects" :key="subject">T2</th>
+                        <th v-for="subject in subjects" :key="subject">T3</th>
+                     
                         <th>TOTAL</th>
                         <th>AVG</th>
                         <th>POS</th>
