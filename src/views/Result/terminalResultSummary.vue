@@ -65,7 +65,7 @@
                         <th colspan="4">SUMMARY</th>
                        
                     </tr>
-                    <tr  v-for="subject in subjects" :key="subject">
+                    <tr  >
                         <th colspan="2">Name</th>
                         <th>T1</th>
                         <th>T2</th>
