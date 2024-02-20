@@ -121,7 +121,7 @@
 
                 <!-- </div> -->
 
-                <div>{{terminalscores}}</div>
+                <div>{{results}}</div>
 </template>
 
 <script>
