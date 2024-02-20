@@ -67,9 +67,7 @@
                     </tr>
                     <tr  >
                         <th colspan="2">Name</th>
-                        <th>T1</th>
-                        <th>T2</th>
-                        <th>T3</th>
+                        <Heading/>
                      
                         <th>TOTAL</th>
                         <th>AVG</th>
@@ -134,8 +132,13 @@
 </template>
 
 <script>
+import Heading from '../../components/Heading.vue'
 import { mapActions,mapGetters} from 'vuex'
 export default {
+    name:'terminalResultSummary',
+    components:{
+        Heading
+    },
     data(){
         return{
             badge: require('@/assets/img/skybadge.jpg') ,
@@ -145,6 +148,7 @@ export default {
             columnSpan: 3
         }
     },
+    
     computed:{
         ...mapGetters({subjects:'GET_UNIQUE_SUBJECTS',result:'GET_RESULTS',terminalscores:'GET_TERMINAL_SCORES'}),
 
