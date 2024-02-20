@@ -1,7 +1,7 @@
 <template>
-    <th>T1</th>
-    <th>T2</th>
-    <th>T3</th>
+    <th>M</th>
+    <th>P</th>
+    <th>G</th>
 </template>
 <script>
 export default {
