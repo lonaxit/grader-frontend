@@ -67,8 +67,7 @@
                     </tr>
                     <tr  >
                         <th colspan="2">Name</th>
-                        <Heading v-for="subject in subjects" :key="subject"/>
-                     
+                        <Heading v-for="subject in subjects" :key="subject" :msg="subject"/>
                         <th>TOTAL</th>
                         <th>AVG</th>
                         <th>POS</th>
@@ -76,11 +75,9 @@
                     </tr>
 
 
-                    <tr>
-                        <!-- <td>{{score.subject_name}}</td>
-                        <td>{{score.firstscore}}</td>
-                        <td>{{score.secondscore}}</td>
-                        <td>{{score.thirdscore}}</td> -->
+                    <tr v-for="result in results" :key="result.id">
+                        <td>{{result.student_name}}</td>
+                     
                         <!-- <td>{{score.totalca}}</td>
                         <td>{{score.examscore}}</td>
                         <td>{{score.subjecttotal}}</td>
@@ -128,7 +125,7 @@
 
                 <!-- </div> -->
 
-                <div>{{result}}</div>
+                <div>{{resuls}}</div>
 </template>
 
 <script>
@@ -150,7 +147,9 @@ export default {
     },
     
     computed:{
-        ...mapGetters({subjects:'GET_UNIQUE_SUBJECTS',result:'GET_RESULTS',terminalscores:'GET_TERMINAL_SCORES'}),
+        ...mapGetters({subjects:'GET_UNIQUE_SUBJECTS',results:'GET_RESULTS',terminalscores:'GET_TERMINAL_SCORES'}),
+
+  
 
         // resumption_date(){
         //     return this.resumedates = this.resumedates.filter(item=>item.current_term===this.result.term && item.session===this.result.session)
@@ -162,6 +161,10 @@ export default {
     //  printOnPageLoad() {
         //window.print(); // This will open the print dialog on page load
     // },
+    filteredScores(id) {
+      // Filter scores based on the current userId
+      return this.scores.filter(score => score.userId === this.userId);
+    }
 
     },
     mounted(){
