@@ -66,7 +66,7 @@
                        
                     </tr>
                     <tr  >
-                        <th colspan="2">Name</th>
+                        <th>Name</th>
                         <Heading v-for="subject in subjects" :key="subject" :msg="subject"/>
                         <th>TOTAL</th>
                         <th>AVG</th>
@@ -77,18 +77,12 @@
 
                     <tr v-for="result in results" :key="result.id">
                         <td>{{result.student_name}}</td>
-                          <Scores/>
+                        <Scores/> 
+                          <!-- <Scores v-for="score in terminalscores.filter(i => i.userId === userId) " :key="score"/> -->
                      
-                        <!-- <td>{{score.totalca}}</td>
-                        <td>{{score.examscore}}</td>
-                        <td>{{score.subjecttotal}}</td>
-                        <td>{{score.subjaverage}}</td>
-                        <td>{{score.highest_inclass}}</td>
-                        <td>{{score.lowest_inclass}}</td>
-                         <td>{{score.subjectposition}}</td>
-                        <td>{{score.subjectgrade}}</td>
-                        <td>{{score.subjectrating}}</td>
-                         <td>{{score.subjectteacher}}</td> -->
+                  
+                        <!-- <td>{{score.subjectrating}}</td>
+                         <td>{{score.subjectteacher}}</td>  -->
                     </tr>
          
               
@@ -126,7 +120,7 @@
 
                 <!-- </div> -->
 
-                <div>{{results}}</div>
+                <div>{{terminalscores}}</div>
 </template>
 
 <script>
