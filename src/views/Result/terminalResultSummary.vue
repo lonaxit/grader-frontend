@@ -66,7 +66,7 @@
                        
                     </tr>
                     <tr  >
-                        <th>Name</th>
+                        <th colspan="2">Name</th>
                         <Heading v-for="subject in subjects" :key="subject" :msg="subject"/>
                         <th>TOTAL</th>
                         <th>AVG</th>
@@ -76,6 +76,7 @@
 
 
                     <tr v-for="result in results" :key="result.id">
+                        <td></td>
                         <td>{{result.student_name}}</td>
                         <Scores/> 
                           <!-- <Scores v-for="score in terminalscores.filter(i => i.userId === userId) " :key="score"/> -->
