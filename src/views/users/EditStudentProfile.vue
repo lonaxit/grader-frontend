@@ -5,10 +5,6 @@
 
                             <form @submit.prevent="handleSubmit">
 
-                        
-
-                         
-
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="floatingPassword"
                                     placeholder="Local Govt" v-model="local_govt">
@@ -70,7 +66,7 @@ export default {
     data(){
         return{
             submitting: false,
-        guardian:'',
+            guardian:'',
             local_govt:'',
             admission_number:'',
             address:'',
