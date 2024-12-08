@@ -4,13 +4,17 @@ export const enrollment = {
     state: {
         enrollment:'',
         allEnrollment: [],
-        caRoll:[]
+        caRoll:[],
+        enrollmentBySearch:[]
     },
 
     mutations: {
 
         SET_ENROLLMENT(state, payload) {
             state.enrollment = payload
+        },
+        SET_NEWSEARCH_ENROLLMENT(state,payload){
+            state.enrollmentBySearch = payload
         },
         SET_ENROLLMENTS(state, payload) {
             state.allEnrollment = payload
@@ -37,11 +41,21 @@ export const enrollment = {
             const res = await axios.post('api/v1/new-admission-enrollment/',payload)   
         },
 
+        async ENROLLMENT_BYSEARCH({commit},payload) {
+            const res = await axios.post('api/v1/enroll-by-search/',payload)   
+        },
+
         async FETCH_ENROLLMENT({commit},payload) {
             const res = await axios.get('api/v1/roll-call/', {
                 params: payload,  // Send payload as query parameters
               })
             commit('SET_ENROLLMENTS',res.data)
+        },
+        async FETCH_NEWSEARCHENROLLMENT({commit},payload) {
+            const res = await axios.get('api/v1/fetch-enrollment/', {
+                params: payload,
+              })
+            commit('SET_NEWSEARCH_ENROLLMENT',res.data)
         },
         async CA_ROLLCALL({commit},payload) {
             const res = await axios.get('api/v1/ca-roll-call/', {
@@ -72,8 +86,10 @@ export const enrollment = {
         },
         GET_CA_ROLL(state) {
             return state.caRoll
-          
            },
+        GET_SEARCH_ENROLLMENT(state){
+            return state.enrollmentBySearch
+        }
     
     }
 }
