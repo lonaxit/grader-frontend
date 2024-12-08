@@ -8,7 +8,7 @@ export const user = {
         allStaff:[],
         me: '',
         userdata: '',
-        
+        searchedStudent:[],
     },
 
     mutations: {
@@ -28,6 +28,9 @@ export const user = {
         SET_ME(state, payload) {
             state.me = payload
         },
+        SET_SAERCHEDSTUDENT(state,payload){
+            state.searchedStudent = payload;
+        }
     
 
     },
@@ -47,8 +50,6 @@ export const user = {
             commit('SET_ME',res.data.user)
         },
 
-       
-       
         async USER_DETAIL({commit},id) {
             const res = await axios.get('auth/v1/user-detail/' + id +'/')
               commit('SET_USER', res.data) 
@@ -68,7 +69,15 @@ export const user = {
         },
         async UPDATE_PASSWORD({commit},payload) {
             const res = await axios.put('auth/v1/username-update-password/',payload)
-        }
+        },
+
+        // search student
+        async FIND_STUDENT({commit},payload) {
+            const res = await axios.get('api/v1/search-enroll/', {
+                params: payload,
+              })
+            commit('SET_SAERCHEDSTUDENT', res.data)
+            }
 
        
     },
@@ -94,7 +103,9 @@ export const user = {
         },
         GET_STAFF(state) {
             return state.staff
-          
-           }
+           },
+        GET_STUDENTS(state) {
+        return state.searchedStudent
+        }
     }
 }
