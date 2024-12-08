@@ -58,13 +58,40 @@
                                           <td>{{student.other_name}}</td>
                                           <td>{{student.username}}</td>
                                           <td>
-                                              <router-link  :to="{name:'new-student-profile', params:{id:student.id}}" target="_blank">Add Profile</router-link>
-                                          </td>
+                                            <button @click="enrollStudent(student.id)">Enroll</button>
+                                        </td>
                                       </tr>
                                   </tbody>
                               </table>
                           </div>
-                          <div>{{ students }}</div>
+                          <div><hr/></div>
+
+    <div>
+        <h4>Enrolled Students</h4>
+        <table class="table">
+                                  <thead>
+                                      <tr>
+                                          <th scope="col">Name</th>
+                                          <th scope="col">Admn No</th>
+                                          <th scope="col">Session</th>
+                                          <th scope="col">Term</th>
+                                          <th scope="col">Class</th> 
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr v-for="i in livesearchenroll" :key="i.id">
+                                          <td>{{i.student_name}}</td>
+                                          <td>{{i.student_adm_no}}</td>
+                                          <td>{{i.session}}</td>
+                                          <td>{{i.term}}</td>
+                                          <td>{{i.class_room}}</td>
+                                          <td>
+                                            <!-- <button @click="enrollStudent(student.id)">Enroll</button> -->
+                                        </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+    </div>
     <!-- </div> -->
     <!-- <div v-else>
       <p>Loading ...</p>
@@ -86,26 +113,22 @@
       }
   },
   computed:{
-  ...mapGetters({students:"GET_STUDENTS",classes:'GET_CLASSES'})
+  ...mapGetters({students:"GET_STUDENTS",classes:'GET_CLASSES',livesearchenroll:'GET_SEARCH_ENROLLMENT'})
   },
   methods:{
-  ...mapActions(['FIND_STUDENT','ALL_CLASSES']),
+  ...mapActions(['FIND_STUDENT','ENROLLMENT_BYSEARCH','FETCH_NEWSEARCHENROLLMENT','ALL_CLASSES']),
 
   fetchStudents(){
     const payload ={
-        // class_name:this.selectedClass,
         name:this.name,
-        // admission_numberstring:'SKY/STD/23/24/'+ this.admission_number.toString(),
-        // id:this.$route.params.id
         }
 
         this.FIND_STUDENT(payload).then((res)=>{
                     //reset values
                     this.name='',
-               
                     this.$notify({
                         title:'SUCCESSFULLY SUBMITTED',
-                        text:'Searching....!',
+                        text:'Search found',
                         duration:5000,
                         type: 'success',
                         width:'100%',
@@ -113,7 +136,7 @@
 
                 }).catch(err=>{
                     console.log(err)
-                   this.sur_name = '';
+                   this.name = '';
                    this.$notify({
                         title:'ERROR',
                         text:'An error has occured!',
@@ -121,9 +144,55 @@
                         type: 'error',
                         width:'100%',
                     })
-                })
+                });
+  },
 
-    console.log(`I am searching for ${this.selectedClass} and ${this.sur_name}`)
+
+  enrollStudent(id){
+    const payload ={
+        user_id:id,
+        class_id:this.selectedClass
+    }
+
+    const fetchPayload ={
+        class_id:this.selectedClass
+    }
+
+
+    this.ENROLLMENT_BYSEARCH(payload)
+    .then(() => {
+        return this.FETCH_NEWSEARCHENROLLMENT(fetchPayload);
+    })
+    .then(() => {
+                    this.$notify({
+                        title:'ENROLLMENT SUCCESSFULLY SUBMITTED',
+                        text:'Whoalaa...GREAT JOB',
+                        duration:5000,
+                        type: 'success',
+                        width:'100%',
+                    })
+        // Success logic for the second promise
+        // console.log("Enrollment and fetch completed successfully.");
+    })
+    .catch((error) => {
+                        console.log(error);
+                        this.$notify({
+                        title:'ERROR',
+                        text:'An error has occured!',
+                        duration:5000,
+                        type: 'error',
+                        width:'100%',
+                    })
+        // Handle any errors in the promise chain
+        // console.error("An error occurred:", error);
+    });
+
+    // this.ENROLLMENT_BYSEARCH(payload).then(()=>{ 
+            
+    //     this.FETCH_NEWSEARCHENROLLMENT(fetchPayload).then(()=>{
+
+    //             });
+    //         });        
   }
   
   },
