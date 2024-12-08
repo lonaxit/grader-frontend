@@ -38,7 +38,5 @@ export default createStore({
     skills,
     traits,
     comments
-    
-
   }
 })
