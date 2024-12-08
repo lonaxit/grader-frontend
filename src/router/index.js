@@ -188,6 +188,11 @@ const routes = [
         component:() =>import('../views/users/allNewStudents.vue')
       },
       {
+        path: '/search-enroll/',
+        name:'search-enroll',
+        component:() =>import('../views/users/SearchAndEnroll.vue')
+      },
+      {
         path: '/add-admission-number/',
         name:'add-admission-number',
         component:() =>import('../views/users/AddAdmissionNumber.vue')
