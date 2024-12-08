@@ -39,6 +39,7 @@
                             <router-link to='/all-students/' class="dropdown-item">All</router-link>
 
                              <router-link to='/no-profile-students/' class="dropdown-item">No Profile</router-link>
+                             
 
                             <router-link to='/add-admission-number/' class="dropdown-item">Admission Number</router-link>
                            
@@ -132,6 +133,7 @@
                         <div class="dropdown-menu bg-transparent border-0">
                             <router-link to='/new-enrollment/' class="dropdown-item">New</router-link>
                             <router-link to='/mass-enrollment/' class="dropdown-item">Mass Enroll</router-link>
+                            <router-link to='/search-enroll/' class="dropdown-item">Class Enrollment</router-link>
                               <router-link to='/new-admission-enrollment/' class="dropdown-item">Fresh Admission Enroll</router-link>
                             <router-link to='/find-enrollment/' class="dropdown-item">Roll Call</router-link>
                           
