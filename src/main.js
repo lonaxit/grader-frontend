@@ -9,9 +9,10 @@ import './assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css'
 import axios from 'axios'
 import Notifications from '@kyvg/vue3-notification'
 
+
 // local
-axios.defaults.baseURL = 'http://127.0.0.1:8000'
-// axios.defaults.baseURL = 'https://skygiftedacademy.up.railway.app/'
+// axios.defaults.baseURL = 'http://127.0.0.1:8000'
+axios.defaults.baseURL = 'https://skygiftedacademy.up.railway.app/'
 
 // router.beforeEach((to, from, next) => {
 //     const isLoggedIn = localStorage.getItem('token')
