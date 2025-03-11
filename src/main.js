@@ -12,7 +12,8 @@ import Notifications from '@kyvg/vue3-notification'
 
 // local
 // axios.defaults.baseURL = 'http://127.0.0.1:8000'
-axios.defaults.baseURL = 'https://skygiftedacademy.up.railway.app/'
+// axios.defaults.baseURL = 'https://skygiftedacademy.up.railway.app/'
+axios.defaults.baseURL = 'skygiftedacademy.up.railway.app'
 
 // router.beforeEach((to, from, next) => {
 //     const isLoggedIn = localStorage.getItem('token')
