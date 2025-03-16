@@ -90,7 +90,10 @@ export const user = {
         },
     
         GET_USERS(state) {
-         return state.studentusers.filter(user => user.is_student==true)
+        return Array.isArray(state.studentusers) 
+        ? state.studentusers.filter(user => user.is_student === true) 
+        : [];
+        //  return state.studentusers.filter(user => user.is_student==true)
         },
 
         GET_NOPROFILE_STUDENTS(state) {
