@@ -90,15 +90,15 @@ export const user = {
         },
     
         GET_USERS(state) {
-        return Array.isArray(state.studentusers) 
-        ? state.studentusers.filter(user => user.is_student === true) 
-        : [];
-        //  return state.studentusers.filter(user => user.is_student==true)
+        // return Array.isArray(state.studentusers) 
+        // ? state.studentusers.filter(user => user.is_student === true) 
+        // : [];
+         return state.studentusers.filter(user => user.is_student==true)
         },
 
         GET_NOPROFILE_STUDENTS(state) {
-            return (state.studentusers?.filter(user => user.is_student === true && user.studentprofile === null)) || [];
-            // return state.studentusers.filter(user =>  user.is_student==true && user.studentprofile===null)
+            // return (state.studentusers?.filter(user => user.is_student === true && user.studentprofile === null)) || [];
+            return state.studentusers.filter(user =>  user.is_student==true && user.studentprofile===null)
            },
 
         GET_STAFF_USERS(state) {
