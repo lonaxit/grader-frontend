@@ -42,7 +42,7 @@ export const user = {
 
         async FETCH_USERS({commit}) {
             const res = await axios.get('auth/v1/all/users/')
-            commit('SET_STUDENT_USERS',res.data.user)
+            commit('SET_STUDENT_USERS',res.data.users)
         },
 
         async FETCH_ME({commit}) {
