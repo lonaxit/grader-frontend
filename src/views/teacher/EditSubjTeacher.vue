@@ -32,7 +32,7 @@
                                 </select>
                                 <label for="floatingSelect">Class</label>
                             </div>
-                            <span v-if="subteach">{{subteach.class_name}}</span>
+                            <span v-if="subteach">{{subteach.classroom}}</span>
 
                                  <button type="submit"  :disabled="submitting" class="btn btn-primary py-3 w-100 mb-4">
                             {{ submitting ? 'Submitting...' : 'Submit' }}
