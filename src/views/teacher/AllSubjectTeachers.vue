@@ -18,10 +18,10 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="teacher in subteachers" :key="teacher.id">
-                                        <td>{{teacher.teacher_name}}</td>
-                                        <td>{{teacher.subject_name}}</td>
-                                        <td>{{teacher.class_name}}</td>
-                                        <td>{{teacher.session_name}}</td>
+                                        <td>{{teacher.teacher}}</td>
+                                        <td>{{teacher.subject}}</td>
+                                        <td>{{teacher.classroom}}</td>
+                                        <td>{{teacher.session}}</td>
                                         
                                         <td>
                                             <router-link  :to="{name:'edit-subject-teacher', params:{id:teacher.id}}">Edit</router-link>
