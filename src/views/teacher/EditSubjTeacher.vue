@@ -1,6 +1,6 @@
 <template>
 <div class="col-sm-12 col-xl-8">
-  <h4>Edit Subject Teacher  [<span v-if="subteach">{{subteach.teacher_name}}</span>]</h4>
+  <h4>Edit Subject Teacher  [<span v-if="subteach">{{subteach.teacher}}</span>]</h4>
       <div class="bg-light rounded h-100 p-4">
 
                             <form @submit.prevent="handleSubmit">
@@ -13,7 +13,7 @@
                                 </select>
                                 <label for="floatingSelect">Subject</label>
                             </div>
-                            <span v-if="subteach">{{subteach.subject_name}}</span>
+                            <span v-if="subteach">{{subteach.subject}}</span>
 
                                  <div class="form-floating mb-3">
                                 <select v-model="selectedSession" class="form-select" id="floatingSelect"
@@ -22,7 +22,7 @@
                                     <option v-for="session in sessions" :key="session.id" :value="session.id">{{session.name}}</option>
                                 </select>
                                 <label for="floatingSelect">Session</label>
-                                <span v-if="subteach">{{subteach.session_name}}</span>
+                                <span v-if="subteach">{{subteach.session}}</span>
                             </div>
                                  <div class="form-floating mb-3">
                                 <select v-model="selectedClass" class="form-select" id="floatingSelect"
