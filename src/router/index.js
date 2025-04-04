@@ -311,6 +311,11 @@ const routes = [
         name:'create-result',
         component:() =>import('../views/grading/CreateResult.vue')
       },
+      {
+        path: '/build-scores/',
+        name:'build-scores',
+        component:() =>import('../views/grading/BuildScores.vue')
+      },
 
       {
         path: '/filter-result/',

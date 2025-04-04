@@ -148,6 +148,7 @@
                             <router-link to='/export-ca-sheet/' class="dropdown-item">Download CA Sheet</router-link>
 
                              <router-link to='/import-ca-sheet/' class="dropdown-item">Upload CA Sheet</router-link>
+                             <router-link to='//build-scores//' class="dropdown-item">Build Scores</router-link>
 
                              <router-link to='/export-attendance-sheet/' class="dropdown-item">Downloadd Att Sheet</router-link>
 

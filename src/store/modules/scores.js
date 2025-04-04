@@ -29,6 +29,9 @@ export const scores = {
     },
 
     actions: {
+        async BUILD_SCORES({commit},payload) {
+            const res = await axios.post('api/v1/build-scores/',payload)   
+        },
 
         async ADD_SCORES({commit},payload) {
             const res = await axios.post('api/v1/new-score/' + payload.id +'/',payload)   
