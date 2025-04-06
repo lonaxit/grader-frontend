@@ -25,11 +25,11 @@
                                 <tbody>
                                     <tr v-for="item in results" :key="item.id">
                                         <td>
-                                           {{item.student_name}}
+                                           {{item.student.sur_name}}  {{item.student.first_name}}
                                         </td>
-                                        <td>{{item.term_name}}</td>
-                                        <td>{{item.class_name}}</td>
-                                        <td>{{item.session_name}}</td>
+                                        <td>{{item.term.name}}</td>
+                                        <td>{{item.studentclass.class_name}}</td>
+                                        <td>{{item.session.name}}</td>
                                         <td>{{item.termtotal}}</td>
                                         <td>{{item.termaverage}}</td>
                                         <td>{{item.termposition}}</td>
