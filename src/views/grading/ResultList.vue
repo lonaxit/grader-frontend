@@ -52,7 +52,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        {{ results }}
+                    
   </div>
   <div v-else>
     <p>Loading ...</p>
