@@ -71,7 +71,7 @@
                         <th>Comment</th>
                         <th>Sign</th>
                     </tr>
-                    <!-- <tr v-for="score in myscores" :key="score.id">
+                    <tr v-for="score in myscores" :key="score.id">
                         <td>{{score.subject.name}}</td>
                         <td>{{score.firstscore}}</td>
                         <td>{{score.secondscore}}</td>
@@ -86,7 +86,7 @@
                         <td>{{score.subjectgrade}}</td>
                         <td>{{score.subjectrating}}</td>
                          <td>{{score.subjectteacher.teacher.sur_name}}</td>
-                    </tr> -->
+                    </tr>
          
               
                     <!-- Add more subjects here -->
@@ -164,33 +164,33 @@ export default {
         this.DETAIL_RESULT(this.$route.params.id)
         .then(()=>{
             const payload ={
-                userid: this.result.student,
-                term:this.result.term,
-                session:this.result.session,
-                class:this.result.studentclass
+                userid: this.result.student.id,
+                term:this.result.term.id,
+                session:this.result.session.id,
+                class:this.result.studentclass.id
             }
             this.USER_SCORES_LIST(payload).then(()=>{
                 const affectivedata={
-                userid: this.result.student,
-                session:this.result.session,
-                classroom:this.result.studentclass,
-                term:this.result.term
+                userid: this.result.student.id,
+                session:this.result.session.id,
+                classroom:this.result.studentclass.id,
+                term:this.result.term.id
             
                 }
                 this.FETCH_TRAITS(affectivedata).then(()=>{
                 const psychodata={
-                userid: this.result.student,
-                session:this.result.session,
-                classroom:this.result.studentclass,
-                term:this.result.term
+                userid: this.result.student.id,
+                session:this.result.session.id,
+                classroom:this.result.studentclass.id,
+                term:this.result.term.id
                 }
                     this.FETCH_PSYCHOTRAITS(psychodata).then(()=>{
                    
                         this.ALL_RESUMPTION().then(()=>{
                             const rollcallpayload={
-                                classroom:this.result.studentclass,
-                                term:this.result.term,
-                                session:this.result.session
+                                classroom:this.result.studentclass.id,
+                                term:this.result.term.id,
+                                session:this.result.session.id
                             }
                             this.FETCH_ENROLLMENT(rollcallpayload).then(()=>{
                                 this.isLoading=false
