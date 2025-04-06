@@ -18,7 +18,7 @@
 
                     <div class="profile-container">
                             <div class="summary">
-                            <span class="name-plate">{{result.student_name}}</span>
+                            <span class="name-plate">{{result.student.sur_name}}  {{result.student.first_name}}</span>
                             <p>{{result.admission_number}}</p>
                         
                             </div>
