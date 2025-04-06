@@ -40,7 +40,7 @@
                         <th>Next Term Begins</th>
                         </tr>
                         <tr>
-                            <td>{{result.class_name}}</td>
+                            <td>{{result.studentclass.class_name}}</td>
                             <td>{{rollcall.length}}</td>
                             <td>{{result.termtotal}}</td>
                             <td>{{result.termaverage}}</td>
@@ -72,7 +72,7 @@
                         <th>Sign</th>
                     </tr>
                     <tr v-for="score in myscores" :key="score.id">
-                        <td>{{score.subject_name}}</td>
+                        <td>{{score.subject.name}}</td>
                         <td>{{score.firstscore}}</td>
                         <td>{{score.secondscore}}</td>
                         <td>{{score.thirdscore}}</td>
@@ -85,7 +85,7 @@
                          <td>{{score.subjectposition}}</td>
                         <td>{{score.subjectgrade}}</td>
                         <td>{{score.subjectrating}}</td>
-                         <td>{{score.subjectteacher}}</td>
+                         <td>{{score.subjectteacher.teacher.sur_name}}</td>
                     </tr>
          
               
@@ -117,7 +117,7 @@
                         <tr>
                             <td>AKPAH, Yimam Tyonor</td>
                             <td>{{result.headteachercomment}}</td>
-                            <td>{{result.classteacher_name}}</td>
+                            <td>{{result.classteacher.sur_name}}</td>
                             <td>{{result.classteachercomment}}</td>
                         
                         </tr>
