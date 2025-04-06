@@ -41,7 +41,7 @@
                         <th>Next Term Begins</th>
                         </tr>
                         <tr>
-                            <td>{{result.class_name}}</td>
+                            <td>{{result.studentclass.class_name}}</td>
                             <td>{{rollcall.length}}</td>
                             <td>{{result.termtotal}}</td>
                             <td>{{result.termaverage}}</td>
@@ -73,7 +73,7 @@
                         <th>Sign</th>
                     </tr>
                     <tr v-for="score in myscores" :key="score.id">
-                        <td>{{score.subject_name}}</td>
+                        <td>{{score.subject.name}}</td>>
                         <td>{{score.firstscore}}</td>
                         <td>{{score.secondscore}}</td>
                         <td>{{score.thirdscore}}</td>
@@ -86,7 +86,7 @@
                          <td>{{score.subjectposition}}</td>
                         <td>{{score.subjectgrade}}</td>
                         <td>{{score.subjectrating}}</td>
-                         <td>{{score.subjectteacher}}</td>
+                        <td>{{score.subjectteacher.teacher.sur_name}}</td>
                     </tr>
          
               
@@ -118,7 +118,7 @@
                         <tr>
                             <td>AKPAH, Yimam Tyonor</td>
                             <td>{{result.headteachercomment}}</td>
-                            <td>{{result.classteacher_name}}</td>
+                            <td>{{result.classteacher.tutor.sur_name}}</td>
                             <td>{{result.classteachercomment}}</td>
                         
                         </tr>
@@ -154,7 +154,7 @@ export default {
         ...mapGetters({result:'GET_RESULT',myscores:'GET_MY_SCORES',affectivetraits:'GET_TRAITS',psychotraits:'GET_PSYCHOTRAITS',resumedates:'GET_RESUMPTIONS',rollcall:'GET_ENROLLMENTS'}),
 
         resumption_date(){
-            return this.resumedates = this.resumedates.filter(item=>item.current_term===this.result.term && item.session===this.result.session)
+            return this.resumedates = this.resumedates.filter(item=>item.current_term===this.result.term.id && item.session===this.result.session.id)
         }
     },
 
@@ -170,33 +170,33 @@ export default {
         this.DETAIL_RESULT(this.$route.params.id)
         .then(()=>{
             const payload ={
-                userid: this.result.student,
-                term:this.result.term,
-                session:this.result.session,
-                class:this.result.studentclass
+                userid: this.result.student.id,
+                term:this.result.term.id,
+                session:this.result.session.id,
+                class:this.result.studentclass.id
             }
             this.USER_SCORES_LIST(payload).then(()=>{
                 const affectivedata={
-                userid: this.result.student,
-                session:this.result.session,
-                classroom:this.result.studentclass,
-                term:this.result.term
+                userid: this.result.student.id,
+                session:this.result.session.id,
+                classroom:this.result.studentclass.id,
+                term:this.result.term.id
             
                 }
                 this.FETCH_TRAITS(affectivedata).then(()=>{
                 const psychodata={
-                userid: this.result.student,
-                session:this.result.session,
-                classroom:this.result.studentclass,
-                term:this.result.term
+                userid: this.result.student.id,
+                session:this.result.session.id,
+                classroom:this.result.studentclass.id,
+                term:this.result.term.id
                 }
                     this.FETCH_PSYCHOTRAITS(psychodata).then(()=>{
                    
                         this.ALL_RESUMPTION().then(()=>{
                             const rollcallpayload={
-                                classroom:this.result.studentclass,
-                                term:this.result.term,
-                                session:this.result.session
+                                classroom:this.result.studentclass.id,
+                                term:this.result.term.id,
+                                session:this.result.session.id
                             }
                             this.FETCH_ENROLLMENT(rollcallpayload).then(()=>{
                                 this.isLoading=false
