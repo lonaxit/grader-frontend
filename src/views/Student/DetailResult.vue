@@ -71,7 +71,7 @@
                         <th>Comment</th>
                         <th>Sign</th>
                     </tr>
-                    <tr v-for="score in myscores" :key="score.id">
+                    <!-- <tr v-for="score in myscores" :key="score.id">
                         <td>{{score.subject.name}}</td>
                         <td>{{score.firstscore}}</td>
                         <td>{{score.secondscore}}</td>
@@ -86,7 +86,7 @@
                         <td>{{score.subjectgrade}}</td>
                         <td>{{score.subjectrating}}</td>
                          <td>{{score.subjectteacher.teacher.sur_name}}</td>
-                    </tr>
+                    </tr> -->
          
               
                     <!-- Add more subjects here -->
@@ -117,7 +117,7 @@
                         <tr>
                             <td>AKPAH, Yimam Tyonor</td>
                             <td>{{result.headteachercomment}}</td>
-                            <td>{{result.classteacher.sur_name}}</td>
+                            <td>{{result.classteacher.tutor.sur_name}}</td>
                             <td>{{result.classteachercomment}}</td>
                         
                         </tr>
