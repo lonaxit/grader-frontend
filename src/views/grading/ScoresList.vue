@@ -26,12 +26,12 @@
                                 <tbody>
                                     <tr v-for="item in scores" :key="item.id">
                                         <td>
-                                           {{item.user}}
+                                           {{item.user.sur_name}} {{item.user.first_name}} 
                                         </td>
-                                        <td>{{item.subject_name}}</td>
-                                        <td>{{item.term_name}}</td>
-                                        <td>{{item.class_name}}</td>
-                                        <td>{{item.session_name}}</td>
+                                        <td>{{item.subject.name}}</td>
+                                        <td>{{item.term.name}}</td>
+                                        <td>{{item.studentclass.class_name}}</td>
+                                        <td>{{item.session.name}}</td>
                                         <td>{{item.firstscore}}</td>
                                         <td>{{item.secondscore}}</td>
                                         <td>{{item.thirdscore}}</td>
