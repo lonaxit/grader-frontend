@@ -18,6 +18,7 @@
     <div v-else>
         <h1>loading</h1>
         <p><span><router-link :to="{name:'new-student-profile',params:{id:user.id}}">Add Profile</router-link></span></p>
+        <p><span><router-link :to="{name:'edit-account',params:{id:user.id}}">Edit User Account </router-link></span></p>
     </div>
   </div>
 </template>
