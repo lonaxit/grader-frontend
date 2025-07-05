@@ -134,13 +134,10 @@ export default {
 
       this.GET_TERMINAL_SCORES(payload)
         .then(() => {
-          this.$router.push("/print-terminalresult-summary/");
-          this.submitting = false;
-          //     this.FILTER_RESULT(payload).then(()=>{
-          //     this.$router.push('/print-terminalresult-summary/')
-          //     this.submitting = false
-          //     }
-          // )
+          this.FILTER_RESULT(payload).then(() => {
+            this.$router.push("/print-terminalresult-summary/");
+            this.submitting = false;
+          });
         })
         .catch((err) => {
           this.submitting = false;
