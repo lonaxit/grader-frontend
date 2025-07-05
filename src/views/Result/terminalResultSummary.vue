@@ -1,23 +1,22 @@
 <template>
+  <!-- <div v-if="isLoading">Loading...</div> -->
+  <!-- <div v-else> -->
 
-    <!-- <div v-if="isLoading">Loading...</div> -->
-    <!-- <div v-else> -->
-   
-                <div class="score-card">
-                        <div class="logo-container">
-                        <img :src="badge" alt="logo"  class="logo"/>
-                        </div>
+  <div class="score-card">
+    <div class="logo-container">
+      <img :src="badge" alt="logo" class="logo" />
+    </div>
 
-                    <div class="heading">
-                    <p>BENUE STATE GOVERNMENT</p>
-                    <p>MINISTRY OF EDUCATION HEADQUARTERS, MAKURDI </p>
-                    <p>TERMLY CONTINOUS ASSESSMENT DOSSIER</p>
-                    </div>
+    <div class="heading">
+      <p>BENUE STATE GOVERNMENT</p>
+      <p>MINISTRY OF EDUCATION HEADQUARTERS, MAKURDI</p>
+      <p>TERMLY CONTINOUS ASSESSMENT DOSSIER</p>
+    </div>
 
-                    <h3 class="sch-title">SKY GIFTED ACADEMY MKAR</h3>
-                    <h6 class="sch-title">TERMINAL RESULT SUMMARY</h6>
+    <h3 class="sch-title">SKY GIFTED ACADEMY MKAR</h3>
+    <h6 class="sch-title">TERMINAL RESULT SUMMARY</h6>
 
-                    <!-- <div class="profile-container">
+    <!-- <div class="profile-container">
                             <div class="summary">
                             <span class="name-plate">std anem</span>
                             <p>admno</p>
@@ -28,7 +27,7 @@
                                 <img :src="profile_pix" alt="Profile Picture">
                             </div>
                     </div> -->
-                    <!-- <div>
+    <!-- <div>
                         <table class='examtable-print'>
                             <tr>
                         <th>Class</th>
@@ -54,38 +53,41 @@
                         </table>
                     </div> -->
 
-                    <table class='examtable-print'>
-                    <tr>
-                     
-                        <th colspan="2"></th>
-                        <th v-for="subject in subjects" :key="subject" :colspan="columnSpan">{{ subject.subject_code }}
-                        </th>
-                        <th colspan="4">SUMMARY</th>
-                       
-                    </tr>
-                    <tr  >
-                        <th colspan="2">Name</th>
-                        <Heading v-for="subject in subjects" :key="subject" :msg="subject"/>
-                        <th>TOTAL</th>
-                        <th>AVG</th>
-                        <th>POS</th>
-                        <th>RMKS</th>
-                    </tr>
+    <table class="examtable-print">
+      <tr>
+        <th colspan="2"></th>
+        <th v-for="subject in subjects" :key="subject" :colspan="columnSpan">
+          {{ subject.subject_code }}
+        </th>
+        <th colspan="4">SUMMARY</th>
+      </tr>
+      <tr>
+        <th colspan="2">Name</th>
+        <Heading v-for="subject in subjects" :key="subject" :msg="subject" />
+        <th>TOTAL</th>
+        <th>AVG</th>
+        <th>POS</th>
+        <th>RMKS</th>
+      </tr>
 
+      <tr v-for="result in results" :key="result.id">
+        <td></td>
+        <td>{{ result.student_name }}</td>
+        <Scores
+          v-for="i in filteredScores(result.user_id)"
+          :key="i.id"
+          :total="i.subjecttotal"
+          :pos="getOrdinal(i.subjectposition)"
+          :grade="i.subjectgrade"
+        />
+        <td>{{ result.termtotal }}</td>
+        <td>{{ result.termaverage }}</td>
+        <td>{{ getOrdinal(result.termposition) }}</td>
+      </tr>
+    </table>
+    {{ terminalscores }}
 
-                    <tr v-for="result in results" :key="result.id">
-                        <td></td>
-                        <td>{{result.student_name}}</td>
-                        <Scores v-for="i in filteredScores(result.user_id)" :key="i.id" :total="i.subjecttotal" :pos="getOrdinal(i.subjectposition)" :grade="i.subjectgrade"/> 
-                        <td>{{result.termtotal}}</td>
-                        <td>{{result.termaverage}}</td> 
-                        <td>{{getOrdinal(result.termposition)}}</td> 
-                    </tr>
-                    </table>
-
-                   
-
-                        <!-- <table class='examtable-print'>
+    <!-- <table class='examtable-print'>
                             <tr>
                         <th>Principal's Name</th>
                         <th>Comment</th>
@@ -102,7 +104,7 @@
                         </table>
                          -->
 
-                    <!-- <div class="summary">
+    <!-- <div class="summary">
                     
                     <span class="name-plate">Summary of Result</span>
                     <p>Teacher's Name:</p>
@@ -110,132 +112,126 @@
                     <p>Principal's Name: AKPAH, Yimam Tyonor</p>
                     <p>Principal's Comment: "Great performance! Keep up the good work."</p>
                     </div> -->
-                </div>
+  </div>
 
-                <!-- </div> -->
+  <!-- </div> -->
 
-                <!-- <div>{{results}}</div> -->
+  <!-- <div>{{results}}</div> -->
 </template>
 
 <script>
-import Heading from '../../components/Heading.vue'
-import Scores from '../../components/Scores.vue'
-import { mapActions,mapGetters} from 'vuex'
+import Heading from "../../components/Heading.vue";
+import Scores from "../../components/Scores.vue";
+import { mapActions, mapGetters } from "vuex";
 export default {
-    name:'terminalResultSummary',
-    components:{
-        Heading,
-        Scores
-    },
-    data(){
-        return{
-            badge: require('@/assets/img/skybadge.jpg') ,
-            profile_pix: require('@/assets/img/user_Icon.png'),
-            isLoading: true,
-            resume_date:'',
-            columnSpan: 3
-        }
-    },
-    
-    computed:{
-        ...mapGetters({subjects:'GET_UNIQUE_SUBJECTS',results:'GET_RESULTS',terminalscores:'GET_TERMINAL_SCORES'}),
+  name: "terminalResultSummary",
+  components: {
+    Heading,
+    Scores,
+  },
+  data() {
+    return {
+      badge: require("@/assets/img/skybadge.jpg"),
+      profile_pix: require("@/assets/img/user_Icon.png"),
+      isLoading: true,
+      resume_date: "",
+      columnSpan: 3,
+    };
+  },
 
-  
+  computed: {
+    ...mapGetters({
+      subjects: "GET_UNIQUE_SUBJECTS",
+      results: "GET_RESULTS",
+      terminalscores: "GET_TERMINAL_SCORES",
+    }),
 
-        // resumption_date(){
-        //     return this.resumedates = this.resumedates.filter(item=>item.current_term===this.result.term && item.session===this.result.session)
-        // }
-    },
+    // resumption_date(){
+    //     return this.resumedates = this.resumedates.filter(item=>item.current_term===this.result.term && item.session===this.result.session)
+    // }
+  },
 
-    methods:{
-        //...mapActions(['DETAIL_RESULT','USER_SCORES_LIST','FETCH_TRAITS','FETCH_PSYCHOTRAITS','ALL_RESUMPTION','FETCH_ENROLLMENT']),
+  methods: {
+    //...mapActions(['DETAIL_RESULT','USER_SCORES_LIST','FETCH_TRAITS','FETCH_PSYCHOTRAITS','ALL_RESUMPTION','FETCH_ENROLLMENT']),
     //printOnPageLoad() {
-        //window.print(); // This will open the print dialog on page load
+    //window.print(); // This will open the print dialog on page load
     //},
     filteredScores(userid) {
       //Filter scores based on the current userId
-      return this.terminalscores.filter(score => score.user_id === userid);
+      return this.terminalscores.filter((score) => score.user_id === userid);
     },
-        
+
     getOrdinal(position) {
-    if (position < 1) return position;
+      if (position < 1) return position;
 
-    const lastDigit = position % 10;
-    const lastTwoDigits = position % 100;
+      const lastDigit = position % 10;
+      const lastTwoDigits = position % 100;
 
-    if (lastTwoDigits >= 11 && lastTwoDigits <= 13) {
+      if (lastTwoDigits >= 11 && lastTwoDigits <= 13) {
         return position + "th";
-    }
+      }
 
-    switch (lastDigit) {
+      switch (lastDigit) {
         case 1:
-            return position + "st";
+          return position + "st";
         case 2:
-            return position + "nd";
+          return position + "nd";
         case 3:
-            return position + "rd";
+          return position + "rd";
         default:
-            return position + "th";
-    }
-}
-
+          return position + "th";
+      }
     },
-    mounted(){
-       
-        // this.DETAIL_RESULT(this.$route.params.id)
-        // .then(()=>{
-        //     const payload ={
-        //         userid: this.result.student,
-        //         term:this.result.term,
-        //         session:this.result.session,
-        //         class:this.result.studentclass
-        //     }
-        //     this.USER_SCORES_LIST(payload).then(()=>{
-        //         const affectivedata={
-        //         userid: this.result.student,
-        //         session:this.result.session,
-        //         classroom:this.result.studentclass,
-        //         term:this.result.term
-            
-        //         }
-        //         this.FETCH_TRAITS(affectivedata).then(()=>{
-        //         const psychodata={
-        //         userid: this.result.student,
-        //         session:this.result.session,
-        //         classroom:this.result.studentclass,
-        //         term:this.result.term
-        //         }
-        //             this.FETCH_PSYCHOTRAITS(psychodata).then(()=>{
-                   
-        //                 this.ALL_RESUMPTION().then(()=>{
-        //                     const rollcallpayload={
-        //                         classroom:this.result.studentclass,
-        //                         term:this.result.term,
-        //                         session:this.result.session
-        //                     }
-        //                     this.FETCH_ENROLLMENT(rollcallpayload).then(()=>{
-        //                         this.isLoading=false
-        //                     }).catch(err=>{
-        //                         this.isLoading=false
-        //                         this.$notify({
-        //                              title:'ERROR',
-        //                             text:'Unable to fetch enrollment',
-        //                             duration:5000,
-        //                             type: 'error',
-        //                             width:'100%',
-        //                         })
-        //                     })
-                              
-        //                 })
-                        
-        //             })
-        //         })
-        //     })
-          
-        // })
-     }
-
-}
+  },
+  mounted() {
+    // this.DETAIL_RESULT(this.$route.params.id)
+    // .then(()=>{
+    //     const payload ={
+    //         userid: this.result.student,
+    //         term:this.result.term,
+    //         session:this.result.session,
+    //         class:this.result.studentclass
+    //     }
+    //     this.USER_SCORES_LIST(payload).then(()=>{
+    //         const affectivedata={
+    //         userid: this.result.student,
+    //         session:this.result.session,
+    //         classroom:this.result.studentclass,
+    //         term:this.result.term
+    //         }
+    //         this.FETCH_TRAITS(affectivedata).then(()=>{
+    //         const psychodata={
+    //         userid: this.result.student,
+    //         session:this.result.session,
+    //         classroom:this.result.studentclass,
+    //         term:this.result.term
+    //         }
+    //             this.FETCH_PSYCHOTRAITS(psychodata).then(()=>{
+    //                 this.ALL_RESUMPTION().then(()=>{
+    //                     const rollcallpayload={
+    //                         classroom:this.result.studentclass,
+    //                         term:this.result.term,
+    //                         session:this.result.session
+    //                     }
+    //                     this.FETCH_ENROLLMENT(rollcallpayload).then(()=>{
+    //                         this.isLoading=false
+    //                     }).catch(err=>{
+    //                         this.isLoading=false
+    //                         this.$notify({
+    //                              title:'ERROR',
+    //                             text:'Unable to fetch enrollment',
+    //                             duration:5000,
+    //                             type: 'error',
+    //                             width:'100%',
+    //                         })
+    //                     })
+    //                 })
+    //             })
+    //         })
+    //     })
+    // })
+  },
+};
 </script>
 
 <style scoped>
@@ -244,7 +240,6 @@ body {
   background-color: #f5f5f5;
   margin: 0;
   padding: 0;
-
 }
 
 .score-card {
@@ -254,25 +249,25 @@ body {
   padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.logo-container{
- text-align: center;
+.logo-container {
+  text-align: center;
 }
-.logo{
-    width: 100px;
-    height: 100px;
+.logo {
+  width: 100px;
+  height: 100px;
 }
-.heading p{
-    text-align: center;
-    color:black;
-    font-size:10px;
+.heading p {
+  text-align: center;
+  color: black;
+  font-size: 10px;
 }
-.sch-title{
-    font-size:18px
+.sch-title {
+  font-size: 18px;
 }
-.name-plate{
-    font-size: 15px;
-    color:black;
-    font-weight: bolder;
+.name-plate {
+  font-size: 15px;
+  color: black;
+  font-weight: bolder;
 }
 
 h5 {
@@ -292,33 +287,33 @@ h3 {
 }
 
 .examtable-print {
-    border: 0.7px solid #000;
-    border-collapse: collapse;
-    width: 100%;
-
+  border: 0.7px solid #000;
+  border-collapse: collapse;
+  width: 100%;
 }
-    .examtable-print td {
-      border: 1px solid #000;
-      color: #000;
-      font-size: .74em;
-      white-space: nowrap;
-    }
-    .examtable-print th {
-      border: 0.5px solid #000;
-      color:#000;
-      text-align: left;
-      font-size: .74em;
-    }
+.examtable-print td {
+  border: 1px solid #000;
+  color: #000;
+  font-size: 0.74em;
+  white-space: nowrap;
+}
+.examtable-print th {
+  border: 0.5px solid #000;
+  color: #000;
+  text-align: left;
+  font-size: 0.74em;
+}
 
 table {
   width: 100%;
   border-collapse: collapse;
-border: 0.7px solid #000;
+  border: 0.7px solid #000;
 }
-table, th, td {
+table,
+th,
+td {
   border: 1px solid black;
-  padding-left:2px;
-  
+  padding-left: 2px;
 }
 
 /* th, td {
@@ -340,9 +335,9 @@ tr:hover {
 .summary {
   margin-top: 10px;
   padding-top: 5px;
-  color:black;
+  color: black;
   flex: 1;
-   padding-right: 20px;
+  padding-right: 20px;
 }
 
 h2 {
@@ -383,65 +378,58 @@ td:nth-child(4)[data-grade="C"] {
 
 /*  */
 
-
-
 /* Apply a CSS reset to remove default padding and margin */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-.traits-container{
-    margin-top: 10px;
-    display:flex;
-    justify-content: space-between;
-    padding:20px;
+.traits-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
 }
-.pills{
-    display:inline-block;
-    margin: 10px 10px 0 0;
-    padding:6px 12px;
-    background: #eee;
-    border-radius:20px;
-    font-size:12px;
-    letter-spacing:1px;
-    font-weight:bold;
-    color:black;
+.pills {
+  display: inline-block;
+  margin: 10px 10px 0 0;
+  padding: 6px 12px;
+  background: #eee;
+  border-radius: 20px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: black;
 }
-.underline{
-    text-decoration: underline;
+.underline {
+  text-decoration: underline;
   padding: 10px;
 }
 
-
-
 .profile-container {
-    border-top: 1px solid #ddd;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
 }
 
 .profile-info {
-    flex: 1;
-    padding-right: 20px; /* Add some spacing between the two columns */
+  flex: 1;
+  padding-right: 20px; /* Add some spacing between the two columns */
 }
 
 .profile-picture {
-
-    flex: 1;
-    display: flex;
-    justify-content: center; /* Center the image horizontally */
-    align-items: center; /* Center the image vertically */
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
 }
 
 /* Optional: Add some styles to the student profile picture */
 .profile-picture img {
-    max-width: 100%;
-    max-height: 100px;
-    border-radius: 50%;
-    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
+  max-width: 100%;
+  max-height: 100px;
+  border-radius: 50%;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
 }
-
 </style>
-
