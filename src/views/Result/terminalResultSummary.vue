@@ -85,7 +85,7 @@
         <td>{{ getOrdinal(result.termposition) }}</td>
       </tr>
     </table>
-    {{ subjects }}
+    <!-- {{ subjects }} -->
 
     <!-- <table class='examtable-print'>
                             <tr>
