@@ -55,6 +55,7 @@
 
     <table class="examtable-print">
       <tr>
+        <th>S/N</th>
         <th colspan="2"></th>
         <th v-for="subject in subjects" :key="subject" :colspan="columnSpan">
           {{ subject.subject_code }}
@@ -62,6 +63,7 @@
         <th colspan="4">SUMMARY</th>
       </tr>
       <tr>
+        <th></th>
         <th colspan="2">Name</th>
         <Heading v-for="subject in subjects" :key="subject" :msg="subject" />
         <th>TOTAL</th>
@@ -70,7 +72,8 @@
         <th>RMKS</th>
       </tr>
 
-      <tr v-for="result in results" :key="result.id">
+      <tr v-for="(result, index) in results" :key="result.id">
+        <td>{{ index + 1 }}</td>
         <td></td>
         <td>{{ result.student_full_name }}</td>
         <Scores
