@@ -15,6 +15,12 @@
 
     <h3 class="sch-title">SKY GIFTED ACADEMY MKAR</h3>
     <h6 class="sch-title">TERMINAL RESULT SUMMARY</h6>
+    <!-- detail information -->
+    <h4 class="detail-info" v-if="results.length > 0">
+      Term: {{ results[0].term_code }} | Session:
+      {{ results[0].session_name }} | Class: {{ results[0].class_name }} | Class
+      Teacher: {{ results[0].classteacher_name }}
+    </h4>
 
     <!-- <div class="profile-container">
                             <div class="summary">
@@ -433,5 +439,13 @@ td:nth-child(4)[data-grade="C"] {
   max-height: 100px;
   border-radius: 50%;
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
+}
+
+.detail-info {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 14px;
+  font-weight: normal;
 }
 </style>
