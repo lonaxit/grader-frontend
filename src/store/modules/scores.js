@@ -117,17 +117,17 @@ export const scores = {
     },
 
     GET_UNIQUE_SUBJECTS(state) {
-      function filterUniqueObjects(array, property) {
-        return array.filter(
-          (obj, index, self) =>
-            index === self.findIndex((t) => t[property] === obj[property])
-        );
-      }
+      // Use Set to get unique subject codes more efficiently
+      const uniqueSubjectCodes = [
+        ...new Set(state.allTerminalScores.map((score) => score.subject_code)),
+      ];
 
-      return (state.uniqueSubject = filterUniqueObjects(
-        state.allTerminalScores,
-        "subject_code"
-      ));
+      // Return the first occurrence of each unique subject object
+      return uniqueSubjectCodes.map((subjectCode) =>
+        state.allTerminalScores.find(
+          (score) => score.subject_code === subjectCode
+        )
+      );
     },
   },
 };
