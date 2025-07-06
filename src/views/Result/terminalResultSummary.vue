@@ -55,7 +55,6 @@
 
     <table class="examtable-print">
       <tr>
-        <th>S/N</th>
         <th colspan="2"></th>
         <th v-for="subject in subjects" :key="subject" :colspan="columnSpan">
           {{ subject.subject_code }}
@@ -63,7 +62,7 @@
         <th colspan="4">SUMMARY</th>
       </tr>
       <tr>
-        <th></th>
+        <th>S/N</th>
         <th colspan="2">Name</th>
         <Heading v-for="subject in subjects" :key="subject" :msg="subject" />
         <th>TOTAL</th>
