@@ -70,8 +70,10 @@
         <th>RMKS</th>
       </tr>
 
-      <tr v-for="result in results" :key="result.id">
-        <td></td>
+      <tr v-for="(result, index) in results" :key="result.id">
+        <td>
+          {{ index + 1 }}
+        </td>
         <td>{{ result.student_full_name }}</td>
         <Scores
           v-for="i in filteredScores(result.user_id)"
