@@ -17,9 +17,7 @@
 
       <div class="profile-container">
         <div class="summary">
-          <span class="name-plate"
-            >{{ result.student.sur_name }} {{ result.student.first_name }}</span
-          >
+          <span class="name-plate">{{ result.student_full_name }} </span>
           <p>{{ result.admission_number }}</p>
         </div>
 
@@ -40,7 +38,7 @@
             <th>Next Term Begins</th>
           </tr>
           <tr>
-            <td>{{ result.studentclass.class_name }}</td>
+            <td>{{ result.class_name }}</td>
             <td>{{ rollcall.length }}</td>
             <td>{{ result.termtotal }}</td>
             <td>{{ result.termaverage }}</td>
@@ -71,7 +69,7 @@
           <th>Sign</th>
         </tr>
         <tr v-for="score in myscores" :key="score.id">
-          <td>{{ score.subject.name }}</td>
+          <td>{{ score.subject_code }}</td>
           <td>{{ score.firstscore }}</td>
           <td>{{ score.secondscore }}</td>
           <td>{{ score.thirdscore }}</td>
@@ -84,7 +82,7 @@
           <td>{{ score.subjectposition }}</td>
           <td>{{ score.subjectgrade }}</td>
           <td>{{ score.subjectrating }}</td>
-          <td>{{ score.subjectteacher.teacher.sur_name }}</td>
+          <td>{{ score.subject_teacher_name }}</td>
         </tr>
 
         <!-- Add more subjects here -->
