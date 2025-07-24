@@ -1,131 +1,126 @@
 <template>
+  <div v-if="isLoading">Loading...</div>
+  <div v-else>
+    <div class="score-card">
+      <div class="logo-container">
+        <img :src="badge" alt="logo" class="logo" />
+      </div>
 
-    <div v-if="isLoading">Loading...</div>
-    <div v-else>
-   
-                <div class="score-card">
-                        <div class="logo-container">
-                        <img :src="badge" alt="logo"  class="logo"/>
-                        </div>
+      <div class="heading">
+        <p>BENUE STATE GOVERNMENT</p>
+        <p>MINISTRY OF EDUCATION HEADQUARTERS, MAKURDI</p>
+        <p>TERMLY CONTINOUS ASSESSMENT DOSSIER</p>
+      </div>
 
-                    <div class="heading">
-                    <p>BENUE STATE GOVERNMENT</p>
-                    <p>MINISTRY OF EDUCATION HEADQUARTERS, MAKURDI </p>
-                    <p>TERMLY CONTINOUS ASSESSMENT DOSSIER</p>
-                    </div>
+      <h3 class="sch-title">SKY GIFTED ACADEMY MKAR</h3>
+      <h6 class="sch-title">Terminal Result Sheet</h6>
 
-                    <h3 class="sch-title">SKY GIFTED ACADEMY MKAR</h3>
-                    <h6 class="sch-title">Terminal Result Sheet</h6>
+      <div class="profile-container">
+        <div class="summary">
+          <span class="name-plate"
+            >{{ result.student.sur_name }} {{ result.student.first_name }}</span
+          >
+          <p>{{ result.admission_number }}</p>
+        </div>
 
-                    <div class="profile-container">
-                            <div class="summary">
-                            <span class="name-plate">{{result.student.sur_name}}  {{result.student.first_name}}</span>
-                            <p>{{result.admission_number}}</p>
-                        
-                            </div>
+        <div class="profile-picture">
+          <img :src="profile_pix" alt="Profile Picture" />
+        </div>
+      </div>
+      <div>
+        <table class="examtable-print">
+          <tr>
+            <th>Class</th>
+            <th>Total In Class</th>
+            <th>Total Score</th>
+            <th>Term Average</th>
+            <th>Term Position</th>
+            <th>Term Attendance</th>
+            <th>Term Ends</th>
+            <th>Next Term Begins</th>
+          </tr>
+          <tr>
+            <td>{{ result.studentclass.class_name }}</td>
+            <td>{{ rollcall.length }}</td>
+            <td>{{ result.termtotal }}</td>
+            <td>{{ result.termaverage }}</td>
+            <td>{{ result.termposition }}</td>
+            <td>{{ result.attendance }}</td>
+            <td>{{ resumption_date[0].current_term_ends }}</td>
+            <td>{{ resumption_date[0].next_term_begins }}</td>
+          </tr>
+        </table>
+      </div>
 
-                            <div class="profile-picture">
-                                <img :src="profile_pix" alt="Profile Picture">
-                            </div>
-                    </div>
-                    <div>
-                        <table class='examtable-print'>
-                            <tr>
-                        <th>Class</th>
-                        <th>Total In Class</th>
-                        <th>Total Score</th>
-                        <th>Term Average</th>
-                        <th>Term Position</th>
-                        <th>Term Attendance</th>
-                        <th>Term Ends</th>
-                        <th>Next Term Begins</th>
-                        </tr>
-                        <tr>
-                            <td>{{result.studentclass.class_name}}</td>
-                            <td>{{rollcall.length}}</td>
-                            <td>{{result.termtotal}}</td>
-                            <td>{{result.termaverage}}</td>
-                            <td>{{result.termposition}}</td>
-                            <td>{{result.attendance}}</td>
-                            <td>{{resumption_date[0].current_term_ends}}</td>
-                            <td>{{resumption_date[0].next_term_begins}}</td>
-                        </tr>
-                        </table>
-                    </div>
+      <h5>Student Score Card</h5>
+      <table class="examtable-print">
+        <tr>
+          <th>Subject</th>
+          <th>1st CA</th>
+          <th>2nd CA</th>
+          <th>3rd CA</th>
+          <th>CA Total</th>
+          <th>Exam</th>
+          <th>Total</th>
+          <th>Av</th>
+          <th>High</th>
+          <th>Lowest</th>
+          <th>Position</th>
+          <th>Grade</th>
+          <th>Comment</th>
+          <th>Sign</th>
+        </tr>
+        <tr v-for="score in myscores" :key="score.id">
+          <td>{{ score.subject.name }}</td>
+          <td>{{ score.firstscore }}</td>
+          <td>{{ score.secondscore }}</td>
+          <td>{{ score.thirdscore }}</td>
+          <td>{{ score.totalca }}</td>
+          <td>{{ score.examscore }}</td>
+          <td>{{ score.subjecttotal }}</td>
+          <td>{{ score.subjaverage }}</td>
+          <td>{{ score.highest_inclass }}</td>
+          <td>{{ score.lowest_inclass }}</td>
+          <td>{{ score.subjectposition }}</td>
+          <td>{{ score.subjectgrade }}</td>
+          <td>{{ score.subjectrating }}</td>
+          <td>{{ score.subjectteacher.teacher.sur_name }}</td>
+        </tr>
 
-                    
-                    <h5>Student Score Card</h5>
-                    <table class='examtable-print'>
-                    <tr>
-                        <th>Subject</th>
-                        <th>1st CA</th>
-                        <th>2nd CA</th>
-                        <th>3rd CA</th>
-                        <th>CA Total</th>
-                        <th>Exam</th>
-                        <th>Total</th>
-                        <th>Av</th>
-                        <th>High</th>
-                        <th>Lowest</th>
-                        <th>Position</th>
-                        <th>Grade</th>
-                        <th>Comment</th>
-                        <th>Sign</th>
-                    </tr>
-                    <tr v-for="score in myscores" :key="score.id">
-                        <td>{{score.subject.name}}</td>
-                        <td>{{score.firstscore}}</td>
-                        <td>{{score.secondscore}}</td>
-                        <td>{{score.thirdscore}}</td>
-                        <td>{{score.totalca}}</td>
-                        <td>{{score.examscore}}</td>
-                        <td>{{score.subjecttotal}}</td>
-                        <td>{{score.subjaverage}}</td>
-                        <td>{{score.highest_inclass}}</td>
-                        <td>{{score.lowest_inclass}}</td>
-                         <td>{{score.subjectposition}}</td>
-                        <td>{{score.subjectgrade}}</td>
-                        <td>{{score.subjectrating}}</td>
-                        <td>{{score.subjectteacher.teacher.sur_name}}</td>
-                    </tr>
-         
-              
-                    <!-- Add more subjects here -->
-                    </table>
+        <!-- Add more subjects here -->
+      </table>
 
-                    <div class="traits-container">
-                        <div class="affective-traits">
-                            <h6 class="underline">AFFECTIVE</h6>
-                            <div class="pills" v-for="trait in affectivetraits" :key="trait.id">
-                                <span>{{trait.affective}} | {{trait.rating}}</span>
-                            </div>
-                        </div>
-                        <div class="psycho-traits">
-                            <h6 class="underline">PSYCHOMOTOR</h6>
-                            <div class="pills" v-for="pyscho in psychotraits" :key="pyscho.id">
-                                <span>{{pyscho.psychomotor}} | {{pyscho.rating}}</span>
-                            </div>
-                        </div>
-                    </div>
+      <div class="traits-container">
+        <div class="affective-traits">
+          <h6 class="underline">AFFECTIVE</h6>
+          <div class="pills" v-for="trait in affectivetraits" :key="trait.id">
+            <span>{{ trait.affective }} | {{ trait.rating }}</span>
+          </div>
+        </div>
+        <div class="psycho-traits">
+          <h6 class="underline">PSYCHOMOTOR</h6>
+          <div class="pills" v-for="pyscho in psychotraits" :key="pyscho.id">
+            <span>{{ pyscho.psychomotor }} | {{ pyscho.rating }}</span>
+          </div>
+        </div>
+      </div>
 
-                        <table class='examtable-print'>
-                            <tr>
-                        <th>Principal's Name</th>
-                        <th>Comment</th>
-                        <th>Teacher's' Name</th>
-                        <th>Comment</th>
-                        </tr>
-                        <tr>
-                            <td>AKPAH, Yimam Tyonor</td>
-                            <td>{{result.headteachercomment}}</td>
-                            <td>{{result.classteacher.tutor.sur_name}}</td>
-                            <td>{{result.classteachercomment}}</td>
-                        
-                        </tr>
-                        </table>
-                        
+      <table class="examtable-print">
+        <tr>
+          <th>Principal's Name</th>
+          <th>Comment</th>
+          <th>Teacher's' Name</th>
+          <th>Comment</th>
+        </tr>
+        <tr>
+          <td>AKPAH, Yimam Tyonor</td>
+          <td>{{ result.headteachercomment }}</td>
+          <td>{{ result.classteacher.tutor.sur_name }}</td>
+          <td>{{ result.classteachercomment }}</td>
+        </tr>
+      </table>
 
-                    <!-- <div class="summary">
+      <!-- <div class="summary">
                     
                     <span class="name-plate">Summary of Result</span>
                     <p>Teacher's Name:</p>
@@ -133,94 +128,103 @@
                     <p>Principal's Name: AKPAH, Yimam Tyonor</p>
                     <p>Principal's Comment: "Great performance! Keep up the good work."</p>
                     </div> -->
-                    
-                
-                </div>
-                </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import { mapActions,mapGetters} from 'vuex'
+import { mapActions, mapGetters } from "vuex";
 export default {
-    data(){
-        return{
-            badge: require('@/assets/img/skybadge.jpg') ,
-            profile_pix: require('@/assets/img/user_Icon.png'),
-            isLoading: true,
-            resume_date:''
-        }
-    },
-    computed:{
-        ...mapGetters({result:'GET_RESULT',myscores:'GET_MY_SCORES',affectivetraits:'GET_TRAITS',psychotraits:'GET_PSYCHOTRAITS',resumedates:'GET_RESUMPTIONS',rollcall:'GET_ENROLLMENTS'}),
+  data() {
+    return {
+      badge: require("@/assets/img/skybadge.jpg"),
+      profile_pix: require("@/assets/img/user_Icon.png"),
+      isLoading: true,
+      resume_date: "",
+    };
+  },
+  computed: {
+    ...mapGetters({
+      result: "GET_RESULT",
+      myscores: "GET_MY_SCORES",
+      affectivetraits: "GET_TRAITS",
+      psychotraits: "GET_PSYCHOTRAITS",
+      resumedates: "GET_RESUMPTIONS",
+      rollcall: "GET_ENROLLMENTS",
+    }),
 
-        resumption_date(){
-            return this.resumedates = this.resumedates.filter(item=>item.current_term===this.result.term.id && item.session===this.result.session.id)
-        }
+    resumption_date() {
+      return (this.resumedates = this.resumedates.filter(
+        (item) =>
+          item.current_term === this.result.term.id &&
+          item.session === this.result.session.id
+      ));
     },
+  },
 
-    methods:{
-        ...mapActions(['DETAIL_RESULT','USER_SCORES_LIST','FETCH_TRAITS','FETCH_PSYCHOTRAITS','ALL_RESUMPTION','FETCH_ENROLLMENT']),
-     printOnPageLoad() {
+  methods: {
+    ...mapActions([
+      "DETAIL_RESULT",
+      "USER_SCORES_LIST",
+      "FETCH_TRAITS",
+      "FETCH_PSYCHOTRAITS",
+      "ALL_RESUMPTION",
+      "FETCH_ENROLLMENT",
+    ]),
+    printOnPageLoad() {
       window.print(); // This will open the print dialog on page load
     },
-
-    },
-    mounted(){
-       
-        this.DETAIL_RESULT(this.$route.params.id)
-        .then(()=>{
-            const payload ={
-                userid: this.result.student.id,
-                term:this.result.term.id,
-                session:this.result.session.id,
-                class:this.result.studentclass.id
-            }
-            this.USER_SCORES_LIST(payload).then(()=>{
-                const affectivedata={
-                userid: this.result.student.id,
-                session:this.result.session.id,
-                classroom:this.result.studentclass.id,
-                term:this.result.term.id
-            
-                }
-                this.FETCH_TRAITS(affectivedata).then(()=>{
-                const psychodata={
-                userid: this.result.student.id,
-                session:this.result.session.id,
-                classroom:this.result.studentclass.id,
-                term:this.result.term.id
-                }
-                    this.FETCH_PSYCHOTRAITS(psychodata).then(()=>{
-                   
-                        this.ALL_RESUMPTION().then(()=>{
-                            const rollcallpayload={
-                                classroom:this.result.studentclass.id,
-                                term:this.result.term.id,
-                                session:this.result.session.id
-                            }
-                            this.FETCH_ENROLLMENT(rollcallpayload).then(()=>{
-                                this.isLoading=false
-                            }).catch(err=>{
-                                this.isLoading=false
-                                this.$notify({
-                                     title:'ERROR',
-                                    text:'Unable to fetch enrollment',
-                                    duration:5000,
-                                    type: 'error',
-                                    width:'100%',
-                                })
-                            })
-                              
-                        })
-                        
-                    })
+  },
+  mounted() {
+    this.DETAIL_RESULT(this.$route.params.id).then(() => {
+      const payload = {
+        userid: this.result.user_id,
+        term: this.result.term_id,
+        session: this.result.session_id,
+        class: this.result.class_id,
+      };
+      this.USER_SCORES_LIST(payload).then(() => {
+        const affectivedata = {
+          userid: this.result.user_id,
+          session: this.result.session_id,
+          classroom: this.result.class_id,
+          term: this.result.term_id,
+        };
+        this.FETCH_TRAITS(affectivedata).then(() => {
+          const psychodata = {
+            userid: this.result.user_id,
+            session: this.result.session_id,
+            classroom: this.result.class_id,
+            term: this.result.term_id,
+          };
+          this.FETCH_PSYCHOTRAITS(psychodata).then(() => {
+            this.ALL_RESUMPTION().then(() => {
+              const rollcallpayload = {
+                classroom: this.result.class_id,
+                term: this.result.term_id,
+                session: this.result.session_id,
+              };
+              this.FETCH_ENROLLMENT(rollcallpayload)
+                .then(() => {
+                  this.isLoading = false;
                 })
-            })
-          
-        })
-     }
-
-}
+                .catch((err) => {
+                  this.isLoading = false;
+                  this.$notify({
+                    title: "ERROR",
+                    text: "Unable to fetch enrollment",
+                    duration: 5000,
+                    type: "error",
+                    width: "100%",
+                  });
+                });
+            });
+          });
+        });
+      });
+    });
+  },
+};
 </script>
 
 <style scoped>
@@ -229,7 +233,6 @@ body {
   background-color: #f5f5f5;
   margin: 0;
   padding: 0;
-
 }
 
 .score-card {
@@ -239,26 +242,25 @@ body {
   padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.logo-container{
- text-align: center;
+.logo-container {
+  text-align: center;
 }
-.logo{
-    width: 100px;
-    height: 100px;
+.logo {
+  width: 100px;
+  height: 100px;
 }
-.heading p{
-    text-align: center;
-    color:black;
-    font-size:10px;
+.heading p {
+  text-align: center;
+  color: black;
+  font-size: 10px;
 }
-.sch-title{
-    font-size:18px
+.sch-title {
+  font-size: 18px;
 }
-.name-plate{
-    font-size: 15px;
-    color:black;
-    font-weight: bolder;
-
+.name-plate {
+  font-size: 15px;
+  color: black;
+  font-weight: bolder;
 }
 
 h5 {
@@ -278,33 +280,33 @@ h3 {
 }
 
 .examtable-print {
-    border: 0.7px solid #000;
-    border-collapse: collapse;
-    width: 100%;
-
+  border: 0.7px solid #000;
+  border-collapse: collapse;
+  width: 100%;
 }
-    .examtable-print td {
-      border: 1px solid #000;
-      color: #000;
-      font-size: .74em;
-      white-space: nowrap;
-    }
-    .examtable-print th {
-      border: 0.5px solid #000;
-      color:#000;
-      text-align: left;
-      font-size: .74em;
-    }
+.examtable-print td {
+  border: 1px solid #000;
+  color: #000;
+  font-size: 0.74em;
+  white-space: nowrap;
+}
+.examtable-print th {
+  border: 0.5px solid #000;
+  color: #000;
+  text-align: left;
+  font-size: 0.74em;
+}
 
 table {
   width: 100%;
   border-collapse: collapse;
-border: 0.7px solid #000;
+  border: 0.7px solid #000;
 }
-table, th, td {
+table,
+th,
+td {
   border: 1px solid black;
-  padding-left:2px;
-  
+  padding-left: 2px;
 }
 
 /* th, td {
@@ -326,9 +328,9 @@ tr:hover {
 .summary {
   margin-top: 10px;
   padding-top: 5px;
-  color:black;
+  color: black;
   flex: 1;
-   padding-right: 20px;
+  padding-right: 20px;
 }
 
 h2 {
@@ -369,65 +371,58 @@ td:nth-child(4)[data-grade="C"] {
 
 /*  */
 
-
-
 /* Apply a CSS reset to remove default padding and margin */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-.traits-container{
-    margin-top: 10px;
-    display:flex;
-    justify-content: space-between;
-    padding:20px;
+.traits-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
 }
-.pills{
-    display:inline-block;
-    margin: 10px 10px 0 0;
-    padding:6px 12px;
-    background: #eee;
-    border-radius:20px;
-    font-size:12px;
-    letter-spacing:1px;
-    font-weight:bold;
-    color:black;
+.pills {
+  display: inline-block;
+  margin: 10px 10px 0 0;
+  padding: 6px 12px;
+  background: #eee;
+  border-radius: 20px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: black;
 }
-.underline{
-    text-decoration: underline;
+.underline {
+  text-decoration: underline;
   padding: 10px;
 }
 
-
-
 .profile-container {
-    border-top: 1px solid #ddd;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
 }
 
 .profile-info {
-    flex: 1;
-    padding-right: 20px; /* Add some spacing between the two columns */
+  flex: 1;
+  padding-right: 20px; /* Add some spacing between the two columns */
 }
 
 .profile-picture {
-
-    flex: 1;
-    display: flex;
-    justify-content: center; /* Center the image horizontally */
-    align-items: center; /* Center the image vertically */
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
 }
 
 /* Optional: Add some styles to the student profile picture */
 .profile-picture img {
-    max-width: 100%;
-    max-height: 100px;
-    border-radius: 50%;
-    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
+  max-width: 100%;
+  max-height: 100px;
+  border-radius: 50%;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
 }
-
 </style>
-
