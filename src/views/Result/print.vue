@@ -44,8 +44,8 @@
             <td>{{ result.termaverage }}</td>
             <td>{{ result.termposition }}</td>
             <td>{{ result.attendance }}</td>
-            <td>{{ resumption_date[0].current_term_ends }}</td>
-            <td>{{ resumption_date[0].next_term_begins }}</td>
+            <td>{{ resumption_date[7].current_term_ends }}</td>
+            <td>{{ resumption_date[7].next_term_begins }}</td>
           </tr>
         </table>
       </div>
@@ -113,7 +113,7 @@
         <tr>
           <td>AKPAH, Yimam Tyonor</td>
           <td>{{ result.headteachercomment }}</td>
-          <td>{{ result.classteacher.tutor.sur_name }}</td>
+          <td>{{ result.classteacher_name }}</td>
           <td>{{ result.classteachercomment }}</td>
         </tr>
       </table>
