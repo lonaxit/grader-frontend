@@ -37,6 +37,7 @@
             </td>
             <td>
               <router-link
+                class="btn-link"
                 :to="{ name: 'my-detail-result', params: { id: item.id } }"
                 >Detail</router-link
               >
@@ -44,6 +45,7 @@
 
             <td>
               <router-link
+                class="btn-link"
                 target="_blank"
                 :to="{ name: 'print-result', params: { id: item.id } }"
                 >Print</router-link
@@ -88,4 +90,21 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.btn-link {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-link:hover {
+  background-color: #0056b3;
+  color: white;
+  text-decoration: none;
+}
+</style>
