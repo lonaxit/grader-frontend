@@ -44,8 +44,10 @@
             <td>{{ result.termaverage }}</td>
             <td>{{ result.termposition }}</td>
             <td>{{ result.attendance }}</td>
-            <td>{{ resumption_date[7].current_term_ends }}</td>
-            <td>{{ resumption_date[7].next_term_begins }}</td>
+            <!-- <td>{{ resumption_date[7].current_term_ends }}</td> -->
+            <td>2025-07-25</td>
+            <!-- <td>{{ resumption_date[7].next_term_begins }}</td> -->
+            <td>2025-09-08</td>
           </tr>
         </table>
       </div>
