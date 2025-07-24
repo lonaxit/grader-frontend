@@ -36,10 +36,11 @@
                 <button @click="remove(item.id)">Remove</button>
               </td>
               <td>
-                <router-link
+                <button>view</button>
+                <!-- <router-link
                   :to="{ name: 'my-detail-result', params: { id: item.id } }"
                   >Detail</router-link
-                >
+                > -->
               </td>
 
               <td>
