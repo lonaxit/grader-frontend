@@ -1,124 +1,124 @@
 <template>
-  <!-- <div v-if="isLoading">Loading...</div>
-  <div v-else> -->
-  <div class="score-card">
-    <div class="logo-container">
-      <img :src="badge" alt="logo" class="logo" />
-    </div>
-
-    <div class="heading">
-      <p>BENUE STATE GOVERNMENT</p>
-      <p>MINISTRY OF EDUCATION HEADQUARTERS, MAKURDI</p>
-      <p>TERMLY CONTINOUS ASSESSMENT DOSSIER</p>
-    </div>
-
-    <h3 class="sch-title">SKY GIFTED ACADEMY MKAR</h3>
-    <h6 class="sch-title">Terminal Result Sheet</h6>
-
-    <div class="profile-container">
-      <div class="summary">
-        <span class="name-plate">{{ result.student_full_name }} </span>
-        <p>{{ result.admission_number }}</p>
+  <div v-if="isLoading">Loading...</div>
+  <div v-else>
+    <div class="score-card">
+      <div class="logo-container">
+        <img :src="badge" alt="logo" class="logo" />
       </div>
 
-      <div class="profile-picture">
-        <img :src="profile_pix" alt="Profile Picture" />
+      <div class="heading">
+        <p>BENUE STATE GOVERNMENT</p>
+        <p>MINISTRY OF EDUCATION HEADQUARTERS, MAKURDI</p>
+        <p>TERMLY CONTINOUS ASSESSMENT DOSSIER</p>
       </div>
-    </div>
-    <div>
+
+      <h3 class="sch-title">SKY GIFTED ACADEMY MKAR</h3>
+      <h6 class="sch-title">Terminal Result Sheet</h6>
+
+      <div class="profile-container">
+        <div class="summary">
+          <span class="name-plate">{{ result.student_full_name }} </span>
+          <p>{{ result.admission_number }}</p>
+        </div>
+
+        <div class="profile-picture">
+          <img :src="profile_pix" alt="Profile Picture" />
+        </div>
+      </div>
+      <div>
+        <table class="examtable-print">
+          <tr>
+            <th>Class</th>
+            <th>Total In Class</th>
+            <th>Total Score</th>
+            <th>Term Average</th>
+            <th>Term Position</th>
+            <th>Term Attendance</th>
+            <th>Term Ends</th>
+            <th>Next Term Begins</th>
+          </tr>
+          <tr>
+            <td>{{ result.class_name }}</td>
+            <td>{{ rollcall.length }}</td>
+            <td>{{ result.termtotal }}</td>
+            <td>{{ result.termaverage }}</td>
+            <td>{{ result.termposition }}</td>
+            <td>{{ result.attendance }}</td>
+            <!-- <td>{{ resumption_date[0].current_term_ends }}</td>
+            <td>{{ resumption_date[0].next_term_begins }}</td> -->
+          </tr>
+        </table>
+      </div>
+
+      <h5>Student Score Card</h5>
       <table class="examtable-print">
         <tr>
-          <th>Class</th>
-          <th>Total In Class</th>
-          <th>Total Score</th>
-          <th>Term Average</th>
-          <th>Term Position</th>
-          <th>Term Attendance</th>
-          <th>Term Ends</th>
-          <th>Next Term Begins</th>
+          <th>Subject</th>
+          <th>1st CA</th>
+          <th>2nd CA</th>
+          <th>3rd CA</th>
+          <th>CA Total</th>
+          <th>Exam</th>
+          <th>Total</th>
+          <th>Av</th>
+          <th>High</th>
+          <th>Lowest</th>
+          <th>Position</th>
+          <th>Grade</th>
+          <th>Comment</th>
+          <th>Sign</th>
+        </tr>
+        <tr v-for="score in myscores" :key="score.id">
+          <td>{{ score.subject_code }}</td>
+          <td>{{ score.firstscore }}</td>
+          <td>{{ score.secondscore }}</td>
+          <td>{{ score.thirdscore }}</td>
+          <td>{{ score.totalca }}</td>
+          <td>{{ score.examscore }}</td>
+          <td>{{ score.subjecttotal }}</td>
+          <td>{{ score.subjaverage }}</td>
+          <td>{{ score.highest_inclass }}</td>
+          <td>{{ score.lowest_inclass }}</td>
+          <td>{{ score.subjectposition }}</td>
+          <td>{{ score.subjectgrade }}</td>
+          <td>{{ score.subjectrating }}</td>
+          <td>{{ score.subject_teacher_name }}</td>
+        </tr>
+
+        <!-- Add more subjects here -->
+      </table>
+
+      <div class="traits-container">
+        <div class="affective-traits">
+          <h6 class="underline">AFFECTIVE</h6>
+          <div class="pills" v-for="trait in affectivetraits" :key="trait.id">
+            <span>{{ trait.affective }} | {{ trait.rating }}</span>
+          </div>
+        </div>
+        <div class="psycho-traits">
+          <h6 class="underline">PSYCHOMOTOR</h6>
+          <div class="pills" v-for="pyscho in psychotraits" :key="pyscho.id">
+            <span>{{ pyscho.psychomotor }} | {{ pyscho.rating }}</span>
+          </div>
+        </div>
+      </div>
+
+      <table class="examtable-print">
+        <tr>
+          <th>Principal's Name</th>
+          <th>Comment</th>
+          <th>Teacher's' Name</th>
+          <th>Comment</th>
         </tr>
         <tr>
-          <td>{{ result.class_name }}</td>
-          <td>{{ rollcall.length }}</td>
-          <td>{{ result.termtotal }}</td>
-          <td>{{ result.termaverage }}</td>
-          <td>{{ result.termposition }}</td>
-          <td>{{ result.attendance }}</td>
-          <!-- <td>{{ resumption_date[0].current_term_ends }}</td>
-            <td>{{ resumption_date[0].next_term_begins }}</td> -->
+          <td>AKPAH, Yimam Tyonor</td>
+          <td>{{ result.headteachercomment }}</td>
+          <td>{{ result.classteacher_name }}</td>
+          <td>{{ result.classteachercomment }}</td>
         </tr>
       </table>
-    </div>
 
-    <h5>Student Score Card</h5>
-    <table class="examtable-print">
-      <tr>
-        <th>Subject</th>
-        <th>1st CA</th>
-        <th>2nd CA</th>
-        <th>3rd CA</th>
-        <th>CA Total</th>
-        <th>Exam</th>
-        <th>Total</th>
-        <th>Av</th>
-        <th>High</th>
-        <th>Lowest</th>
-        <th>Position</th>
-        <th>Grade</th>
-        <th>Comment</th>
-        <th>Sign</th>
-      </tr>
-      <tr v-for="score in myscores" :key="score.id">
-        <td>{{ score.subject_code }}</td>
-        <td>{{ score.firstscore }}</td>
-        <td>{{ score.secondscore }}</td>
-        <td>{{ score.thirdscore }}</td>
-        <td>{{ score.totalca }}</td>
-        <td>{{ score.examscore }}</td>
-        <td>{{ score.subjecttotal }}</td>
-        <td>{{ score.subjaverage }}</td>
-        <td>{{ score.highest_inclass }}</td>
-        <td>{{ score.lowest_inclass }}</td>
-        <td>{{ score.subjectposition }}</td>
-        <td>{{ score.subjectgrade }}</td>
-        <td>{{ score.subjectrating }}</td>
-        <td>{{ score.subject_teacher_name }}</td>
-      </tr>
-
-      <!-- Add more subjects here -->
-    </table>
-
-    <div class="traits-container">
-      <div class="affective-traits">
-        <h6 class="underline">AFFECTIVE</h6>
-        <div class="pills" v-for="trait in affectivetraits" :key="trait.id">
-          <span>{{ trait.affective }} | {{ trait.rating }}</span>
-        </div>
-      </div>
-      <div class="psycho-traits">
-        <h6 class="underline">PSYCHOMOTOR</h6>
-        <div class="pills" v-for="pyscho in psychotraits" :key="pyscho.id">
-          <span>{{ pyscho.psychomotor }} | {{ pyscho.rating }}</span>
-        </div>
-      </div>
-    </div>
-
-    <table class="examtable-print">
-      <tr>
-        <th>Principal's Name</th>
-        <th>Comment</th>
-        <th>Teacher's' Name</th>
-        <th>Comment</th>
-      </tr>
-      <tr>
-        <td>AKPAH, Yimam Tyonor</td>
-        <td>{{ result.headteachercomment }}</td>
-        <td>{{ result.classteacher.tutor.sur_name }}</td>
-        <td>{{ result.classteachercomment }}</td>
-      </tr>
-    </table>
-
-    <!-- <div class="summary">
+      <!-- <div class="summary">
                     
                     <span class="name-plate">Summary of Result</span>
                     <p>Teacher's Name:</p>
@@ -126,9 +126,9 @@
                     <p>Principal's Name: AKPAH, Yimam Tyonor</p>
                     <p>Principal's Comment: "Great performance! Keep up the good work."</p>
                     </div> -->
+    </div>
   </div>
-  <!-- </div>
-  <div>{{ result }}</div> -->
+  <!-- <div>{{ result }}</div>  -->
 </template>
 
 <script>
