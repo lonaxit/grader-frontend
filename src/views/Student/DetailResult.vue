@@ -175,7 +175,7 @@ export default {
   mounted() {
     this.DETAIL_RESULT(this.$route.params.id).then(() => {
       const payload = {
-        userid: this.result.uer_id,
+        userid: this.result.user_id,
         term: this.result.term_id,
         session: this.result.session_id,
         class: this.result.class_id,
