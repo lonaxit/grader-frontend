@@ -38,6 +38,7 @@
               <td>
                 <button @click="remove(item.id)">Remove</button>
               </td>
+              <div>{{ scores }}</div>
               <!-- <td>
                                             <router-link  :to="{name:'new-score', params:{id:item.student}}">Add Score</router-link>
                                         </td> -->
