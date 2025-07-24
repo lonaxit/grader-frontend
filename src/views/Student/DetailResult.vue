@@ -71,7 +71,7 @@
           <th>Sign</th>
         </tr>
         <tr v-for="score in myscores" :key="score.id">
-          <td>{{ score.subject_code }}</td>
+          <td>{{ score.subject_name }}</td>
           <td>{{ score.firstscore }}</td>
           <td>{{ score.secondscore }}</td>
           <td>{{ score.thirdscore }}</td>
