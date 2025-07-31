@@ -32,6 +32,8 @@
             <th>Total In Class</th>
             <th>Total Score</th>
             <th>Term Average</th>
+            <th>Term</th>
+            <th>Session</th>
             <th>Term Position</th>
             <th>Term Attendance</th>
             <th>Term Ends</th>
@@ -42,6 +44,8 @@
             <td>{{ rollcall.length }}</td>
             <td>{{ result.termtotal }}</td>
             <td>{{ result.termaverage }}</td>
+            <td>{{ result.term_code }}</td>
+            <td>{{ result.session_name }}</td>
             <td>{{ result.termposition }}</td>
             <td>{{ result.attendance }}</td>
             <td>2025-07-25</td>
