@@ -17,17 +17,11 @@
             <tr v-for="student in students" :key="student.id">
               <td>{{ student.sur_name }}</td>
               <td>{{ student.first_name }}</td>
-              <td>{{ student.other_name }}</td>
+              <td>{{ student.other_name || "N/A" }}</td>
+              <!-- Display 'N/A' if other_name is null -->
               <td>{{ student.username }}</td>
               <td>
-                <router-link
-                  :to="{
-                    name: 'new-student-profile',
-                    params: { id: student.id },
-                  }"
-                  target="_blank"
-                  >Add Profile</router-link
-                >
+                {{ student.id }}
               </td>
             </tr>
           </tbody>
@@ -41,7 +35,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapMutations } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "All New Students",
   data() {
