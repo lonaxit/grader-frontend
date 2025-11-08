@@ -9,6 +9,7 @@ export const user = {
     me: "",
     userdata: "",
     searchedStudent: [],
+    unlinkedstudents: [],
   },
 
   mutations: {
@@ -29,6 +30,9 @@ export const user = {
     },
     SET_SAERCHEDSTUDENT(state, payload) {
       state.searchedStudent = payload;
+    },
+    SET_UNLINKED_STUDENTS(state, payload) {
+      state.unlinkedstudents = payload;
     },
   },
 
@@ -78,6 +82,14 @@ export const user = {
       });
       commit("SET_SAERCHEDSTUDENT", res.data);
     },
+
+    // new action: fetch unlinked students
+    async FETCH_UNLINKED_STUDENTS({ commit }) {
+      const res = await axios.get("auth/v1/unlinked-students/");
+      // backend may return { user: [...] } or the array directly
+      const payload = res.data.user ?? res.data;
+      commit("SET_UNLINKED_STUDENTS", payload);
+    },
   },
   getters: {
     GET_USER(state) {
@@ -108,6 +120,11 @@ export const user = {
     },
     GET_STUDENTS(state) {
       return state.searchedStudent;
+    },
+
+    // new getter: unlinked students
+    GET_UNLINKED_STUDENTS(state) {
+      return state.unlinkedstudents;
     },
   },
 };
