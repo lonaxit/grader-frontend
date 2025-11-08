@@ -21,7 +21,14 @@
               <!-- Display 'N/A' if other_name is null -->
               <td>{{ student.username }}</td>
               <td>
-                {{ student.id }}
+                <router-link
+                  :to="{
+                    name: 'new-student-profile',
+                    params: { id: student.id },
+                  }"
+                  target="_blank"
+                  >Add Profile</router-link
+                >
               </td>
             </tr>
           </tbody>

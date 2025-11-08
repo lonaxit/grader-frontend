@@ -123,8 +123,8 @@ export const user = {
     },
 
     // new getter: unlinked students
-    GET_UNLINKED_STUDENTS(state) {
-      return state.unlinkedstudents;
+    GET_UNLINKED_STUDENTS: (state) => {
+      return state.unlinkedstudents?.users || []; // Access the users array
     },
   },
 };
