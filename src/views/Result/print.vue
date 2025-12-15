@@ -48,10 +48,8 @@
             <td>{{ result.session_name }}</td>
             <td>{{ result.termposition }}</td>
             <td>{{ result.attendance }}</td>
-            <td>2025-07-25</td>
-            <td>2025-09-08</td>
-            <!-- <td>{{ resumption_date[7].current_term_ends }}</td>
-            <td>{{ resumption_date[7].next_term_begins }}</td> -->
+            <td>{{ resumptionEnds }}</td>
+            <td>{{ resumptionNextBegins }}</td>
           </tr>
         </table>
       </div>
@@ -154,15 +152,20 @@ export default {
       affectivetraits: "GET_TRAITS",
       psychotraits: "GET_PSYCHOTRAITS",
       resumedates: "GET_RESUMPTIONS",
+      activeResumption: "GET_ACTIVE_RESUMPTION",
       rollcall: "GET_ENROLLMENTS",
     }),
 
-    resumption_date() {
-      return (this.resumedates = this.resumedates.filter(
-        (item) =>
-          item.current_term === this.result.term.id &&
-          item.session === this.result.session.id
-      ));
+    resumptionEnds() {
+      return this.activeResumption && this.activeResumption.current_term_ends
+        ? this.activeResumption.current_term_ends
+        : "";
+    },
+
+    resumptionNextBegins() {
+      return this.activeResumption && this.activeResumption.next_term_begins
+        ? this.activeResumption.next_term_begins
+        : "";
     },
   },
 
@@ -172,7 +175,7 @@ export default {
       "USER_SCORES_LIST",
       "FETCH_TRAITS",
       "FETCH_PSYCHOTRAITS",
-      "ALL_RESUMPTION",
+      "ACTIVE_RESUMPTION",
       "FETCH_ENROLLMENT",
     ]),
     printOnPageLoad() {
@@ -202,7 +205,7 @@ export default {
             term: this.result.term_id,
           };
           this.FETCH_PSYCHOTRAITS(psychodata).then(() => {
-            this.ALL_RESUMPTION().then(() => {
+            this.ACTIVE_RESUMPTION().then(() => {
               const rollcallpayload = {
                 classroom: this.result.class_id,
                 term: this.result.term_id,

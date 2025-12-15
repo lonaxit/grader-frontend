@@ -4,6 +4,7 @@ export const resumptionsetting = {
     state: {
         resumption: '',
         allResumption: [],
+        activeResumption: '',
         // resumptiondate:''
     },
 
@@ -15,6 +16,10 @@ export const resumptionsetting = {
 
         SET_ALL_RESUMPTION(state, payload) {
             state.allResumption = payload
+        },
+
+        SET_ACTIVE_RESUMPTION(state, payload) {
+            state.activeResumption = payload
         }
         // SET_RESUMPTION_DATE(state, payload) {
         //     state.resumptiondate = payload
@@ -28,6 +33,10 @@ export const resumptionsetting = {
         async ALL_RESUMPTION({commit}) {
             const res = await axios.get('api/v1/resumption-setting/')
             commit('SET_ALL_RESUMPTION', res.data)     
+        },
+        async ACTIVE_RESUMPTION({commit}) {
+            const res = await axios.get('api/v1/active-resumption-setting/')
+            commit('SET_ACTIVE_RESUMPTION', res.data)
         },
         async RESUMPTION_DETAIL({commit},id) {
             const res = await axios.get('api/v1/resumptionsetting-detail/' + id +'/')
@@ -52,6 +61,10 @@ export const resumptionsetting = {
         },
         GET_RESUMPTION(state) {
             return state.resumption
+        }
+        ,
+        GET_ACTIVE_RESUMPTION(state) {
+            return state.activeResumption
         }
         // GET_RESUMPTION_DATE(state) {
         //     return state.resumptiondate
