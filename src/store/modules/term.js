@@ -37,7 +37,7 @@ export const term = {
       //   commit('SET_TERM', res.data)
     },
     async TOGGLE_TERM_STATUS({ commit, dispatch }, id) {
-      await axios.post("api/v1/toggle-term/" + id + "/");
+      await axios.patch("api/v1/toggle-term/" + id + "/");
       dispatch("ALL_TERMS");
     },
   },
